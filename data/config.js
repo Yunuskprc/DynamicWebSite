@@ -3,7 +3,7 @@ let config = {
         host: 'localhost',
         user: 'root',
         password: 'Unutma23.',
-        database: 'freelancer'
+        database: 'webproject'
     }
 };
 
