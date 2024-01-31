@@ -20,7 +20,7 @@
 
 
   <!-- Bootstrap core CSS -->
-  <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <style>
     .bd-placeholder-img {
@@ -40,7 +40,7 @@
 
 
   <!-- Custom styles for this template -->
-  <link href="sidebars.css" rel="stylesheet">
+  <link href="../public/style/sidebars.css" rel="stylesheet">
 </head>
 
 <body>
@@ -53,14 +53,14 @@
 
     <%- include('./partials/AdminSideBar') %>
 
-    
+    <div class="b-example-divider"></div>
 
     <!-- BEyaz ekran tasarımı -->
 
-    <div style="width: 95%;display: flex;justify-content: center;">
-      <div style="width: 95%;height: 95%;border: 1px solid #dee2e6 ;border-radius: 10px;margin-top: 1.7%;">
+    <div style="width: 80%;display: flex;justify-content: center; margin-left: 20%; margin-top: -49%; height: 850px;">
+      <div style="width: 95%;height: 100%;border: 1px solid #dee2e6 ;border-radius: 10px;margin-top: 1.7%;">
 
-        <div class="form-floating" style="display: flex;justify-content: center;text-align: center; margin-top: 4%; width: 800px; margin-left: 5%;">
+        <div class="form-floating" style="display: flex;justify-content: center;text-align: center; margin-top: 2%; width: 800px; margin-left: 5%;">
           <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
           <label for="floatingTextarea">Kategori Ekle</label>
           <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" style="margin-left: 1%; width: 200px;">Kategori Ekle</button>
@@ -105,25 +105,24 @@
           </div>
         </div>
 
-        <div style="display: flex;justify-content: center;text-align: center;margin-top: 5%; width: 800px;">
-          <div class="dropdown" style="margin-left: 18%; display: flex;justify-content: center;text-align: center;">
-
-            <select class="form-select" aria-label="Default select example" style="height: 60px; width: 300px; ">
+        <div style="display: flex;justify-content: center;text-align: center;margin-top: 5%; width: 800px; margin-left: 5%;">
+          <div class="dropdown" style="margin-left: 0px;">
+            <select class="form-select" aria-label="Default select example" style="height: 60px; ">
               <option selected>Kategori Seç</option>
               <option value="1">One</option>
               <option value="2">Two</option>
               <option value="3">Three</option>
             </select>
-
-            <select class="form-select" aria-label="Default select example" style="height: 60px; margin-left: 5%; width: 300px;">
+          </div>
+          <div class="dropdown">
+            <select class="form-select" aria-label="Default select example" style="height: 60px; ">
               <option selected>Ürün Seç</option>
               <option value="1">One</option>
               <option value="2">Two</option>
               <option value="3">Three</option>
             </select>
-    
-            <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" style=" width:200px; margin-left: 5%;">Sil</button>
           </div>
+          <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Sil</button>
         </div>
 
         
@@ -137,13 +136,13 @@
   </main>
 
 
-  <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../node_modules/bootstrap/dist/css/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-rqjGgQx1BPeRvVZL8i7pO8GgoL8E5L4s4+1Ml5hNoUE5QpCqziBcu3TXRlSzqBfJ"
     crossorigin="anonymous"></script>
 
 
-  <script src="sidebars.js"></script>
+  <script src="../public/js/sidebars.js"></script>
 </body>
 
 </html>
