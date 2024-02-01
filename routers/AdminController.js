@@ -24,4 +24,6 @@ router.get('/iletisim',(req,res)=>{
     
 })
 
+
+
 module.exports = router;
