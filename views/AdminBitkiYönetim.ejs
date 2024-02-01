@@ -68,13 +68,15 @@
 
 
         <div style="display: flex;justify-content: center;text-align: center; margin-top: 5%; margin-left: 5%; width: 800px; height: 60px;">
-          <select class="form-select" aria-label="Default select example" >
-            <option selected>Kategori Seç</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
-          <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" style="margin-left: 1%; width: 200px   ;">Kategori Sil</button>
+          <select class="form-select" aria-label="Default select example" name="kategoriSil" id="kategoriSil">
+            <option value="" selected>Kategori Seç</option>
+            <% if (result && result.length > 0) { %>
+              <% for (let i = 0; i < result.length; i++) { %>
+                <option value="<%= result[i].kategoriId %>"><%= result[i].kategoriAd %></option>
+              <% } %>
+            <% } %>
+          </select>          
+          <button class="btn btn-outline-secondary" type="button" onclick="sendKategoriSil()" id="inputGroupFileAddon04" style="margin-left: 1%; width: 200px   ;">Kategori Sil</button>
         </div>
 
 
@@ -160,7 +162,8 @@
                 // Giriş başarısızsa, alert mesajını göster
                 alert('Kategori Ekleme Başarısız Bir Daha Deneyin');
                 } else {
-                  alert('Kayıt Eklendi');
+                  alert('Kategori Eklendi');
+                  window.location.reload();
                 }
           })
           .catch(error => {
@@ -168,6 +171,33 @@
                 alert('Kategori Ekleme Başarısız Bir Daha Deneyin');
             });
         }
+  
+  
+    function sendKategoriSil(){
+          const kategoriId = document.getElementById('kategoriSil').value;
+        
+        fetch('/admin/bitkiyonetim/kategoriSil', { // Route adını düzelttim (büyük harfle başlamalı)
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: `kategoriSil=${kategoriId}`, // Verileri body içinde gönder
+        })
+        .then(response => response.json())
+        .then(data => {
+              if (!data.success) {
+              // Giriş başarısızsa, alert mesajını göster
+              alert('Kategori Silme Başarısız Bir Daha Deneyin');
+              } else {
+                alert('Kategori Silindi');
+                window.location.reload();
+              }
+        })
+        .catch(error => {
+              console.error('Hata:', error);
+              alert('Kategori Silme Başarısız Bir Daha Deneyin');
+          });
+    }
   </script>
 </body>
 

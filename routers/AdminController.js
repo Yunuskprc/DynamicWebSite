@@ -10,7 +10,15 @@ router.get('/bitkiyonetim',(req,res)=>{
     if(req.session.user == null){
         res.redirect('/login')
     }else{
-        res.render('AdminBitkiYönetim')
+        db.query('select *from bitki_kategori',[],function(error,result,field){
+            if(error) throw error;
+            if(result.length > 0){
+                res.render('AdminBitkiYönetim',{result})
+            }else{
+                res.render('AdminBitkiYönetim')
+            }
+        })
+        
     }
     
 })
@@ -20,10 +28,20 @@ router.post('/bitkiyonetim/kategoriEkle',(req,res)=>{
         res.redirect('/login')
     }else{
         let kategoriAdi = req.body.kategoriEkle;
-        console.log(kategoriAdi)
         db.query('insert into bitki_kategori (kategoriAd) values (?)',[kategoriAdi],function(error,result,field){
             if(error) throw error;
-            console.log(1)
+            res.json({ success: true, message: 'POST isteği başarıyla alındı.' });
+        })
+    }
+})
+
+router.post('/bitkiyonetim/kategoriSil',(req,res)=>{
+    if(req.session.user == null){
+        res.redirect('/login')
+    }else{
+        let kategoriId = req.body.kategoriSil;
+        db.query('delete from bitki_kategori where kategoriId=?',[kategoriId],function(error,result,field){
+            if(error) throw error;
             res.json({ success: true, message: 'POST isteği başarıyla alındı.' });
         })
     }
