@@ -61,9 +61,9 @@
       <div style="width: 95%;height: 100%;border: 1px solid #dee2e6 ;border-radius: 10px;margin-top: 1.7%;">
 
         <div class="form-floating" style="display: flex;justify-content: center;text-align: center; margin-top: 2%; width: 800px; margin-left: 5%;">
-          <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+          <textarea class="form-control" placeholder="Leave a comment here" id="kategoriEkle" name="kategoriEkle"></textarea>
           <label for="floatingTextarea">Kategori Ekle</label>
-          <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" style="margin-left: 1%; width: 200px;">Kategori Ekle</button>
+          <button class="btn btn-outline-secondary" type="button" onclick="sendKategoriEkle()" id="inputGroupFileAddon04" style="margin-left: 1%; width: 200px;">Kategori Ekle</button>
         </div>
 
 
@@ -143,6 +143,32 @@
 
 
   <script src="../public/js/sidebars.js"></script>
+  <script>
+    function sendKategoriEkle() {
+          const kategoriEkle = document.getElementById('kategoriEkle').value;
+    
+          fetch('/admin/bitkiyonetim/kategoriEkle', { // Route adını düzelttim (büyük harfle başlamalı)
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `kategoriEkle=${kategoriEkle}`, // Verileri body içinde gönder
+          })
+          .then(response => response.json())
+          .then(data => {
+                if (!data.success) {
+                // Giriş başarısızsa, alert mesajını göster
+                alert('Kategori Ekleme Başarısız Bir Daha Deneyin');
+                } else {
+                  alert('Kayıt Eklendi');
+                }
+          })
+          .catch(error => {
+                console.error('Hata:', error);
+                alert('Kategori Ekleme Başarısız Bir Daha Deneyin');
+            });
+        }
+  </script>
 </body>
 
 </html>
