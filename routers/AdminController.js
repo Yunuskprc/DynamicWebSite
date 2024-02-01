@@ -15,4 +15,13 @@ router.get('/',(req,res)=>{
     
 })
 
+router.get('/iletisim',(req,res)=>{
+    if(req.session.user == null){
+        res.redirect('/login')
+    }else{
+        res.render('AdminİletişimBilgiYönetim')
+    }
+    
+})
+
 module.exports = router;
