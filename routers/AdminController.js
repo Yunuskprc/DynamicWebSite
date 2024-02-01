@@ -4,7 +4,25 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const db = require('../data/db');
 const { mode } = require('crypto-js');
+const multer  = require('multer');
+const path = require('path');
+const fs = require('fs');
 
+
+// multer ile resim depolama
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, '../Web Proje/public/image');
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.fieldname + '-' + Date.now() + '.jpg');
+    },
+});
+const upload = multer({ storage: storage });
+
+
+
+//get metod
 router.get('/bitkiyonetim',(req,res)=>{
 
     if(req.session.user == null){
@@ -15,7 +33,8 @@ router.get('/bitkiyonetim',(req,res)=>{
             if(result.length > 0){
                 res.render('AdminBitkiYönetim',{result})
             }else{
-                res.render('AdminBitkiYönetim')
+                result = [];
+                res.render('AdminBitkiYönetim',{result})
             }
         })
         
@@ -23,6 +42,18 @@ router.get('/bitkiyonetim',(req,res)=>{
     
 })
 
+router.get('/iletisim',(req,res)=>{
+    if(req.session.user == null){
+        res.redirect('/login')
+    }else{
+        res.render('AdminİletişimBilgiYönetim')
+    }
+    
+})
+
+
+
+// post metot
 router.post('/bitkiyonetim/kategoriEkle',(req,res)=>{
     if(req.session.user == null){
         res.redirect('/login')
@@ -47,13 +78,32 @@ router.post('/bitkiyonetim/kategoriSil',(req,res)=>{
     }
 })
 
-router.get('/iletisim',(req,res)=>{
+
+router.post('/bitkiyonetim/urunEkle',upload.single('image'),async (req, res) => {
+
     if(req.session.user == null){
         res.redirect('/login')
     }else{
-        res.render('AdminİletişimBilgiYönetim')
+        let kategoriId = req.body.kategoriSec;
+        let urunAd = req.body.urunAd;
+        let urunAciklama = req.body.urunAciklama;
+        let imageFileName = req.file.filename;
+    
+        db.query('insert into bitki_urun (kategoriId,urunAd,urunAciklama,urunResimYol) values (?,?,?,?)',[kategoriId,urunAd,urunAciklama,imageFileName],function(error,result,field){
+            if(error) throw error;
+            res.json({ success: true, message: 'POST isteği başarıyla alındı.' });
+        })
     }
     
-})
+
+
+    
+});
+  
+
+
+
+
+
 
 module.exports = router;

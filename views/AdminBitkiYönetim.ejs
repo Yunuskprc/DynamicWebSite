@@ -67,6 +67,7 @@
         </div>
 
 
+
         <div style="display: flex;justify-content: center;text-align: center; margin-top: 5%; margin-left: 5%; width: 800px; height: 60px;">
           <select class="form-select" aria-label="Default select example" name="kategoriSil" id="kategoriSil">
             <option value="" selected>Kategori Seç</option>
@@ -80,40 +81,45 @@
         </div>
 
 
-        <!-- burada ki select in boyunu küçültemedik-->
         <div style="display: flex;text-align: center;justify-content: center;margin-top: 5%; margin-left: 5%; width: 800px;">
           <div class="input-group mb-3">
-            <select class="form-select" aria-label="Default select example" style="height: 60px; width: 1%;">
+            <select class="form-select" aria-label="Default select example" name="kategoriSec" id="kategoriSec" style="height: 60px; width: 1%;">
               <option selected>Kategori Seç</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+              <% if (result && result.length > 0) { %>
+                <% for (let i = 0; i < result.length; i++) { %>
+                  <option value="<%= result[i].kategoriId %>"><%= result[i].kategoriAd %></option>
+                <% } %>
+              <% } %>
             </select>
-            <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Ürün Adı:">
+            <input type="text" class="form-control" aria-label="Text input with dropdown button" name="urunAd" id="urunAd" placeholder="Ürün Adı:">
           </div>
         </div>
 
         <div style="display: flex;text-align: center;justify-content: center;margin-top: 1%; width: 800px; margin-left: 5%;">
           <div class="input-group">
             <span class="input-group-text">Ürünün Detaylı açıklaması</span>
-            <textarea class="form-control" aria-label="With textarea"></textarea>
+            <textarea class="form-control" aria-label="With textarea" name="urunAciklama" id="urunAciklama"></textarea>
           </div>
         </div>
 
         <div style="display: flex;text-align: center;justify-content: center;margin-top: 1%; width: 800px; margin-left: 5%;">
           <div class="input-group">
-            <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-            <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" style="margin-left: 2%;">Ekle</button>
+            <input type="file" class="form-control" id="image" name="image" aria-describedby="inputGroupFileAddon04" aria-label="Upload" accept=".gif, .png, .jpeg, .jpg">
+            <button class="btn btn-outline-secondary" onclick="sendUrunEkle()" type="button" id="inputGroupFileAddon04" style="margin-left: 2%;">Ekle</button>
           </div>
         </div>
+
+
 
         <div style="display: flex;justify-content: center;text-align: center;margin-top: 5%; width: 800px; margin-left: 5%;">
           <div class="dropdown" style="margin-left: 0px;">
             <select class="form-select" aria-label="Default select example" style="height: 60px; ">
               <option selected>Kategori Seç</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+              <% if (result && result.length > 0) { %>
+                <% for (let i = 0; i < result.length; i++) { %>
+                  <option value="<%= result[i].kategoriId %>"><%= result[i].kategoriAd %></option>
+                <% } %>
+              <% } %>
             </select>
           </div>
           <div class="dropdown">
@@ -172,9 +178,8 @@
             });
         }
   
-  
     function sendKategoriSil(){
-          const kategoriId = document.getElementById('kategoriSil').value;
+        const kategoriId = document.getElementById('kategoriSil').value;
         
         fetch('/admin/bitkiyonetim/kategoriSil', { // Route adını düzelttim (büyük harfle başlamalı)
           method: 'POST',
@@ -198,6 +203,31 @@
               alert('Kategori Silme Başarısız Bir Daha Deneyin');
           });
     }
+    
+    function sendUrunEkle() {
+    var kategoriSec = document.getElementById('kategoriSec').value;
+    var urunAd = document.getElementById('urunAd').value;
+    var urunAciklama = document.getElementById('urunAciklama').value;
+    var image = document.getElementById('image').files[0];
+    var formData = new FormData();
+    formData.append('kategoriSec', kategoriSec);
+    formData.append('urunAd', urunAd);
+    formData.append('urunAciklama', urunAciklama);
+    formData.append('image', image);
+    fetch('/Admin/bitkiyonetim/urunEkle', {
+      method: 'POST',
+      body: formData,
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Response:', data);
+        alert('Ürün başarıyla eklendi!');
+      })
+      .catch(error => {
+        console.error('Errorsdadxcxsdaasd:', error);
+        alert('Bir hata oluştu. Lütfen tekrar deneyin.');
+      });
+  }
   </script>
 </body>
 
