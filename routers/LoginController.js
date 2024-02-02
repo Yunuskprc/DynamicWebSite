@@ -22,7 +22,6 @@ router.post('/', (req, res) => {
             res.json({ success: true, message: 'POST isteği başarıyla alındı.' });
         }else{
             res.send(error);
-            console.log(2)
         }
     })
 });
