@@ -33,13 +33,12 @@ router.get('/bitkiyonetim',(req,res)=>{
             if(result.length > 0){
                 res.render('AdminBitkiYönetim',{result})
             }else{
-                result = [];
-                res.render('AdminBitkiYönetim',{result})
+                res.render('AdminBitkiYönetim')
             }
         })
         
     }
-    
+
 })
 
 router.get('/iletisim',(req,res)=>{
@@ -84,25 +83,62 @@ router.post('/bitkiyonetim/urunEkle',upload.single('image'),async (req, res) => 
     if(req.session.user == null){
         res.redirect('/login')
     }else{
+        const resimPath = req.file.filename;
         let kategoriId = req.body.kategoriSec;
         let urunAd = req.body.urunAd;
         let urunAciklama = req.body.urunAciklama;
-        let imageFileName = req.file.filename;
-    
-        db.query('insert into bitki_urun (kategoriId,urunAd,urunAciklama,urunResimYol) values (?,?,?,?)',[kategoriId,urunAd,urunAciklama,imageFileName],function(error,result,field){
+
+        db.query('insert into bitki_urun (kategoriId,urunAd,urunAciklama,urunResimYol) values (?,?,?,?)',[kategoriId,urunAd,urunAciklama,resimPath],function(error,result,field){
             if(error) throw error;
             res.json({ success: true, message: 'POST isteği başarıyla alındı.' });
         })
     }
     
+})
 
+router.post('/bitkiyonetim/kategoriChnage',(req,res)=>{
+    let kategoriId = req.body.kategoriId;
 
-    
+    db.query('select urunId,urunAd from bitki_urun where kategoriId=?',[kategoriId],function(error,result,field){
+        if(error) throw error;
+        if(result.length > 0){
+            res.json({ success: true, message: 'POST isteği başarıyla alındı.',result:result});
+        }else{
+            result = [];
+            res.json({ success: true, message: 'POST isteği başarıyla alındı.',result:result });
+        }
+    })
+})
+
+router.post('/bitkiyonetim/urunSil', (req, res) => {
+    if (req.session.user == null) {
+        res.redirect('/login');
+    } else {
+        let urunSilKategori = req.body.urunSilKategori;
+        let urunSilUrun = req.body.urunSilUrun;
+        console.log(urunSilUrun, " ", urunSilKategori);
+        
+        db.query('select urunResimYol from bitki_urun where urunId = ? and kategoriId = ?', [urunSilUrun, urunSilKategori], function (error, result, field){
+            if(error) throw error;
+            if(result.length > 0){
+                db.query('delete from bitki_urun where urunId = ? and kategoriId = ?', [urunSilUrun, urunSilKategori], function (error, result2, field) {
+                    if (error) throw error;
+                    if (result[0].urunResimYol) {
+                        const imagePath = path.join(__dirname, '../public/image', result[0].urunResimYol);
+                        if (fs.existsSync(imagePath)) {
+                            fs.unlinkSync(imagePath);
+                            res.json({ success: true, message: 'POST isteği başarıyla alındı.' });
+                        }
+                    }
+                    
+                })
+            }else{
+                // buraya bir şeyler yazabiliriz.
+            }
+        })
+        
+    }
 });
-  
-
-
-
 
 
 
