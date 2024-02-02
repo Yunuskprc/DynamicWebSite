@@ -33,13 +33,12 @@ router.get('/bitkiyonetim',(req,res)=>{
             if(result.length > 0){
                 res.render('AdminBitkiYönetim',{result})
             }else{
-                result = [];
-                res.render('AdminBitkiYönetim',{result})
+                res.render('AdminBitkiYönetim')
             }
         })
         
     }
-    
+
 })
 
 router.get('/iletisim',(req,res)=>{
@@ -84,26 +83,9 @@ router.post('/bitkiyonetim/urunEkle',upload.single('image'),async (req, res) => 
     if(req.session.user == null){
         res.redirect('/login')
     }else{
-        let kategoriId = req.body.kategoriSec;
-        let urunAd = req.body.urunAd;
-        let urunAciklama = req.body.urunAciklama;
-        let imageFileName = req.file.filename;
-    
-        db.query('insert into bitki_urun (kategoriId,urunAd,urunAciklama,urunResimYol) values (?,?,?,?)',[kategoriId,urunAd,urunAciklama,imageFileName],function(error,result,field){
-            if(error) throw error;
-            res.json({ success: true, message: 'POST isteği başarıyla alındı.' });
-        })
+        res.render('AdminİletişimBilgiYönetim')
     }
     
-
-
-    
-});
-  
-
-
-
-
-
+})
 
 module.exports = router;
