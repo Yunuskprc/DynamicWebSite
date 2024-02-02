@@ -15,12 +15,13 @@ router.get('/bitkiyonetim',(req,res)=>{
             if(result.length > 0){
                 res.render('AdminBitkiYönetim',{result})
             }else{
-                res.render('AdminBitkiYönetim')
+                result=[]
+                res.render('AdminBitkiYönetim',{result})
             }
         })
         
     }
-    
+
 })
 
 router.post('/bitkiyonetim/kategoriEkle',(req,res)=>{
@@ -52,6 +53,15 @@ router.get('/iletisim',(req,res)=>{
         res.redirect('/login')
     }else{
         res.render('AdminİletişimBilgiYönetim')
+    }
+    
+})
+
+router.get('/portfoy',(req,res)=>{
+    if(req.session.user == null){
+        res.redirect('/login')
+    }else{
+        res.render('AdminPortföyYönetim')
     }
     
 })
