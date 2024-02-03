@@ -34,9 +34,9 @@ router.get('/bitkiyonetim',(req,res)=>{
             if(result.length > 0){
                 res.render('AdminBitkiYönetim',{result})
             }else{
-                res.render('AdminBitkiYönetim')
-                res.render('AdminBitkiYönetim')
-                res.render('AdminBitkiYönetim')
+                result=[]
+                res.render('AdminBitkiYönetim',{result})
+                
             }
         })
         
@@ -289,10 +289,7 @@ router.post('/iletisim/delete',(req,res)=>{
         }
     }
 })
-        res.render('AdminPortföyYönetim')
-    }
-    
-})
+       
 
 router.get('/WebGunlugu',(req,res)=>{
     if(req.session.user == null){
