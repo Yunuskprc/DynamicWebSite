@@ -57,7 +57,7 @@
       <div class="b-example-divider"></div>
 
 
-      <div class="iletisimPanel" style="width: 83%;margin-left: 21%; margin-top: -54%; height: 900px;">
+      <div class="iletisimPanel" style="width: 83%;margin-left: 21%; margin-top: -48%; height: 900px;">
         <div style="width: 94%;height: 100%;border: 1px solid #dee2e6 ;border-radius: 10px;">
           <div style="padding: 1%;">
             <div class="mb-3" style="width: 90%;display: flex;text-align: center;width: 80%;">
@@ -67,8 +67,8 @@
               </div>
               <div class="input-group">
                 <span class="input-group-text" id="basic-addon3">0 (000) ___-___</span>
-                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
-                <button class="btn btn-outline-secondary" type="button">Ekle</button>
+                <input type="text" name="telNo" id="telNo" class="form-control"aria-describedby="basic-addon3 basic-addon4">
+                <button class="btn btn-outline-secondary" onclick="sendTelNo()" type="button">Ekle</button>
               </div>
             </div>
 
@@ -79,8 +79,8 @@
               </div>
               <div class="input-group">
                 <span class="input-group-text" id="basic-addon3">admin@admin.com</span>
-                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
-                <button class="btn btn-outline-secondary" type="button">Ekle</button>
+                <input type="text" class="form-control" id="mail" name="mail" aria-describedby="basic-addon3 basic-addon4">
+                <button class="btn btn-outline-secondary" onclick="sendMail()" type="button">Ekle</button>
               </div>
             </div>
 
@@ -91,8 +91,8 @@
               </div>
               <div class="input-group">
                 <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
-                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
-                <button class="btn btn-outline-secondary" type="button">Ekle</button>
+                <input type="text" class="form-control" id="instagram" name="instagram" aria-describedby="basic-addon3 basic-addon4">
+                <button class="btn btn-outline-secondary" onclick="sendInstagram()" type="button">Ekle</button>
               </div>
             </div>
 
@@ -103,8 +103,8 @@
               </div>
               <div class="input-group">
                 <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
-                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
-                <button class="btn btn-outline-secondary" type="button">Ekle</button>
+                <input type="text" class="form-control" id="facebook" name="facebook" aria-describedby="basic-addon3 basic-addon4">
+                <button class="btn btn-outline-secondary" onclick="sendFacebook()" type="button">Ekle</button>
               </div>
             </div>
 
@@ -115,8 +115,8 @@
               </div>
               <div class="input-group">
                 <span class="input-group-text" id="basic-addon3">0 (000) ___-___</span>
-                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
-                <button class="btn btn-outline-secondary" type="button">Ekle</button>
+                <input type="text" class="form-control" id="telNo2" name="telNo2" aria-describedby="basic-addon3 basic-addon4">
+                <button class="btn btn-outline-secondary" onclick="sendTelNo2()" type="button">Ekle</button>
               </div>
             </div>
 
@@ -127,9 +127,36 @@
               </div>
               <div class="input-group" style="display: flex;text-align: left;">
                 <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
-                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
-                <button class="btn btn-outline-secondary" type="button">Ekle</button>
+                <input type="text" class="form-control" id="twitter" name="twitter" aria-describedby="basic-addon3 basic-addon4">
+                <button class="btn btn-outline-secondary" onclick="sendTwitter()" type="button">Ekle</button>
               </div>
+            </div>
+
+            <div class="mb-3" style="width: 90%;display: flex;text-align: center;width: 80%;">
+              <h3><i class="bi bi-linkedin"></i></h3>
+              <div style="width: 25%;">
+                <label for="basic-url" class="form-label">Linkedin de seni nasıl bulabilirler?</label>
+              </div>
+              <div class="input-group" style="display: flex;text-align: left;">
+                <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
+                <input type="text" class="form-control" id="linkedin" name="linkedin" aria-describedby="basic-addon3 basic-addon4">
+                <button class="btn btn-outline-secondary" onclick="sendLinkedin()" type="button">Ekle</button>
+              </div>
+            </div>
+
+            <div class="input-group" style="padding: 1%;width: 90%;display: flex;text-align: center;width: 80%;">
+              <select class="form-select" id="deleteinfo" name="deleteinfo" aria-label="Example select with button addon">
+                <option selected="">Silmek istediğiniz iletisim bilgisini seçiniz.</option>
+                <option value="1">Telefon Numarası</option>
+                <option value="2">Mail Adresi</option>
+                <option value="3">İnstagram</option>
+                <option value="4">Facebook</option>
+                <option value="5">WhatsApp</option>
+                <option value="6">Twitter</option>
+                <option value="7">Linkedin</option>
+
+              </select>
+              <button class="btn btn-outline-secondary" onclick="deleteInfo()" type="button">Sil</button>
             </div>
           </div>
         </div>
@@ -141,6 +168,215 @@
     integrity="sha384-rqjGgQx1BPeRvVZL8i7pO8GgoL8E5L4s4+1Ml5hNoUE5QpCqziBcu3TXRlSzqBfJ"
     crossorigin="anonymous"></script>
   <script src="../public/js/sidebars.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+  <script>
+    function sendTelNo(){
+      const telNo = document.getElementById('telNo').value;
+    
+      fetch('/admin/iletisim/telNo', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: `telNo=${telNo}`,
+      })
+      .then(response => response.json())
+          .then(data => {
+                if (!data.success) {
+                // Giriş başarısızsa, alert mesajını göster
+                alert('Telefon Ekleme Başarısız Bir Daha Deneyin');
+                } else {
+                  alert('Telefon Eklendi');
+                  window.location.reload();
+                }
+          })
+          .catch(error => {
+                console.error('Hata:', error);
+                alert('Telefon Ekleme Başarısız Bir Daha Deneyin');
+            });
+    }
+  
+    function sendMail(){
+      const mail = document.getElementById('mail').value;
+      fetch('/admin/iletisim/mail', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: `mail=${mail}`,
+      })
+      .then(response => response.json())
+          .then(data => {
+                if (!data.success) {
+                // Giriş başarısızsa, alert mesajını göster
+                alert('Mail Ekleme Başarısız Bir Daha Deneyin');
+                } else {
+                  alert('Mail Eklendi');
+                  window.location.reload();
+                }
+          })
+          .catch(error => {
+                console.error('Hata:', error);
+                alert('Mail Ekleme Başarısız Bir Daha Deneyin');
+            });
+    }
+  
+    function sendInstagram(){
+      const instagram = document.getElementById('instagram').value;
+    
+      fetch('/admin/iletisim/instagram', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: `instagram=${instagram}`,
+      })
+      .then(response => response.json())
+          .then(data => {
+                if (!data.success) {
+                // Giriş başarısızsa, alert mesajını göster
+                alert('İnstagram Ekleme Başarısız Bir Daha Deneyin');
+                } else {
+                  alert('İnstagram Eklendi');
+                  window.location.reload();
+                }
+          })
+          .catch(error => {
+                console.error('Hata:', error);
+                alert('İnstagram Ekleme Başarısız Bir Daha Deneyin');
+            });
+    }
+
+    function sendFacebook(){
+      const facebook = document.getElementById('facebook').value;
+    
+      fetch('/admin/iletisim/facebook', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: `facebook=${facebook}`,
+      })
+      .then(response => response.json())
+          .then(data => {
+                if (!data.success) {
+                // Giriş başarısızsa, alert mesajını göster
+                alert('Facebook Ekleme Başarısız Bir Daha Deneyin');
+                } else {
+                  alert('Facebook Eklendi');
+                  window.location.reload();
+                }
+          })
+          .catch(error => {
+                console.error('Hata:', error);
+                alert('Facebook Ekleme Başarısız Bir Daha Deneyin');
+            });
+    }
+  
+    function sendTelNo2(){
+      const telNo2 = document.getElementById('telNo2').value;
+    
+      fetch('/admin/iletisim/telNo2', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: `telNo2=${telNo2}`,
+      })
+      .then(response => response.json())
+          .then(data => {
+                if (!data.success) {
+                // Giriş başarısızsa, alert mesajını göster
+                alert('WhatsApp Ekleme Başarısız Bir Daha Deneyin');
+                } else {
+                  alert('WhatsApp Eklendi');
+                  window.location.reload();
+                }
+          })
+          .catch(error => {
+                console.error('Hata:', error);
+                alert('WhatsApp Ekleme Başarısız Bir Daha Deneyin');
+            });
+    }
+  
+    function sendTwitter(){
+      const twitter = document.getElementById('twitter').value;
+    
+      fetch('/admin/iletisim/twitter', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: `twitter=${twitter}`,
+      })
+      .then(response => response.json())
+          .then(data => {
+                if (!data.success) {
+                // Giriş başarısızsa, alert mesajını göster
+                alert('Twitter Ekleme Başarısız Bir Daha Deneyin');
+                } else {
+                  alert('Twitter Eklendi');
+                  window.location.reload();
+                }
+          })
+          .catch(error => {
+                console.error('Hata:', error);
+                alert('Twitter Ekleme Başarısız Bir Daha Deneyin');
+            });
+    }
+  
+    function sendLinkedin(){
+      const linkedin = document.getElementById('linkedin').value;
+    
+      fetch('/admin/iletisim/linkedin', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: `linkedin=${linkedin}`,
+      })
+      .then(response => response.json())
+          .then(data => {
+                if (!data.success) {
+                // Giriş başarısızsa, alert mesajını göster
+                alert('Linkedin Ekleme Başarısız Bir Daha Deneyin');
+                } else {
+                  alert('Linkedin Eklendi');
+                  window.location.reload();
+                }
+          })
+          .catch(error => {
+                console.error('Hata:', error);
+                alert('Linkedin Ekleme Başarısız Bir Daha Deneyin');
+            });
+    }
+  
+    function deleteInfo(){
+      const deleteinfo = document.getElementById('deleteinfo').value;
+      fetch('/admin/iletisim/delete', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: `deleteinfo=${deleteinfo}`,
+      })
+      .then(response => response.json())
+          .then(data => {
+                if (!data.success) {
+                alert('Silme İşlemi Başarısız Bir Daha Deneyin');
+                } else {
+                  alert('Silme İşlemi Başarılı');
+                  window.location.reload();
+                }
+          })
+          .catch(error => {
+                console.error('Hata:', error);
+                alert('Silme İşlemi Başarısız Bir Daha Deneyin');
+            });
+    }
+  </script>
 </body>
 
 </html>
