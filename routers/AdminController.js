@@ -7,6 +7,7 @@ const { mode } = require('crypto-js');
 const multer  = require('multer');
 const path = require('path');
 const fs = require('fs');
+const NumberControl = require('../middleware/NumberControl');
 
 
 // multer ile resim depolama
@@ -34,6 +35,7 @@ router.get('/bitkiyonetim',(req,res)=>{
                 res.render('AdminBitkiYönetim',{result})
             }else{
                 res.render('AdminBitkiYönetim')
+                res.render('AdminBitkiYönetim')
             }
         })
         
@@ -48,6 +50,14 @@ router.get('/iletisim',(req,res)=>{
         res.render('AdminİletişimBilgiYönetim')
     }
     
+})
+
+router.get('/portfoy',(req,res)=>{
+    if(req.session.user == null){
+        res.redirect('/login')
+    }else{
+        res.render('AdminPortföyYönetim')
+    }
 })
 
 
@@ -116,7 +126,6 @@ router.post('/bitkiyonetim/urunSil', (req, res) => {
     } else {
         let urunSilKategori = req.body.urunSilKategori;
         let urunSilUrun = req.body.urunSilUrun;
-        console.log(urunSilUrun, " ", urunSilKategori);
         
         db.query('select urunResimYol from bitki_urun where urunId = ? and kategoriId = ?', [urunSilUrun, urunSilKategori], function (error, result, field){
             if(error) throw error;
@@ -140,6 +149,145 @@ router.post('/bitkiyonetim/urunSil', (req, res) => {
     }
 });
 
+
+
+// iletisim post
+
+router.post('/iletisim/telNo',(req,res)=>{
+    if(req.session.user == null){
+        res.redirect('/login'); 
+    }else{
+        let telNo = req.body.telNo;
+        if(NumberControl(telNo)){
+            db.query('update iletisim set telNo=? where id=1',[telNo],function(error,result,field){
+                if(error) throw error;
+                res.json({ success: true, message: 'POST isteği başarıyla alındı.'});
+            })
+        }else{
+            res.json({ success: false, message: 'Hatalı Veri Girişi!!'});
+        }
+    }
+})
+
+router.post('/iletisim/mail',(req,res)=>{
+    if(req.session.user == null){
+        res.redirect('/login'); 
+    }else{
+        let mail = req.body.mail;
+        db.query('update iletisim set mail=? where id=1',[mail],function(error,result,field){
+            if(error) throw error;
+            res.json({ success: true, message: 'POST isteği başarıyla alındı.'});
+        })
+    }
+})
+
+router.post('/iletisim/instagram',(req,res)=>{
+    if(req.session.user == null){
+        res.redirect('/login'); 
+    }else{
+        let instagram = req.body.instagram;
+        db.query('update iletisim set instagram=? where id=1',[instagram],function(error,result,field){
+            if(error) throw error;
+            res.json({ success: true, message: 'POST isteği başarıyla alındı.'});
+        })
+    }
+})
+
+router.post('/iletisim/facebook',(req,res)=>{
+    if(req.session.user == null){
+        res.redirect('/login'); 
+    }else{
+        let facebook = req.body.facebook;
+        db.query('update iletisim set facebook=? where id=1',[facebook],function(error,result,field){
+            if(error) throw error;
+            res.json({ success: true, message: 'POST isteği başarıyla alındı.'});
+        })
+    }
+})
+
+router.post('/iletisim/twitter',(req,res)=>{
+    if(req.session.user == null){
+        res.redirect('/login'); 
+    }else{
+        let twitter = req.body.twitter;
+        db.query('update iletisim set twitter=? where id=1',[twitter],function(error,result,field){
+            if(error) throw error;
+            res.json({ success: true, message: 'POST isteği başarıyla alındı.'});
+        })
+    }
+})
+
+router.post('/iletisim/linkedin',(req,res)=>{
+    if(req.session.user == null){
+        res.redirect('/login'); 
+    }else{
+        let linkedin = req.body.linkedin;
+        db.query('update iletisim set linkedin=? where id=1',[linkedin],function(error,result,field){
+            if(error) throw error;
+            res.json({ success: true, message: 'POST isteği başarıyla alındı.'});
+        })
+    }
+})
+
+router.post('/iletisim/telNo2',(req,res)=>{
+    if(req.session.user == null){
+        res.redirect('/login'); 
+    }else{
+        let telNo2 = req.body.telNo2;
+        if(NumberControl(telNo2)){
+            db.query('update iletisim set telNo2=? where id=1',[telNo2],function(error,result,field){
+                if(error) throw error;
+                res.json({ success: true, message: 'POST isteği başarıyla alındı.'});
+            })
+        }else{
+            res.json({ success: false, message: 'Hatalı Veri Girişi!!'});
+        }
+    }
+})
+
+router.post('/iletisim/delete',(req,res)=>{
+    if(req.session.user == null){
+        res.redirect('/login');
+    }else{
+        let infoNumber = req.body.deleteinfo;
+        if(infoNumber == 1){
+            db.query('update iletisim set telNo=\'00000000000\' where id=1',[],function(error,result,field){
+                if(error) throw error;
+                res.json({ success: true, message: 'POST isteği başarıyla alındı.'});
+            })
+        }else if(infoNumber == 2){
+            db.query('update iletisim set mail=\'https://example\' where id=1',[],function(error,result,field){
+                if(error) throw error;
+                res.json({ success: true, message: 'POST isteği başarıyla alındı.'});
+            })
+        }else if(infoNumber == 3){
+            db.query('update iletisim set instagram=\'https://example\' where id=1',[],function(error,result,field){
+                if(error) throw error;
+                res.json({ success: true, message: 'POST isteği başarıyla alındı.'});
+            })
+        }else if(infoNumber == 4){
+            db.query('update iletisim set facebook=\'https://example\' where id=1',[],function(error,result,field){
+                if(error) throw error;
+                res.json({ success: true, message: 'POST isteği başarıyla alındı.'});
+            })
+        }else if(infoNumber == 5){
+            db.query('update iletisim set telNo2=\'00000000000\' where id=1',[],function(error,result,field){
+                if(error) throw error;
+                res.json({ success: true, message: 'POST isteği başarıyla alındı.'});
+            })
+        }else if(infoNumber == 6){
+            db.query('update iletisim set twitter=\'https://example\' where id=1',[],function(error,result,field){
+                if(error) throw error;
+                res.json({ success: true, message: 'POST isteği başarıyla alındı.'});
+            })
+        }else if(infoNumber == 7){
+            db.query('update iletisim set linkedin=\'https://example\' where id=1',[],function(error,result,field){
+                if(error) throw error;
+                res.json({ success: true, message: 'POST isteği başarıyla alındı.'});
+            })
+        }
+    }
+})
 
 
 module.exports = router;
