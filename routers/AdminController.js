@@ -35,7 +35,6 @@ router.get('/bitkiyonetim',(req,res)=>{
                 res.render('AdminBitkiYönetim',{result})
             }else{
                 res.render('AdminBitkiYönetim')
-                res.render('AdminBitkiYönetim')
             }
         })
         
