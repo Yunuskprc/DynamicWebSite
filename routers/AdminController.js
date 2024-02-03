@@ -66,6 +66,15 @@ router.get('/portfoy',(req,res)=>{
     
 })
 
+router.get('/WebGunlugu',(req,res)=>{
+    if(req.session.user == null){
+        res.redirect('/login')
+    }else{
+        res.render('AdminWebGunluguYonetim')
+    }
+    
+})
+
 
 
 module.exports = router;
