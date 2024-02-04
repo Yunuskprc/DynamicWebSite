@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
       cb(null, file.fieldname + '-' + Date.now() + '.jpg');
     },
 });
-const upload = multer({ storage: storage });
+const upload = multer({ storage: storage});
 
 
 
@@ -332,29 +332,36 @@ router.post('/portfoy/infoUpdate',(req,res)=>{
 })
 
 // web günlüğü
-router.post('/webgunlugu/sendMakale',upload.single('image'),async (req, res)=>{
-    if(req.session.user == null){
-        res.redirect('/login')
-    }else{
-
+router.post('/webgunlugu/sendMakale', upload.single('image'), async (req, res) => {
+    if (req.session.user == null) {
+      res.redirect('/login');
+    } else {
+      try {
         if (!req.file) {
-            // Dosya yüklenmediği durumda işlemleri ele alabilirsiniz.
-            console.log('Dosya yüklenmedi.');
-            return res.status(400).json({ success: false, message: 'Dosya yüklenemedi.' });
+          // Dosya yüklenmediği durumda işlemleri ele alabilirsiniz.
+          console.log('Dosya yüklenmedi.');
+          throw new Error('Dosya yüklenmedi.');
         }
-          
-        console.log('ljasdhljsad');
+  
         const resimPath = req.file.filename;
         let baslik = req.body.baslik;
         let icerik = req.body.icerik;
         let kaynakca = req.body.kaynakca;
-        
-        db.query('insert into webgunlugu (baslik,icerik,kaynakca,resimYol) values (?,?,?,?)',[baslik,icerik,kaynakca,resimPath],function(error,result,field){
-            if(error) throw error;
+  
+        db.query(
+          'INSERT INTO webgunlugu (baslik, icerik, kaynakca, resimYol) VALUES (?, ?, ?, ?)',
+          [baslik, icerik, kaynakca, resimPath],
+          function (error, result, field) {
+            if (error) throw error;
             res.json({ success: true, message: 'POST isteği başarıyla alındı.' });
-        })
+          }
+        );
+      } catch (error) {
+        console.error('Hata:', error);
+        res.status(400).json({ success: false, message: error.message || 'Bir hata oluştu.' });
+      }
     }
-})
+  });
 
 
 
