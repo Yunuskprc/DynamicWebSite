@@ -34,7 +34,9 @@ router.get('/bitkiyonetim',(req,res)=>{
             if(result.length > 0){
                 res.render('AdminBitkiYönetim',{result})
             }else{
-                res.render('AdminBitkiYönetim')
+                result=[]
+                res.render('AdminBitkiYönetim',{result})
+                
             }
         })
         
@@ -55,10 +57,27 @@ router.get('/portfoy',(req,res)=>{
     if(req.session.user == null){
         res.redirect('/login')
     }else{
-        res.render('AdminPortföyYönetim')
+        db.query('select *from portfoy where id=1',[],function(error,result,field){
+            if(error) throw error;
+            if(result.length > 0){
+                res.render('AdminPortföyYönetim',{result})
+            }else{
+                result = [];
+                res.render('AdminPortföyYönetim',{result})
+            }
+        })
+       
     }
 })
 
+router.get('/WebGunlugu',(req,res)=>{
+    if(req.session.user == null){
+        res.redirect('/login')
+    }else{
+        res.render('AdminWebGunluguYonetim')
+    }
+    
+})
 
 
 // post metot
@@ -287,6 +306,56 @@ router.post('/iletisim/delete',(req,res)=>{
         }
     }
 })
+      
+
+// portfoy
+
+router.post('/portfoy/infoUpdate',(req,res)=>{
+    if(req.session.user == null){
+        res.redirect('/login')
+    }else{
+        console.log(req.body);
+        var ad = req.body.adSoyad;
+        const sehir = req.body.sehir;
+        let biografi = req.body.biografi;
+        let universite = req.body.universite;
+        let bolum = req.body.bolum;
+        let calismaYeri = req.body.calismaYeri;
+
+        console.log(ad,sehir,biografi,universite,bolum,calismaYeri);
+
+        db.query('update portfoy set adSoyad=?, sehir=?, biografi=?, universite=?, bolum=?, calismaYeri=? where id=1',[ad,sehir,biografi,universite,bolum,calismaYeri],function(error,result,field){
+            if(error) throw error;
+            res.json({ success: true, message: 'POST isteği başarıyla alındı.'});
+        })
+    }
+})
+
+// web günlüğü
+router.post('/webgunlugu/sendMakale',upload.single('image'),async (req, res)=>{
+    if(req.session.user == null){
+        res.redirect('/login')
+    }else{
+
+        if (!req.file) {
+            // Dosya yüklenmediği durumda işlemleri ele alabilirsiniz.
+            console.log('Dosya yüklenmedi.');
+            return res.status(400).json({ success: false, message: 'Dosya yüklenemedi.' });
+        }
+          
+        console.log('ljasdhljsad');
+        const resimPath = req.file.filename;
+        let baslik = req.body.baslik;
+        let icerik = req.body.icerik;
+        let kaynakca = req.body.kaynakca;
+        
+        db.query('insert into webgunlugu (baslik,icerik,kaynakca,resimYol) values (?,?,?,?)',[baslik,icerik,kaynakca,resimPath],function(error,result,field){
+            if(error) throw error;
+            res.json({ success: true, message: 'POST isteği başarıyla alındı.' });
+        })
+    }
+})
+
 
 
 module.exports = router;

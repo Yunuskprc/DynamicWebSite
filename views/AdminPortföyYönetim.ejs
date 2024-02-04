@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <title>Sidebars · Bootstrap v5.0</title>
+    <title>Portföyüm</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-rqjGgQx1BPeRvVZL8i7pO8GgoL8E5L4s4+1Ml5hNoUE5QpCqziBcu3TXRlSzqBfJ"
         crossorigin="anonymous"></script>
@@ -65,55 +65,42 @@
                         </figure>
                     </div>
 
-                    <div
-                        style="border: 1px solid #dee2e6;border-radius: 10px;margin: 1%;width: 700px;justify-content: center;text-align: center;">
-                        <figure class="text-">
-                            <blockquote class="blockquote" style="font-size: 100%;">
-                                <p>Bu kısma ismini,soyismini yaz.Kısaca insanlara kendinden bahset.</p>
-                            </blockquote>
-                            <figcaption class="blockquote-footer">
-                                Neden senin siteni ziyaret etmeliler? <cite title=""></cite>
-                            </figcaption>
-                        </figure>
-                    </div>
+                    
 
                     <div class="input-group" style="padding: 1%;">
                         <span class="input-group-text">İsim ve soyismin nedir?</span>
-                        <input type="text" aria-label="First name" class="form-control">
-                        <input type="text" aria-label="Last name" class="form-control">
+                        <input type="text" aria-label="First name" name="adSoyad" id="adSoyad" class="form-control" value="<%= result[0].adSoyad %>">
+                        
                     </div>
 
                     <div class="input-group mb-3" style="padding: 1%;">
                         <span class="input-group-text" id="inputGroup-sizing-sm">Hangi şehirde yaşıyorsun?</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-sm">
+                        <input type="text" class="form-control" aria-label="Sizing example input" name="sehir" id="sehir" aria-describedby="inputGroup-sizing-sm" value="<%= result[0].sehir %>"> 
                     </div>
 
                     <div class="bd-example m-0 border-0" style="padding: 1%;">
                         <div class="form-floating">
-                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-                                style="height: 300px"></textarea>
+                            <textarea class="form-control" placeholder="Leave a comment here" id="biografi" name="biografi" style="height: 300px"><%= result[0].biografi %></textarea>
                             <label for="floatingTextarea2">Biyografin</label>
                         </div>
                     </div>
 
                     <div class="input-group mb-3" style="padding: 1%;">
                         <span class="input-group-text" id="inputGroup-sizing-sm">Hangi üniversiteden mezun oldun?</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-sm">
+                        <input type="text" class="form-control" aria-label="Sizing example input" name="universite" id="universite" aria-describedby="inputGroup-sizing-sm" value="<%= result[0].universite %>">
                     </div>
 
                     <div class="input-group mb-3" style="padding: 1%;">
                         <span class="input-group-text" id="inputGroup-sizing-sm">Hangi bölümden mezun oldun?</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-sm">
+                        <input type="text" class="form-control" aria-label="Sizing example input" name="bolum" id="bolum" aria-describedby="inputGroup-sizing-sm" value="<%= result[0].bolum %>">
                     </div>
 
                     <div class="input-group mb-3" style="padding: 1%;">
                         <span class="input-group-text" id="inputGroup-sizing-sm">Şu an nerede çalışıyorsun?</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-sm">
+                        <input type="text" class="form-control" aria-label="Sizing example input" name="calismaYeri" id="calismaYeri" aria-describedby="inputGroup-sizing-sm" value="<%= result[0].calismaYeri %>">
+                            
                     </div>
+                    <button class="btn btn-outline-secondary" onclick="sendinfo()" type="button" style="margin-left: 45%;">Ekle</button>
                 </div>
 
             </div>
@@ -127,6 +114,44 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+
+    <script>
+        function sendinfo() {
+            var adSoyad = document.getElementById('adSoyad').value;
+            var sehir = document.getElementById('sehir').value;
+            var biografi = document.getElementById('biografi').value;
+            var universite = document.getElementById('universite').value;
+            var bolum = document.getElementById('bolum').value;
+            var calismaYeri = document.getElementById('calismaYeri').value;
+
+            var data = {
+                adSoyad: adSoyad,
+                sehir: sehir,
+                biografi: biografi,
+                universite: universite,
+                bolum: bolum,
+                calismaYeri: calismaYeri
+            }; 
+            fetch('/admin/portfoy/infoUpdate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Response:', data);
+                alert('Portföy başarı ile güncellendi');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Bir hata oluştu. Lütfen tekrar deneyin.');
+            });
+        }
+
+    </script>
+
 </body>
 
 </html>
