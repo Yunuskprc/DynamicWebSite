@@ -79,6 +79,22 @@ router.get('/WebGunlugu',(req,res)=>{
     
 })
 
+router.get('/kentseldönüsüm',(req,res)=>{
+    if(!req.session.user){
+        res.redirect('/login');
+    }else{
+        res.render('')
+    }
+})
+
+router.get('/projeyonetim',(req,res)=>{
+    if(!req.session.user){
+        res.redirect('/login')
+    }else{
+        res.render('')
+    }
+})
+
 
 // post metot
 router.post('/bitkiyonetim/kategoriEkle',(req,res)=>{
