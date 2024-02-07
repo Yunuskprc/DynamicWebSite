@@ -82,41 +82,34 @@
                     </div>
 
 
-                    <div
-                        style=" margin-top: 5%; margin-left: 5%; width: 1000px; height: 400px;padding: 1%;border: 1px solid #dee2e6;border-radius: 10px;">
+                    <div style=" margin-top: 5%; margin-left: 5%; width: 1000px; height: 400px;padding: 1%;border: 1px solid #dee2e6;border-radius: 10px;">
                         <div style="padding: 1%;">Proje Künye Bilgileri</div>
-                        <div class="input-group mb-3"><input type="text" class="form-control"
-                                aria-label="Text input with dropdown button" name="urunAd" id="urunAd"
-                                placeholder="Proje Yeri:"></div>
-                        <div class="input-group mb-3"><input type="text" class="form-control"
-                                aria-label="Text input with dropdown button" name="urunAd" id="urunAd"
-                                placeholder="Proje Tipi:"></div>
-                        <div class="input-group mb-3"><input type="text" class="form-control"
-                                aria-label="Text input with dropdown button" name="urunAd" id="urunAd"
-                                placeholder="İş Sahibi:"></div>
-                        <div class="input-group mb-3"><input type="text" class="form-control"
-                                aria-label="Text input with dropdown button" name="urunAd" id="urunAd"
-                                placeholder="İşveren:"></div>
-
-                        <div class="input-group mb-3" style="display: flex;"><input type="date" class="form-control"
-                                aria-label="Text input with dropdown button" name="urunAd" id="urunAd"
-                                placeholder="Başlangıç Tarihi:"><input type="date" class="form-control"
-                                aria-label="Text input with dropdown button" name="urunAd" id="urunAd"
-                                placeholder="Bitiş Tarihi:">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" aria-label="Text input with dropdown button" name="projeYeri" id="projeYeri" placeholder="Proje Yeri:">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" aria-label="Text input with dropdown button" name="projeTipi" id="projeTipi"placeholder="Proje Tipi:">
+                        </div>
+                        <div class="input-group mb-3"><input type="text" class="form-control" aria-label="Text input with dropdown button" name="isSahibi" id="isSahibi"placeholder="İş Sahibi:">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" aria-label="Text input with dropdown button" name="isVeren" id="isVeren" placeholder="İşveren:">
                         </div>
 
-                        <div class="input-group mb-3"><input type="text" class="form-control"
-                                aria-label="Text input with dropdown button" name="urunAd" id="urunAd"
-                                placeholder="Arsa Alanı:">
+                        <div class="input-group mb-3" style="display: flex;">
+                            <input type="date" class="form-control"aria-label="Text input with dropdown button" name="baslangicTarih" id="baslangicTarih" placeholder="Başlangıç Tarihi:">
+                            <input type="date" class="form-control" aria-label="Text input with dropdown button" name="bitisTarih" id="bitisTarih" placeholder="Bitiş Tarihi:">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control"aria-label="Text input with dropdown button" name="arsaAlani" id="arsaAlani" placeholder="Arsa Alanı:">
                         </div>
 
                     </div>
 
-                    <div
-                        style="display: flex;text-align: center;justify-content: center;margin-top: 5%; margin-left: 5%; width: 800px;">
+                    <div style="display: flex;text-align: center;justify-content: center;margin-top: 5%; margin-left: 5%; width: 800px;">
                         <div class="input-group mb-3">
-                            <select class="form-select" aria-label="Default select example" name="kategoriSec"
-                                id="kategoriSec" style="height: 60px; width: 1%;">
+                            <select class="form-select" aria-label="Default select example" name="kategoriSec" id="kategoriSec" style="height: 60px; width: 1%;">
                                 <option selected>Kategori Seç</option>
                                 <% if (result && result.length> 0) { %>
                                     <% for (let i=0; i < result.length; i++) { %>
@@ -126,36 +119,27 @@
                                         <% } %>
                                             <% } %>
                             </select>
-                            <input type="text" class="form-control" aria-label="Text input with dropdown button"
-                                name="urunAd" id="urunAd" placeholder="Ürün Adı:">
+                            <input type="text" class="form-control" aria-label="Text input with dropdown button" name="projeAd" id="projeAd" placeholder="Proje Adı:">
                         </div>
                     </div>
 
-                    <div
-                        style="display: flex;text-align: center;justify-content: center;margin-top: 1%; width: 800px; margin-left: 5%;">
+                    <div style="display: flex;text-align: center;justify-content: center;margin-top: 1%; width: 800px; margin-left: 5%;">
                         <div class="input-group">
                             <span class="input-group-text">Ürünün Detaylı açıklaması</span>
-                            <textarea class="form-control" aria-label="With textarea" name="urunAciklama"
-                                id="urunAciklama"></textarea>
+                            <textarea class="form-control" aria-label="With textarea" name="projeAciklama" id="projeAciklama"></textarea>
                         </div>
                     </div>
 
-                    <div
-                        style="display: flex; text-align: center; justify-content: center; margin-top: 1%; width: 800px; margin-left: 5%;">
+                    <div style="display: flex; text-align: center; justify-content: center; margin-top: 1%; width: 800px; margin-left: 5%;">
                         <div class="input-group">
-                            <input type="file" class="form-control" id="image" name="image"
-                                aria-describedby="inputGroupFileAddon04" aria-label="Upload"
-                                accept=".gif, .png, .jpeg, .jpg" multiple>
-                            <button class="btn btn-outline-secondary" onclick="sendUrunEkle()" type="button"
-                                id="inputGroupFileAddon04" style="margin-left: 2%;">Ekle</button>
+                            <input type="file" class="form-control" id="images" name="images" aria-describedby="inputGroupFileAddon04" aria-label="Upload" accept=".gif, .png, .jpeg, .jpg" multiple>
+                            <button class="btn btn-outline-secondary" onclick="sendProjeEkle()" type="button" id="inputGroupFileAddon04" style="margin-left: 2%;">Ekle</button>
                         </div>
                     </div>
 
                     <div style="margin-top:5%; width: 800px; margin-left: 5%;display: flex;">
                         <div class="dropdown" style="margin-left: 0px;">
-                            <select class="form-select" aria-label="Default select example"
-                                onchange="sendKategoriChange()" id="urunSilKategori" name="urunSilKategori"
-                                style="height: 60px; ">
+                            <select class="form-select" aria-label="Default select example" onchange="sendKategoriChange()" id="urunSilKategori" name="urunSilKategori" style="height: 60px; ">
                                 <option selected>Kategori Seç</option>
                                 <% if (result && result.length> 0) { %>
                                     <% for (let i=0; i < result.length; i++) { %>
@@ -167,13 +151,11 @@
                             </select>
                         </div>
                         <div class="dropdown">
-                            <select class="form-select" aria-label="Default select example" name="urunSilUrun"
-                                id="urunSilUrun" style="height: 60px; ">
+                            <select class="form-select" aria-label="Default select example" name="urunSilUrun" id="urunSilUrun" style="height: 60px; ">
                                 <option selected>Ürün Seç</option>
                             </select>
                         </div>
-                        <button class="btn btn-outline-secondary" type="button" onclick="sendUrunSil()"
-                            id="inputGroupFileAddon04">Sil</button>
+                        <button class="btn btn-outline-secondary" type="button" onclick="sendUrunSil()" id="inputGroupFileAddon04">Sil</button>
                     </div>
 
 
@@ -250,19 +232,46 @@
                 });
         }
 
-        function sendUrunEkle() {
+
+
+        function sendProjeEkle() {
+            var images = document.getElementById('images');
+            if(images.files.length > 10){
+                alert('En fazla ' + maxFileCount + ' dosya seçebilirsiniz.');
+                return;
+            }
+
+            var projeYeri = document.getElementById('projeYeri').value;
+            var projeTipi = document.getElementById('projeTipi').value;
+            var isSahibi = document.getElementById('isSahibi').value;
+            var isVeren = document.getElementById('isVeren').value;
+            var baslangicTarih = document.getElementById('baslangicTarih').value;
+            var bitisTarih = document.getElementById('bitisTarih').value;
+            var arsaAlani = document.getElementById('arsaAlani').value;
             var kategoriSec = document.getElementById('kategoriSec').value;
-            var urunAd = document.getElementById('urunAd').value;
-            var urunAciklama = document.getElementById('urunAciklama').value;
-            var image = document.getElementById('image').files[0];
+            var projeAd = document.getElementById('projeAd').value;
+            var projeAciklama = document.getElementById('projeAciklama').value;
+            
             var formData = new FormData();
+            formData.append('projeYeri', projeYeri);
+            formData.append('projeTipi', projeTipi);
+            formData.append('isSahibi', isSahibi);
+            formData.append('isVeren', isVeren);
+            formData.append('baslangicTarih', baslangicTarih);
+            formData.append('bitisTarih', bitisTarih);
+            formData.append('arsaAlani', arsaAlani);
             formData.append('kategoriSec', kategoriSec);
-            formData.append('urunAd', urunAd);
-            formData.append('urunAciklama', urunAciklama);
-            formData.append('image', image);
-            fetch('/Admin/projeyonetim/urunEkle', {
+            formData.append('projeAd', projeAd);
+            formData.append('projeAciklama', projeAciklama);
+            
+            for(var i = 0;i <images.files.length ; i++){
+                formData.append('images[]', images.files[i]);
+            }
+
+            fetch('/Admin/projeyonetim/projeEkle', {
                 method: 'POST',
                 body: formData,
+                
             })
                 .then(response => response.json())
                 .then(data => {
@@ -274,6 +283,7 @@
                     alert('Bir hata oluştu. Lütfen tekrar deneyin.');
                 });
         }
+
 
         function sendKategoriChange() {
             const kategoriId = document.getElementById('urunSilKategori').value;
@@ -296,7 +306,7 @@
                         for (let i = 0; i < result.result.length; i++) {
                             const option = document.createElement('option');
                             option.value = result.result[i].urunId;
-                            option.text = result.result[i].urunAd;
+                            option.text = result.result[i].projeAd;
                             secondSelect.appendChild(option);
                         }
                     }

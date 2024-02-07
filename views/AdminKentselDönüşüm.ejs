@@ -91,9 +91,17 @@
                     </div>
 
 
+<<<<<<< HEAD
                     <div style="display: flex;text-align: center;justify-content: center;margin-top: 5%; margin-left: 5%; width: 800px;">
                         <div class="input-group mb-3">
                             <select class="form-select" aria-label="Default select example" name="kategoriSec" id="kategoriSec" style="height: 60px; width: 1%;">
+=======
+                    <div
+                        style="display: flex;text-align: center;justify-content: center;margin-top: 5%; margin-left: 5%; width: 800px;">
+                        <div class="input-group mb-3">
+                            <select class="form-select" aria-label="Default select example" name="kategoriSec"
+                                id="kategoriSec" style="height: 60px; width: 1%;">
+>>>>>>> e25d169e971e00500d89d159c9707e88f9559e33
                                 <option selected>Kategori Seç</option>
                                 <% if (result && result.length> 0) { %>
                                     <% for (let i=0; i < result.length; i++) { %>
@@ -103,29 +111,53 @@
                                         <% } %>
                                             <% } %>
                             </select>
+<<<<<<< HEAD
                             <input type="text" class="form-control" aria-label="Text input with dropdown button" name="urunAd" id="urunAd" placeholder="Kentsel Tasarım Adı:">
+=======
+                            <input type="text" class="form-control" aria-label="Text input with dropdown button"
+                                name="urunAd" id="urunAd" placeholder="Ürün Adı:">
+>>>>>>> e25d169e971e00500d89d159c9707e88f9559e33
                         </div>
                     </div>
 
                     <div
                         style="display: flex;text-align: center;justify-content: center;margin-top: 1%; width: 800px; margin-left: 5%;">
                         <div class="input-group">
+<<<<<<< HEAD
                             <span class="input-group-text">Kentsel Tasarım Detaylı açıklaması</span>
                             <textarea class="form-control" aria-label="With textarea" name="urunAciklama" id="urunAciklama"></textarea>
+=======
+                            <span class="input-group-text">Ürünün Detaylı açıklaması</span>
+                            <textarea class="form-control" aria-label="With textarea" name="urunAciklama"
+                                id="urunAciklama"></textarea>
+>>>>>>> e25d169e971e00500d89d159c9707e88f9559e33
                         </div>
                     </div>
 
                     <div
                         style="display: flex;text-align: center;justify-content: center;margin-top: 1%; width: 800px; margin-left: 5%;">
                         <div class="input-group">
+<<<<<<< HEAD
                             <input type="file" class="form-control" id="image" name="image" aria-describedby="inputGroupFileAddon04" aria-label="Upload" accept=".gif, .png, .jpeg, .jpg">
                             <button class="btn btn-outline-secondary" onclick="sendUrunEkle()" type="button" id="inputGroupFileAddon04" style="margin-left: 2%;">Ekle</button>
+=======
+                            <input type="file" class="form-control" id="image" name="image"
+                                aria-describedby="inputGroupFileAddon04" aria-label="Upload"
+                                accept=".gif, .png, .jpeg, .jpg">
+                            <button class="btn btn-outline-secondary" onclick="sendUrunEkle()" type="button"
+                                id="inputGroupFileAddon04" style="margin-left: 2%;">Ekle</button>
+>>>>>>> e25d169e971e00500d89d159c9707e88f9559e33
                         </div>
                     </div>
 
 
 
+<<<<<<< HEAD
                     <div style="display: flex;justify-content: center;text-align: center;margin-top: 5%; width: 800px; margin-left: 5%;">
+=======
+                    <div
+                        style="display: flex;justify-content: center;text-align: center;margin-top: 5%; width: 800px; margin-left: 5%;">
+>>>>>>> e25d169e971e00500d89d159c9707e88f9559e33
                         <div class="dropdown" style="margin-left: 0px;">
                             <select class="form-select" aria-label="Default select example"
                                 onchange="sendKategoriChange()" id="urunSilKategori" name="urunSilKategori"
@@ -143,7 +175,11 @@
                         <div class="dropdown">
                             <select class="form-select" aria-label="Default select example" name="urunSilUrun"
                                 id="urunSilUrun" style="height: 60px; ">
+<<<<<<< HEAD
                                 <option selected>Kentsel Tasarım Seç</option>
+=======
+                                <option selected>Ürün Seç</option>
+>>>>>>> e25d169e971e00500d89d159c9707e88f9559e33
                             </select>
                         </div>
                         <button class="btn btn-outline-secondary" type="button" onclick="sendUrunSil()"
@@ -175,7 +211,11 @@
         function sendKategoriEkle() {
             const kategoriEkle = document.getElementById('kategoriEkle').value;
 
+<<<<<<< HEAD
             fetch('/admin/kentseltasarim/kategoriEkle', { // Route adını düzelttim (büyük harfle başlamalı)
+=======
+            fetch('/admin/bitkiyonetim/kategoriEkle', { // Route adını düzelttim (büyük harfle başlamalı)
+>>>>>>> e25d169e971e00500d89d159c9707e88f9559e33
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -201,7 +241,11 @@
         function sendKategoriSil() {
             const kategoriId = document.getElementById('kategoriSil').value;
 
+<<<<<<< HEAD
             fetch('/admin/kentseltasarim/kategoriSil', { // Route adını düzelttim (büyük harfle başlamalı)
+=======
+            fetch('/admin/bitkiyonetim/kategoriSil', { // Route adını düzelttim (büyük harfle başlamalı)
+>>>>>>> e25d169e971e00500d89d159c9707e88f9559e33
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -234,14 +278,22 @@
             formData.append('urunAd', urunAd);
             formData.append('urunAciklama', urunAciklama);
             formData.append('image', image);
+<<<<<<< HEAD
             fetch('/Admin/kentseltasarim/urunEkle', {
+=======
+            fetch('/Admin/bitkiyonetim/urunEkle', {
+>>>>>>> e25d169e971e00500d89d159c9707e88f9559e33
                 method: 'POST',
                 body: formData,
             })
                 .then(response => response.json())
                 .then(data => {
                     console.log('Response:', data);
+<<<<<<< HEAD
                     alert('Kentsel tasarım başarıyla eklendi!');
+=======
+                    alert('Ürün başarıyla eklendi!');
+>>>>>>> e25d169e971e00500d89d159c9707e88f9559e33
                 })
                 .catch(error => {
                     console.error('Error:', error);
@@ -252,7 +304,11 @@
         function sendKategoriChange() {
             const kategoriId = document.getElementById('urunSilKategori').value;
 
+<<<<<<< HEAD
             fetch('/admin/kentseltasarim/kategoriChnage', {
+=======
+            fetch('/admin/bitkiyonetim/kategoriChnage', {
+>>>>>>> e25d169e971e00500d89d159c9707e88f9559e33
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -289,7 +345,11 @@
             formData.append('urunSilKategori', urunSilKategori);
             formData.append('urunSilUrun', urunSilUrun);
 
+<<<<<<< HEAD
             fetch('/admin/kentseltasarim/urunSil', {
+=======
+            fetch('/admin/bitkiyonetim/urunSil', {
+>>>>>>> e25d169e971e00500d89d159c9707e88f9559e33
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
