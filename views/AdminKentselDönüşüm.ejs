@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Kentsel Tasarım Yönetim Paneli
+    </title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-rqjGgQx1BPeRvVZL8i7pO8GgoL8E5L4s4+1Ml5hNoUE5QpCqziBcu3TXRlSzqBfJ"
+        crossorigin="anonymous"></script>
+
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
+
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="../public/style/sidebars.css" rel="stylesheet">
+</head>
+
+<body>
+
+
+
+
+    <main>
+
+
+        <%- include('./partials/AdminSideBar') %>
+
+            <div class="b-example-divider"></div>
+
+            <!-- BEyaz ekran tasarımı -->
+
+            <div
+                style="width: 80%;display: flex;justify-content: center; margin-left: 20%; margin-top: -50%; height: 900px;">
+                <div style="width: 95%;height: 100%;border: 1px solid #dee2e6 ;border-radius: 10px;margin-top: 1.7%;">
+
+                    <div class="form-floating"
+                        style="display: flex;justify-content: center;text-align: center; margin-top: 2%; width: 800px; margin-left: 5%;">
+                        <textarea class="form-control" placeholder="Leave a comment here" id="kategoriEkle"
+                            name="kategoriEkle"></textarea>
+                        <label for="floatingTextarea">Kategori Ekle</label>
+                        <button class="btn btn-outline-secondary" type="button" onclick="sendKategoriEkle()"
+                            id="inputGroupFileAddon04" style="margin-left: 1%; width: 200px;">Kategori Ekle</button>
+                    </div>
+
+
+
+                    <div
+                        style="display: flex;justify-content: center;text-align: center; margin-top: 5%; margin-left: 5%; width: 800px; height: 60px;">
+                        <select class="form-select" aria-label="Default select example" name="kategoriSil"
+                            id="kategoriSil">
+                            <option value="" selected>Kategori Seç</option>
+                            <% if (result && result.length> 0) { %>
+                                <% for (let i=0; i < result.length; i++) { %>
+                                    <option value="<%= result[i].kategoriId %>">
+                                        <%= result[i].kategoriAd %>
+                                    </option>
+                                    <% } %>
+                                        <% } %>
+                        </select>
+                        <button class="btn btn-outline-secondary" type="button" onclick="sendKategoriSil()"
+                            id="inputGroupFileAddon04" style="margin-left: 1%; width: 200px   ;">Kategori Sil</button>
+                    </div>
+
+
+                    <div style="display: flex;text-align: center;justify-content: center;margin-top: 5%; margin-left: 5%; width: 800px;">
+                        <div class="input-group mb-3">
+                            <select class="form-select" aria-label="Default select example" name="kategoriSec" id="kategoriSec" style="height: 60px; width: 1%;">
+                                <option selected>Kategori Seç</option>
+                                <% if (result && result.length> 0) { %>
+                                    <% for (let i=0; i < result.length; i++) { %>
+                                        <option value="<%= result[i].kategoriId %>">
+                                            <%= result[i].kategoriAd %>
+                                        </option>
+                                        <% } %>
+                                            <% } %>
+                            </select>
+                            <input type="text" class="form-control" aria-label="Text input with dropdown button" name="urunAd" id="urunAd" placeholder="Kentsel Tasarım Adı:">
+                        </div>
+                    </div>
+
+                    <div
+                        style="display: flex;text-align: center;justify-content: center;margin-top: 1%; width: 800px; margin-left: 5%;">
+                        <div class="input-group">
+                            <span class="input-group-text">Kentsel Tasarım Detaylı açıklaması</span>
+                            <textarea class="form-control" aria-label="With textarea" name="urunAciklama" id="urunAciklama"></textarea>
+                        </div>
+                    </div>
+
+                    <div
+                        style="display: flex;text-align: center;justify-content: center;margin-top: 1%; width: 800px; margin-left: 5%;">
+                        <div class="input-group">
+                            <input type="file" class="form-control" id="image" name="image" aria-describedby="inputGroupFileAddon04" aria-label="Upload" accept=".gif, .png, .jpeg, .jpg">
+                            <button class="btn btn-outline-secondary" onclick="sendUrunEkle()" type="button" id="inputGroupFileAddon04" style="margin-left: 2%;">Ekle</button>
+                        </div>
+                    </div>
+
+
+
+                    <div style="display: flex;justify-content: center;text-align: center;margin-top: 5%; width: 800px; margin-left: 5%;">
+                        <div class="dropdown" style="margin-left: 0px;">
+                            <select class="form-select" aria-label="Default select example"
+                                onchange="sendKategoriChange()" id="urunSilKategori" name="urunSilKategori"
+                                style="height: 60px; ">
+                                <option selected>Kategori Seç</option>
+                                <% if (result && result.length> 0) { %>
+                                    <% for (let i=0; i < result.length; i++) { %>
+                                        <option value="<%= result[i].kategoriId %>">
+                                            <%= result[i].kategoriAd %>
+                                        </option>
+                                        <% } %>
+                                            <% } %>
+                            </select>
+                        </div>
+                        <div class="dropdown">
+                            <select class="form-select" aria-label="Default select example" name="urunSilUrun"
+                                id="urunSilUrun" style="height: 60px; ">
+                                <option selected>Kentsel Tasarım Seç</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-outline-secondary" type="button" onclick="sendUrunSil()"
+                            id="inputGroupFileAddon04">Sil</button>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+    </main>
+
+
+    <script src="../node_modules/bootstrap/dist/css/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-rqjGgQx1BPeRvVZL8i7pO8GgoL8E5L4s4+1Ml5hNoUE5QpCqziBcu3TXRlSzqBfJ"
+        crossorigin="anonymous"></script>
+
+
+    <script src="../public/js/sidebars.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+    <script>
+        function sendKategoriEkle() {
+            const kategoriEkle = document.getElementById('kategoriEkle').value;
+
+            fetch('/admin/kentseltasarim/kategoriEkle', { // Route adını düzelttim (büyük harfle başlamalı)
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `kategoriEkle=${kategoriEkle}`, // Verileri body içinde gönder
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.success) {
+                        // Giriş başarısızsa, alert mesajını göster
+                        alert('Kategori Ekleme Başarısız Bir Daha Deneyin');
+                    } else {
+                        alert('Kategori Eklendi');
+                        window.location.reload();
+                    }
+                })
+                .catch(error => {
+                    console.error('Hata:', error);
+                    alert('Kategori Ekleme Başarısız Bir Daha Deneyin');
+                });
+        }
+
+        function sendKategoriSil() {
+            const kategoriId = document.getElementById('kategoriSil').value;
+
+            fetch('/admin/kentseltasarim/kategoriSil', { // Route adını düzelttim (büyük harfle başlamalı)
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `kategoriSil=${kategoriId}`, // Verileri body içinde gönder
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.success) {
+                        // Giriş başarısızsa, alert mesajını göster
+                        alert('Kategori Silme Başarısız Bir Daha Deneyin');
+                    } else {
+                        alert('Kategori Silindi');
+                        window.location.reload();
+                    }
+                })
+                .catch(error => {
+                    console.error('Hata:', error);
+                    alert('Kategori Silme Başarısız Bir Daha Deneyin');
+                });
+        }
+
+        function sendUrunEkle() {
+            var kategoriSec = document.getElementById('kategoriSec').value;
+            var urunAd = document.getElementById('urunAd').value;
+            var urunAciklama = document.getElementById('urunAciklama').value;
+            var image = document.getElementById('image').files[0];
+            var formData = new FormData();
+            formData.append('kategoriSec', kategoriSec);
+            formData.append('urunAd', urunAd);
+            formData.append('urunAciklama', urunAciklama);
+            formData.append('image', image);
+            fetch('/Admin/kentseltasarim/urunEkle', {
+                method: 'POST',
+                body: formData,
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Response:', data);
+                    alert('Kentsel tasarım başarıyla eklendi!');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Bir hata oluştu. Lütfen tekrar deneyin.');
+                });
+        }
+
+        function sendKategoriChange() {
+            const kategoriId = document.getElementById('urunSilKategori').value;
+
+            fetch('/admin/kentseltasarim/kategoriChnage', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `kategoriId=${kategoriId}`,
+            })
+                .then(response => response.json())
+                .then(result => {
+                    if (!result.success) {
+                        alert('Bir sorun oldu tekrar deneyin');
+                    } else {
+                        const secondSelect = document.getElementById('urunSilUrun');
+                        secondSelect.innerHTML = '';
+
+                        for (let i = 0; i < result.result.length; i++) {
+                            const option = document.createElement('option');
+                            option.value = result.result[i].urunId;
+                            option.text = result.result[i].urunAd;
+                            secondSelect.appendChild(option);
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Hata:', error);
+                    alert('Bir sorun oldu tekrar deneyin');
+                });
+        }
+
+        function sendUrunSil() {
+            const urunSilKategori = document.getElementById('urunSilKategori').value;
+            const urunSilUrun = document.getElementById('urunSilUrun').value;
+
+            const formData = new URLSearchParams();
+            formData.append('urunSilKategori', urunSilKategori);
+            formData.append('urunSilUrun', urunSilUrun);
+
+            fetch('/admin/kentseltasarim/urunSil', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: formData,
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.success) {
+                        alert('Ürün Silme Başarısız Bir Daha Deneyin');
+                    } else {
+                        alert('Ürün Silindi');
+                        window.location.reload();
+                    }
+                })
+                .catch(error => {
+                    console.error('Hata:', error);
+                    alert('Ürün Silme Başarısız Bir Daha Deneyin');
+                });
+        }
+
+    </script>
+</body>
+
+</html>

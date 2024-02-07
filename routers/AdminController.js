@@ -8,6 +8,7 @@ const multer  = require('multer');
 const path = require('path');
 const fs = require('fs');
 const NumberControl = require('../middleware/NumberControl');
+const { render } = require('ejs');
 
 
 // multer ile resim depolama
@@ -79,11 +80,20 @@ router.get('/WebGunlugu',(req,res)=>{
     
 })
 
-router.get('/kentseldönüsüm',(req,res)=>{
+router.get('/kentseltasarim',(req,res)=>{
     if(!req.session.user){
         res.redirect('/login');
     }else{
-        res.render('')
+        db.query('select *from kentseltasarim_kategori',[],function(error,result,field){
+            if(error) throw error;
+            if(result.length > 0){
+                res.render('AdminKentselDönüşüm',{result})
+            }else{
+                result=[]
+                res.render('AdminKentselDönüşüm',{result})
+                
+            }
+        })
     }
 })
 
@@ -91,12 +101,22 @@ router.get('/projeyonetim',(req,res)=>{
     if(!req.session.user){
         res.redirect('/login')
     }else{
-        res.render('')
+        db.query('select *from proje_kategori',[],function(error,result,field){
+            if(error) throw error;
+            if(result.length > 0){
+                res.render('AdminProjeYonetim',{result})
+            }else{
+                result=[]
+                res.render('AdminProjeYonetim',{result})
+                
+            }
+        })
     }
 })
 
 
 // post metot
+// bitki yönetim
 router.post('/bitkiyonetim/kategoriEkle',(req,res)=>{
     if(req.session.user == null){
         res.redirect('/login')
@@ -120,7 +140,6 @@ router.post('/bitkiyonetim/kategoriSil',(req,res)=>{
         })
     }
 })
-
 
 router.post('/bitkiyonetim/urunEkle',upload.single('image'),async (req, res) => {
 
@@ -186,7 +205,6 @@ router.post('/bitkiyonetim/urunSil', (req, res) => {
 
 
 // iletisim post
-
 router.post('/iletisim/telNo',(req,res)=>{
     if(req.session.user == null){
         res.redirect('/login'); 
@@ -325,7 +343,6 @@ router.post('/iletisim/delete',(req,res)=>{
       
 
 // portfoy
-
 router.post('/portfoy/infoUpdate',(req,res)=>{
     if(req.session.user == null){
         res.redirect('/login')
@@ -379,6 +396,119 @@ router.post('/webgunlugu/sendMakale', upload.single('image'), async (req, res) =
     }
   });
 
+
+//kentsel tasarım
+router.post('/kentseltasarim/kategoriEkle',(req,res)=>{
+    if(!req.session.user){
+        res.redirect('/login')
+    }else{
+        let kategoriEkle = req.body.kategoriEkle;
+        console.log(kategoriEkle)
+        db.query('insert into kentseltasarim_kategori (kategoriAd) values (?)',[kategoriEkle],function(error,result,field){
+            if(error) throw error;
+            res.json({ success: true, message: 'POST isteği başarıyla alındı.' });
+        })
+    }
+})
+
+router.post('/kentseltasarim/kategoriSil',(req,res)=>{
+    if(!req.session.user){
+        res.redirect('/login')
+    }else{
+        let kategoriId = req.body.kategoriSil;
+        db.query('delete from kentseltasarim_kategori where kategoriId=?',[kategoriId],function(error,result,field){
+            if(error) throw error;
+            res.json({ success: true, message: 'POST isteği başarıyla alındı.' });
+        })
+    }
+})
+
+router.post('/kentseltasarim/urunEkle',upload.single('image'),async (req, res) => {
+
+    if(req.session.user == null){
+        res.redirect('/login')
+    }else{
+        const resimPath = req.file.filename;
+        let kategoriId = req.body.kategoriSec;
+        let urunAd = req.body.urunAd;
+        let urunAciklama = req.body.urunAciklama;
+
+        db.query('insert into kentseltasarim_urun (kategoriId,urunAd,urunAciklama,urunResimYol) values (?,?,?,?)',[kategoriId,urunAd,urunAciklama,resimPath],function(error,result,field){
+            if(error) throw error;
+            res.json({ success: true, message: 'POST isteği başarıyla alındı.' });
+        })
+    }
+    
+})
+
+router.post('/kentseltasarim/kategoriChnage',(req,res)=>{
+    let kategoriId = req.body.kategoriId;
+
+    db.query('select urunId,urunAd from kentseltasarim_urun where kategoriId=?',[kategoriId],function(error,result,field){
+        if(error) throw error;
+        if(result.length > 0){
+            res.json({ success: true, message: 'POST isteği başarıyla alındı.',result:result});
+        }else{
+            result = [];
+            res.json({ success: true, message: 'POST isteği başarıyla alındı.',result:result });
+        }
+    })
+})
+
+router.post('/kentseltasarim/urunSil', (req, res) => {
+    if (req.session.user == null) {
+        res.redirect('/login');
+    } else {
+        let urunSilKategori = req.body.urunSilKategori;
+        let urunSilUrun = req.body.urunSilUrun;
+        
+        db.query('select urunResimYol from kentseltasarim_urun where urunId = ? and kategoriId = ?', [urunSilUrun, urunSilKategori], function (error, result, field){
+            if(error) throw error;
+            if(result.length > 0){
+                db.query('delete from kentseltasarim_urun where urunId = ? and kategoriId = ?', [urunSilUrun, urunSilKategori], function (error, result2, field) {
+                    if (error) throw error;
+                    if (result[0].urunResimYol) {
+                        const imagePath = path.join(__dirname, '../public/image', result[0].urunResimYol);
+                        if (fs.existsSync(imagePath)) {
+                            fs.unlinkSync(imagePath);
+                            res.json({ success: true, message: 'POST isteği başarıyla alındı.' });
+                        }
+                    }
+                    
+                })
+            }else{
+                // buraya bir şeyler yazabiliriz.
+            }
+        })
+        
+    }
+});
+
+
+// proje yonetim
+router.post('/projeyonetim/kategoriEkle',(req,res)=>{
+    if(!req.session.user){
+        res.redirect('/login')
+    }else{
+        let kategoriAd = req.body.kategoriEkle;
+        db.query('insert into proje_kategori (kategoriAd) values (?)',[kategoriAd],function(error,result,field){
+            if(error) throw error;
+            res.json({ success: true, message: 'POST isteği başarıyla alındı.' });
+        })
+    }
+})
+
+router.post('/projeyonetim/kategoriSil',(req,res)=>{
+    if(!req.session.user){
+        res.redirect('/login')
+    }else{
+        let kategoriId = req.body.kategoriSil;
+        db.query('delete from proje_kategori where kategoriId=?',[kategoriId],function(error,result,field){
+            if(error) throw error;
+            res.json({ success: true, message: 'POST isteği başarıyla alındı.' });
+        })
+    }
+})
 
 
 module.exports = router;
