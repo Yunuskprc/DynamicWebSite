@@ -83,7 +83,7 @@ router.get('/kentseldönüsüm',(req,res)=>{
     if(!req.session.user){
         res.redirect('/login');
     }else{
-        res.render('')
+        res.render('AdminKentselDönüşüm')
     }
 })
 
@@ -91,7 +91,8 @@ router.get('/projeyonetim',(req,res)=>{
     if(!req.session.user){
         res.redirect('/login')
     }else{
-        res.render('')
+        result = []
+        res.render('AdminProjeYonetim',{result})
     }
 })
 
