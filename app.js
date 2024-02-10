@@ -4,7 +4,9 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const db = require('./data/db.js');
 const loginRoute = require('./routers/LoginController');
-const adminRouter = require('./routers/AdminController.js')
+const adminRouter = require('./routers/AdminController.js');
+const blogRouter = require('./routers/BlogController');
+
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -23,7 +25,8 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.use('/image', express.static(path.join(__dirname, 'public/image')));
 
 app.use('/Login', loginRoute);
-app.use('/Admin', adminRouter)
+app.use('/Admin', adminRouter);
+app.use('/', blogRouter);
 app.listen(4000, () => {
   console.log('server çalışıyor.');
 });
