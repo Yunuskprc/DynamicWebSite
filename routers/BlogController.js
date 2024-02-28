@@ -10,7 +10,7 @@ const NumberControl = require('../middleware/NumberControl');
 const { render } = require('ejs');
 
 router.get('/',(req,res)=>{
-    // anasayfa kodları burada olacak
+    res.render('main')
 })
 
 router.get('/Projeler',(req,res)=>{

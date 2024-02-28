@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.84.0">
+  <link href="path/to/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <title>Ana Sayfa</title>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-rqjGgQx1BPeRvVZL8i7pO8GgoL8E5L4s4+1Ml5hNoUE5QpCqziBcu3TXRlSzqBfJ"
+    crossorigin="anonymous"></script>
+
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
+
+
+
+  <!-- Bootstrap core CSS -->
+  <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+
+    }
+
+    .content {
+      padding: 0px;
+      height: 500%;
+      /* Aşağı kaydırmak için içeriğin yüksekliğini ayarlayın */
+      padding-bottom: 60px; /* Footer'ın içeriği örtmemesi için içerik altına padding ekleyin */
+}
+    
+
+footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+
+      margin-bottom: 0px;
+      
+      width: 100%;
+    }
+
+    .section {
+      padding: 20px;
+      background-color: #f0f0f0;
+      color: #fff;
+      border-bottom: 1px solid #ddd;
+      /* Bölümler arasına sınır ekler */
+      background-image: url("/image/resim.jpg");
+      /* Resmin yolunu url() içinde belirtin */
+      background-size: cover;
+      /* Resmin boyutunu kaplama şeklinde ayarlayın */
+      background-position: center;
+      /* Resmi ortalamak için */
+      background-repeat: no-repeat;
+      /* Resmin tekrar etmemesini sağlayın */
+    }
+
+    .link-container {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 2%;
+    }
+
+    .link-container a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      color: #ffffff;
+      transition: text-decoration 5s ease;
+      /* Altı çizgi efekti için 5 saniyelik geçiş süresi */
+    }
+
+    .link-container a:hover {
+      text-decoration: underline;
+      /* Link üzerine gelindiğinde altı çizgiyi etkinleştir */
+      transition: text-decoration 0.3s ease;
+      /* Hızlı bir şekilde altı çizgiyi göster */
+    }
+
+    /* Sadece linkler arasındaki boşluğu azalt */
+    .link-container a+a {
+      margin-left: -50%;
+      /* İki link arasındaki boşluğu ayarla */
+    }
+    .section2 {
+    display: flex;
+    justify-content: space-between; /* Kartları boşluğa yayarak aralarında eşit mesafe bırakır */
+    flex-wrap: wrap; /* Eğer kartlar sığmazsa, bir sonraki satıra geçmelerini sağlar */
+  }
+
+  .card {
+    flex: 0 0 calc(20% - -50px); /* Kartların genişliğini ayarlar ve aralarında 20 piksel boşluk bırakır */
+    margin-bottom: 20px; /* Kartlar arasında alt boşluk bırakır */
+  }
+
+  @media (max-width: 992px) {
+    .card {
+      flex: 0 0 calc(50% - 20px); /* Ekran boyutu küçüldükçe, kartların genişliğini %50 olarak ayarlar */
+    }
+  }
+
+  @media (max-width: 576px) {
+    .card {
+      flex: 0 0 100%; /* Ekran boyutu daha da küçüldükçe, kartların genişliğini %100 olarak ayarlar (tek sıra) */
+    }
+  }
+  </style>
+
+
+
+</head>
+
+<body>
+
+  <div class="content">
+
+    <div class="section" style="height: 100%;">
+      <div>
+        <h1 style="display: flex;align-items: center;justify-content: center;">Site Adı</h1>
+      </div>
+
+
+      <div class="link-container">
+        <a href="" style="align-items: center;">Projelerimiz</a>
+        <a href="" style="align-items: center;">Bitkilerimiz</a>
+        <a href="" style="align-items: center;">Kentsel Tasarımlarımız</a>
+        <a href="" style="align-items: center;">Web Günlüğü</a>
+        <a href="" style="align-items: center;">Portföy</a>
+        <a href="" style="align-items: center;">İletişim</a>
+      </div>
+
+      <div style="margin-left: 26.5%;padding-top: 5%;width: 400px;font-size: 150%;">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita perferendis illum modi suscipit fuga minus
+          facilis a, ad eos soluta totam quis, similique delectus ipsum earum quod saepe, doloribus dicta.</p>
+      </div>
+
+      <div style="margin-left: 26.5%;padding-top: 1%;width: 600px;font-size: 100%;">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita perferendis illum modi suscipit fuga minus
+          facilis a, ad eos soluta totam quis, similique delectus ipsum earum quod saepe, doloribus dicta.</p>
+      </div>
+
+
+    </div>
+    
+
+
+
+<div style="border: 1px solid #dedede;border-radius: 10px;margin: 0.5%;">
+<h2 style="padding: 1%;">Projelerim</h2>
+    <div class="section2" style="padding: 1%; height: 30%;">
+      
+      <div class="card" style="width: 12rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+          
+        </div>
+      </div>
+      <div class="card" style="width: 12rem;">
+        <img src="/image/resim.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+          
+        </div>
+      </div>
+      <div class="card" style="width: 12rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+          
+        </div>
+      </div>
+      <div class="card" style="width: 12rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+          
+        </div>
+      </div>
+      <div class="card" style="width: 12rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+          
+        </div>
+      </div>
+      <div class="card" style="width: 12rem;">
+        <img src="/image/resim.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+          
+        </div>
+      </div>
+      <div class="card" style="width: 12rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+          
+        </div>
+      </div>
+      <div class="card" style="width: 12rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+          
+        </div>
+      </div>
+      
+    </div>
+    <div style="display: flex;text-align: center;justify-content: center;margin-bottom: 1%;">
+      <button type="button" class="btn active" data-bs-toggle="button" aria-pressed="true">Tümünü Gör</button>
+    </div>
+    
+
+  </div>
+</div>
+
+
+
+  <footer>
+    <p>Footer içeriği buraya gelecek.</p>
+  </footer>
+
+
+
+
+  <main>
+
+
+
+
+
+  </main>
+  <script src="../node_modules/bootstrap/dist/css/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-rqjGgQx1BPeRvVZL8i7pO8GgoL8E5L4s4+1Ml5hNoUE5QpCqziBcu3TXRlSzqBfJ"
+    crossorigin="anonymous"></script>
+  <script src="../public/js/sidebars.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+
+  <script>
+
+
+  </script>
+</body>
+
+</html>
