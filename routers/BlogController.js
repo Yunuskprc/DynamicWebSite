@@ -10,7 +10,33 @@ const NumberControl = require('../middleware/NumberControl');
 const { render } = require('ejs');
 
 router.get('/',(req,res)=>{
-    res.render('main')
+    db.query('SELECT proje_urun_resim.resimArkaPlan, proje_urun.projeAd, proje_urun.projeAciklama, proje_urun.urunId from proje_urun INNER JOIN proje_urun_resim ON proje_urun.urunId = proje_urun_resim.urunId order by urunId desc limit 8',[],function(error,result,field){
+        if(error) throw error;
+        if(result.length > 0){
+            db.query('select *from iletisim',[],function(error2,resultiletisim,field){
+                if(error2) throw error2;
+                if(resultiletisim.length > 0){
+                    res.render('main',{result,resultiletisim})
+                }else{
+                    resultiletisim = [];
+                    res.render('main',{result,resultiletisim})
+                }
+            })
+        }else{
+            db.query('select *from iletisim',[],function(error2,resultiletisim,field){
+                if(error2) throw error2;
+                if(resultiletisim.length > 0){
+                    result = [];
+                    res.render('main',{result,resultiletisim})
+                }else{
+                    result = [];
+                    resultiletisim = [];
+                    res.render('main',{result,resultiletisim})
+                }
+            })
+            
+        }
+    })
 })
 
 router.get('/Projeler',(req,res)=>{
