@@ -39,18 +39,74 @@ router.get('/',(req,res)=>{
     })
 })
 
-router.get('/Projeler',(req,res)=>{
+router.get('/Projelerimiz',(req,res)=>{
     // proje sayfası kodları burada olacak
     db.query('select *from proje_kategori',[],function(error,result,field){
         if(error) throw error;
 
         if(result.length > 0){
-            res.render('deneme',{result})
-            //res.json({ success: true, message: 'Get isteği başarılı bir şekilde alındı' })
+            db.query('select *from iletisim',[],function(error2,resultiletisim,field){
+                if(error2) throw error2;
+                if(resultiletisim.length > 0){
+                    db.query('SELECT proje_urun_resim.resimArkaPlan, proje_urun.projeAd, proje_urun.projeAciklama, proje_urun.urunId from proje_urun INNER JOIN proje_urun_resim ON proje_urun.urunId = proje_urun_resim.urunId',[],function(error3,resultProje,field){
+                        if(error3) throw error3;
+
+                        if(resultProje.length>0){
+                            res.render('BlogProje',{result,resultiletisim,resultProje})
+                        }else{
+                            resultProje = [];
+                            res.render('BlogProje',{result,resultiletisim,resultProje})   
+                        }
+                    })
+                    
+                }else{
+                    db.query('SELECT proje_urun_resim.resimArkaPlan, proje_urun.projeAd, proje_urun.projeAciklama, proje_urun.urunId from proje_urun INNER JOIN proje_urun_resim ON proje_urun.urunId = proje_urun_resim.urunId',[],function(error3,resultProje,field){
+                        if(error3) throw error3;
+
+                        if(resultProje.length>0){
+                            res.render('BlogProje',{result,resultiletisim,resultProje})
+                        }else{
+                            resultProje = [];
+                            resultiletisim = [];
+                            res.render('BlogProje',{result,resultiletisim,resultProje})   
+                        }
+                    })
+                }
+            })
         }else{
-            result = [];
-            res.render('deneme',{result})
-           // res.json({ success: false, message: 'Veritabanında kategori bulunamadı' })
+            db.query('select *from iletisim',[],function(error2,resultiletisim,field){
+                if(error2) throw error2;
+                if(resultiletisim.length > 0){
+                    db.query('SELECT proje_urun_resim.resimArkaPlan, proje_urun.projeAd, proje_urun.projeAciklama, proje_urun.urunId from proje_urun INNER JOIN proje_urun_resim ON proje_urun.urunId = proje_urun_resim.urunId',[],function(error3,resultProje,field){
+                        if(error3) throw error3;
+
+                        if(resultProje.length>0){
+                            result = [];
+                            res.render('BlogProje',{result,resultiletisim,resultProje})
+                        }else{
+                            result = [];
+                            resultProje = [];
+                            res.render('BlogProje',{result,resultiletisim,resultProje})   
+                        }
+                    })
+                }else{
+                    db.query('SELECT proje_urun_resim.resimArkaPlan, proje_urun.projeAd, proje_urun.projeAciklama, proje_urun.urunId from proje_urun INNER JOIN proje_urun_resim ON proje_urun.urunId = proje_urun_resim.urunId',[],function(error3,resultProje,field){
+                        if(error3) throw error3;
+
+                        if(resultProje.length>0){
+                            result = [];
+                            resultiletisim = [];
+                            res.render('BlogProje',{result,resultiletisim,resultProje})
+                        }else{
+                            result = [];
+                            resultProje = [];
+                            resultiletisim = [];
+                            res.render('BlogProje',{result,resultiletisim,resultProje})   
+                        }
+                    })
+                }
+            })
+            
         }
     })
 })

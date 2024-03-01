@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.84.0">
+  <link href="path/to/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <title>Projelerimiz</title>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-rqjGgQx1BPeRvVZL8i7pO8GgoL8E5L4s4+1Ml5hNoUE5QpCqziBcu3TXRlSzqBfJ"
+    crossorigin="anonymous"></script>
+
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
+
+
+
+  <!-- Bootstrap core CSS -->
+  <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      .link-container {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 2%;
+    }
+
+    .link-container a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      color:#333;
+      transition: text-decoration 5s ease;
+      /* Altı çizgi efekti için 5 saniyelik geçiş süresi */
+    }
+
+    .link-container a:hover {
+      text-decoration: underline;
+      /* Link üzerine gelindiğinde altı çizgiyi etkinleştir */
+      transition: text-decoration 0.3s ease;
+      /* Hızlı bir şekilde altı çizgiyi göster */
+    }
+
+    .link-container a+a {
+      margin-left: -50%;
+      /* İki link arasındaki boşluğu ayarla */
+    }
+
+    .kategori{
+      margin-top: 100px;
+      display: flex;
+      justify-content: space-around;
+      
+    }
+
+    .kategori a{
+      text-decoration: none;
+      color: #333;
+      margin: 0 100px;
+    }
+    .kategori a+a {
+      margin-left: -50%;
+      /* İki link arasındaki boşluğu ayarla */
+    }
+
+    #carouselExampleCaptions:hover .carousel-inner .carousel-item img {
+    filter: blur(2px); 
+    transition: filter 0.3s ease;
+}
+#carouselExampleCaptions .carousel-inner .carousel-item .carousel-caption h5,
+#carouselExampleCaptions .carousel-inner .carousel-item .carousel-caption p {
+    display: none; 
+    transition: filter 1s ease;
+}
+
+#carouselExampleCaptions:hover .carousel-inner .carousel-item .carousel-caption h5,
+#carouselExampleCaptions:hover .carousel-inner .carousel-item .carousel-caption p {
+    display: block; 
+    
+}
+
+    
+</style>
+</head>
+<body>
+
+  <div>
+    <div>
+      <h1 style="display: flex;align-items: center;justify-content: center;">Site Adı</h1>
+    </div>
+    <div class="link-container">
+      <a href="/Projelerimiz" style="align-items: center;">Projelerimiz</a>
+      <a href="/Bitkilerimiz" style="align-items: center;">Bitkilerimiz</a>
+      <a href="/KentselTasarimlar" style="align-items: center;">Kentsel Tasarımlarımız</a>
+      <a href="/WebGunlugu" style="align-items: center;">Web Günlüğü</a>
+      <a href="/Portfoy" style="align-items: center;">Portföy</a>
+      <a href="/İletisim" style="align-items: center;">İletişim</a>
+    </div>
+  </div>
+  
+  <div>
+    <div class="kategori">
+      <a href="">Tüm Projeler</a>
+      <% if (result) { %>
+        <% for (let i = 0; i < result.length; i++) { %>
+            <a href=""><%= result[i].kategoriAd %></a>
+        <% } %>
+      <% }else { %>
+
+        <% } %>
+    </div>
+
+    <div style="width: 100%; display: flex; flex-wrap: wrap; justify-content: center;">
+      <% if (resultProje) { %>
+        <% for (let i = 0; i < resultProje.length; i++) { %>
+          <% let kisaltilmisVeri = resultProje[i].projeAciklama.length > 50 ? resultProje[i].projeAciklama.slice(0, 30) + "..." : resultProje[i].projeAciklama; %>
+          <div id="carouselExampleCaptions" class="carousel slide" style="max-width: 600px; max-height: 800px;display: flex;justify-content: center;padding: 2%;">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="image/resim.jpg" class="d-block w-100"  alt="...">
+                <div class="carousel-caption d-none d-md-block" >
+                  <h5><%= resultProje[i].projeAd %></h5>
+                  <p><%= kisaltilmisVeri %></p>
+                </div>
+              </div>        
+            </div>     
+          </div>
+        <% } %>
+      <% }else { %>
+
+        <% } %>
+    </div>
+  </div>
+</body>
+</html>

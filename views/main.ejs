@@ -34,7 +34,7 @@
 
     .content {
       padding: 0px;
-      height: 2000px;
+      height: 1900px;
       /* Aşağı kaydırmak için içeriğin yüksekliğini ayarlayın */
       padding-bottom: 60px; /* Footer'ın içeriği örtmemesi için içerik altına padding ekleyin */
 }
@@ -44,11 +44,21 @@ footer {
       background-color: #333;
       color: #fff;
       text-align: center;
-      padding: 20px 0;
-
-      margin-bottom: 0px;
+      padding-bottom: 0px;
+      padding-top: 0px;
+      height: 100px;
       
       width: 100%;
+    }
+
+    footer a{
+      color: white;
+      text-decoration: none;
+      margin: 5%;
+    }
+
+    footer a:hover{
+      text-decoration: underline;
     }
 
     .section {
@@ -126,19 +136,19 @@ footer {
 
 <div class="content">
 
-    <div class="section" style="height: 50%;">
+    <div class="section" style="height: 60%;">
       <div>
         <h1 style="display: flex;align-items: center;justify-content: center;">Site Adı</h1>
       </div>
 
 
       <div class="link-container">
-        <a href="" style="align-items: center;">Projelerimiz</a>
-        <a href="" style="align-items: center;">Bitkilerimiz</a>
-        <a href="" style="align-items: center;">Kentsel Tasarımlarımız</a>
-        <a href="" style="align-items: center;">Web Günlüğü</a>
-        <a href="" style="align-items: center;">Portföy</a>
-        <a href="" style="align-items: center;">İletişim</a>
+        <a href="/Projelerimiz" style="align-items: center;">Projelerimiz</a>
+        <a href="/Bitkilerimiz" style="align-items: center;">Bitkilerimiz</a>
+        <a href="/KentselTasarimlar" style="align-items: center;">Kentsel Tasarımlarımız</a>
+        <a href="/WebGunlugu" style="align-items: center;">Web Günlüğü</a>
+        <a href="/Portfoy" style="align-items: center;">Portföy</a>
+        <a href="/İletisim" style="align-items: center;">İletişim</a>
       </div>
 
       <div style="margin-left: 26.5%;padding-top: 5%;width: 400px;font-size: 150%;">
@@ -156,10 +166,10 @@ footer {
     
 
 
-    <% if (true) { %>
+    <% if (result) { %>
       <div style="border: 1px solid #dedede;border-radius: 10px;margin: 0.5%;">
         <h2 style="padding: 1%;">Projelerim</h2>
-            <div class="section2" style="padding: 1%; height: 200%;">
+            <div class="section2" style="padding: 1%; height: 100%;">
               
               <% for (let i = 0; i < result.length; i++) { %>
                 <div class="card" style="width: 12rem;">
@@ -174,11 +184,12 @@ footer {
               
               
             </div>
-            <div style="display: flex;text-align: center;justify-content: center;margin-bottom: 1%;">
-              <button type="button" class="btn active" data-bs-toggle="button" aria-pressed="true">Tümünü Gör</button>
-            </div>
+            
             
         
+          </div>
+          <div style="display: flex;text-align: center;justify-content: center;margin-bottom: 1%;">
+            <button type="button" class="btn active" data-bs-toggle="button" aria-pressed="true">Tümünü Gör</button>
           </div>
     <% }else { %>
 
@@ -189,7 +200,11 @@ footer {
 
 
   <footer>
-    <p>Footer içeriği buraya gelecek.</p>
+    <a href="<%= resultiletisim[0].mail %>">Mail Adresi</a>
+    <a href="<%= resultiletisim[0].instagram %>">İnstagram Adresi</a>
+    <a href="<%= resultiletisim[0].facebook %>">Facebook Adresi</a>
+    <a href="<%= resultiletisim[0].twitter %>">Twitter Adresi</a>
+    <a href="<%= resultiletisim[0].linkedin %>">Linkedin Adresi</a>
   </footer>
 
 
