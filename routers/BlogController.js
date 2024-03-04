@@ -16,6 +16,7 @@ router.get('/',(req,res)=>{
             db.query('select *from iletisim',[],function(error2,resultiletisim,field){
                 if(error2) throw error2;
                 if(resultiletisim.length > 0){
+                    console.log(result)
                     res.render('main',{result,resultiletisim})
                 }else{
                     resultiletisim = [];

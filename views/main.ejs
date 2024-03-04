@@ -33,32 +33,24 @@
     }
 
     .content {
-      padding: 0px;
-      height: 1800px;
-      /* Aşağı kaydırmak için içeriğin yüksekliğini ayarlayın */
-      padding-bottom: 60px; /* Footer'ın içeriği örtmemesi için içerik altına padding ekleyin */
-}
-    
 
-footer {
+      padding: 0px;
+      height: 2400px;
+      /* Aşağı kaydırmak için içeriğin yüksekliğini ayarlayın */
+      padding-bottom: 60px;
+      /* Footer'ın içeriği örtmemesi için içerik altına padding ekleyin */
+    }
+
+
+    footer {
       background-color: #333;
       color: #fff;
       text-align: center;
       padding-bottom: 0px;
-    
-      height: 180px;
-      
+      padding-top: 0px;
+      height: 100px;
+
       width: 100%;
-    }
-
-    footer a{
-      color: white;
-      text-decoration: none;
-      margin: 5%;
-    }
-
-    footer a:hover{
-      text-decoration: underline;
     }
 
     .section {
@@ -84,69 +76,128 @@ footer {
     }
 
     .link-container a {
+      position: relative;
       text-decoration: none;
-      display: flex;
-      align-items: center;
       color: #ffffff;
-      transition: text-decoration 5s ease;
-      /* Altı çizgi efekti için 5 saniyelik geçiş süresi */
+      /* Link rengini istediğiniz renkle değiştirebilirsiniz */
     }
 
-    .link-container a:hover {
-      text-decoration: underline;
-      /* Link üzerine gelindiğinde altı çizgiyi etkinleştir */
-      transition: text-decoration 0.3s ease;
-      /* Hızlı bir şekilde altı çizgiyi göster */
+    .link-container a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 100%;
+      height: 1px;
+      background-color: #ffffff;
+      /* Alt çizgi rengini istediğiniz renkle değiştirebilirsiniz */
+      transform: scaleX(0);
+      transition: transform 0.3s ease-in-out;
     }
+
+    .link-container a:hover::after {
+      transform: scaleX(1);
+    }
+
 
     /* Sadece linkler arasındaki boşluğu azalt */
     .link-container a+a {
       margin-left: -50%;
       /* İki link arasındaki boşluğu ayarla */
     }
+
     .section2 {
-    display: flex;
-    justify-content: space-between; /* Kartları boşluğa yayarak aralarında eşit mesafe bırakır */
-    flex-wrap: wrap; /* Eğer kartlar sığmazsa, bir sonraki satıra geçmelerini sağlar */
-  }
-
-  .card {
-    flex: 0 0 calc(20% - -50px); /* Kartların genişliğini ayarlar ve aralarında 20 piksel boşluk bırakır */
-    margin-bottom: 20px; /* Kartlar arasında alt boşluk bırakır */
-  }
-
-  @media (max-width: 992px) {
-    .card {
-      flex: 0 0 calc(50% - 20px); /* Ekran boyutu küçüldükçe, kartların genişliğini %50 olarak ayarlar */
+      display: flex;
+      justify-content: space-between;
+      /* Kartları boşluğa yayarak aralarında eşit mesafe bırakır */
+      flex-wrap: wrap;
+      /* Eğer kartlar sığmazsa, bir sonraki satıra geçmelerini sağlar */
     }
-  }
 
-  @media (max-width: 576px) {
     .card {
-      flex: 0 0 100%; /* Ekran boyutu daha da küçüldükçe, kartların genişliğini %100 olarak ayarlar (tek sıra) */
+      flex: 0 0 calc(20% - -50px);
+      /* Kartların genişliğini ayarlar ve aralarında 20 piksel boşluk bırakır */
+      margin-bottom: 20px;
+      /* Kartlar arasında alt boşluk bırakır */
     }
-  }
+
+    @media (max-width: 992px) {
+      .card {
+        flex: 0 0 calc(50% - 20px);
+        /* Ekran boyutu küçüldükçe, kartların genişliğini %50 olarak ayarlar */
+      }
+    }
+
+    @media (max-width: 576px) {
+      .card {
+        flex: 0 0 100%;
+        /* Ekran boyutu daha da küçüldükçe, kartların genişliğini %100 olarak ayarlar (tek sıra) */
+      }
+    }
+
+    .nav-link {
+      position: relative;
+      text-decoration: none;
+      color: #6c757d;
+      /* Link rengini istediğiniz renkle değiştirebilirsiniz */
+      display: inline-block;
+      margin-bottom: 0px;
+      /* Link altındaki boşluğu kaldırmak için */
+
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 3px;
+      width: 100%;
+      height: 1.5px;
+      background-color: #6c757d;
+      /* Alt çizgi rengini istediğiniz renkle değiştirebilirsiniz */
+      transform: scaleX(0);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .nav-link:hover::after {
+      transform: scaleX(1);
+    }
+
+    .btn.active {
+      background-color: #ffffff;
+      /* Butonun mevcut arka plan rengi */
+      color: #6c757d;
+      /* Butonun mevcut yazı rengi */
+      transition: background-color 0.3s, color 0.3s;
+      /* Geçiş efekti */
+    }
+
+    .btn.active:hover {
+      background-color: #6c757d;
+      /* Butonun üzerine gelindiğinde arka plan rengi */
+      color: #ffffff;
+      /* Butonun üzerine gelindiğinde yazı rengi */
+    }
   </style>
-
-
-
 </head>
 
 <body>
 
-<div class="content">
+  <div class="content">
 
     <div class="section" style="height: 55%;">
       <div>
         <h1 style="display: flex;align-items: center;justify-content: center;">Site Adı</h1>
       </div>
       <div class="link-container">
+
         <a href="/Projelerimiz" style="align-items: center;">Projelerimiz</a>
-        <a href="/Bitkilerimiz" style="align-items: center;">Bitkilerimiz</a>
+        <a href="/Bitkilerimiz" style="align-items: center;">Bitkilerimiz</a></li>
         <a href="/KentselTasarimlar" style="align-items: center;">Kentsel Tasarımlarımız</a>
         <a href="/WebGunlugu" style="align-items: center;">Web Günlüğü</a>
         <a href="/Portfoy" style="align-items: center;">Portföy</a>
         <a href="/İletisim" style="align-items: center;">İletişim</a>
+
       </div>
       <div style="margin-left: 26.5%;padding-top: 5%;width: 400px;font-size: 150%;">
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita perferendis illum modi suscipit fuga minus
@@ -159,59 +210,84 @@ footer {
 
 
     </div>
-    
-
 
     <% if (result) { %>
       <div style="border: 1px solid #dedede;border-radius: 10px;margin: 0.5%; margin-top: 10%;">
         <h2 style="padding: 1%;">Projelerim</h2>
-            <div class="section2" style="padding: 1%; height: 35%;">
-              
-              <% for (let i = 0; i < result.length; i++) { %>
-                <div class="card" style="width: 12rem;">
-                  <img src="/image/<%= result[i].resimArkaPlan %>" class="card-img-top" style="max-width: 100px; max-height: 150px;" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title"><%= result[i].projeAd %></h5>
-                    <p class="card-text"><%= result[i].projeAciklama %><%= result[i].resimArkaPlan  %></p>
-                  </div>
-                </div>
-              <% } %>
+        <div class="section2" style="padding: 1%; height: 100%;">
 
-              
-              
+          <% for (let i=0; i < result.length; i++) { %>
+            <div class="card" style="width: 12rem;">
+              <img src="/image/<%= result[i].resimArkaPlan %>" class="card-img-top"
+                style="max-width: 400px; max-height: 250px;" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <%= result[i].projeAd %>
+                </h5>
+                <p class="card-text">
+                  <%= result[i].projeAciklama %>
+                </p>
+              </div>
             </div>
-            
-            
-        
-          </div>
-          <div style="display: flex;text-align: center;justify-content: center;margin-bottom: 1%;">
-            <button type="button" class="btn active" data-bs-toggle="button" aria-pressed="true">Tümünü Gör</button>
-          </div>
-    <% }else { %>
-
-    <% } %>
-  
-</div>
+            <% } %>
+              
+                     
 
 
-
-  <footer>
-    <a href="<%= resultiletisim[0].mail %>">Mail Adresi</a>
-    <a href="<%= resultiletisim[0].instagram %>">İnstagram Adresi</a>
-    <a href="<%= resultiletisim[0].facebook %>">Facebook Adresi</a>
-    <a href="<%= resultiletisim[0].twitter %>">Twitter Adresi</a>
-    <a href="<%= resultiletisim[0].linkedin %>">Linkedin Adresi</a>
-  </footer>
+        </div>
+        <div style="margin-bottom: 1%;display: flex;text-align: center;justify-content: center;">
+          <button type="button" class="btn active" data-bs-toggle="button" aria-pressed="true">Tümünü Gör</button>
+        </div>
+      </div>
 
 
+      <% }else { %>
 
+        <% } %>
 
+  </div>
+
+  <!--SAYFA BAŞINA ÇIKARAN BUTON-->
+  <!-- <button class="btn active" onclick="goToTop()" id="goToTopBtn" title="Sayfanın Başına Git">Yukarı Çık</button> -->
+
+  <div style="width: 87.5%;margin-left: 6%;">
+    <hr>
+  </div>
+
+  <div class="container" style="background-color: #ffffff;">
+    <footer class="py-3 my-4" style="background-color: #ffffff;">
+      <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        <li class="nav-item" style="width: 200px;"><a href="#" class="nav-link px-2 text-muted">Ana Sayfa</a></li>
+        <li class="nav-item" style="width: 200px;"><a href="/Projelerimiz" class="nav-link px-2 text-muted">Projelerim</a></li>
+        <li class="nav-item" style="width: 200px;"><a href="/Bitkilerimiz" class="nav-link px-2 text-muted">Bitkilerimiz</a></li>
+        <li class="nav-item" style="width: 200px;"><a href="/KentselTasarimlar" class="nav-link px-2 text-muted">Kentsel
+            Tasarımlarımız</a></li>
+        <li class="nav-item" style="width: 200px;"><a href="/WebGunlugu" class="nav-link px-2 text-muted">Web Günlüğü</a></li>
+        <li class="nav-item" style="width: 200px;"><a href="/Portfoy" class="nav-link px-2 text-muted">Portföy</a></li>
+      </ul>
+      <p class="text-center text-muted">&copy; 2022 Company, Inc</p>
+      <div
+        style="width: 30%;height: 60%;display: flex;flex-wrap: wrap;margin-left:70% ;margin-top: -3.75%;align-items: center;justify-content:  space-around;">
+        <a href="<%= resultiletisim[0].instagram %>" target="_blank">
+          <h3><i class="bi bi-instagram" style="color:rgba(88,92,94,255);"></i></h3>
+        </a>
+        <a href="<%= resultiletisim[0].facebook %> target="_blank"">
+          <h3><i class="bi bi-facebook" style="color:rgba(88,92,94,255);"></i></h3>
+        </a>
+        <a href="<%= resultiletisim[0].twitter %>" target="_blank">
+          <h3><i class="bi bi-twitter-x" style="color:rgba(88,92,94,255);"></i></h3>
+        </a>
+        <a href="<%= resultiletisim[0].mail %>" target="_blank">
+          <h3><i class="bi bi-envelope-at" style="color:rgba(88,92,94,255);"></i></h3>
+        </a>
+        <a href="<%= resultiletisim[0].linkedin %>" target="_blank">
+          <h3><i class="bi bi-linkedin" style="color:rgba(88,92,94,255);"></i></h3>
+        </a>
+      </div>
+
+    </footer>
+  </div>
   <main>
-
-
-
-
-
   </main>
   <script src="../node_modules/bootstrap/dist/css/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
@@ -221,11 +297,24 @@ footer {
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
-
   <script>
+    //sayfa başına çıkaran script kodu
+    window.onscroll = function () { scrollFunction() };
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("goToTopBtn").style.display = "block";
+      } else {
+        document.getElementById("goToTopBtn").style.display = "none";
+      }
+    }
+
+    function goToTop() {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }</script>
 
 
-  </script>
 </body>
 
 </html>

@@ -34,20 +34,23 @@
 
     .content {
       padding: 0px;
-      height: 1900px;
+      height: 2000px;
       /* Aşağı kaydırmak için içeriğin yüksekliğini ayarlayın */
-      padding-bottom: 60px; /* Footer'ın içeriği örtmemesi için içerik altına padding ekleyin */
-}
-    
+      padding-bottom: 60px;
+      /* Footer'ın içeriği örtmemesi için içerik altına padding ekleyin */
+    }
 
-footer {
+
+    footer {
       background-color: #333;
       color: #fff;
       text-align: center;
-      padding-bottom: 0px;
-      padding-top: 0px;
-      height: 100px;
-      
+      padding: 20px 0;
+
+      height: 200px;
+
+      margin-bottom: 0px;
+
       width: 100%;
     }
 
@@ -64,6 +67,7 @@ footer {
     .section {
       padding: 20px;
       background-color: #f0f0f0;
+
       color: #fff;
       border-bottom: 1px solid #ddd;
       /* Bölümler arasına sınır ekler */
@@ -104,28 +108,35 @@ footer {
       margin-left: -50%;
       /* İki link arasındaki boşluğu ayarla */
     }
+
     .section2 {
-    display: flex;
-    justify-content: space-between; /* Kartları boşluğa yayarak aralarında eşit mesafe bırakır */
-    flex-wrap: wrap; /* Eğer kartlar sığmazsa, bir sonraki satıra geçmelerini sağlar */
-  }
-
-  .card {
-    flex: 0 0 calc(20% - -50px); /* Kartların genişliğini ayarlar ve aralarında 20 piksel boşluk bırakır */
-    margin-bottom: 20px; /* Kartlar arasında alt boşluk bırakır */
-  }
-
-  @media (max-width: 992px) {
-    .card {
-      flex: 0 0 calc(50% - 20px); /* Ekran boyutu küçüldükçe, kartların genişliğini %50 olarak ayarlar */
+      display: flex;
+      justify-content: space-between;
+      /* Kartları boşluğa yayarak aralarında eşit mesafe bırakır */
+      flex-wrap: wrap;
+      /* Eğer kartlar sığmazsa, bir sonraki satıra geçmelerini sağlar */
     }
-  }
 
-  @media (max-width: 576px) {
     .card {
-      flex: 0 0 100%; /* Ekran boyutu daha da küçüldükçe, kartların genişliğini %100 olarak ayarlar (tek sıra) */
+      flex: 0 0 calc(20% - -50px);
+      /* Kartların genişliğini ayarlar ve aralarında 20 piksel boşluk bırakır */
+      margin-bottom: 20px;
+      /* Kartlar arasında alt boşluk bırakır */
     }
-  }
+
+    @media (max-width: 992px) {
+      .card {
+        flex: 0 0 calc(50% - 20px);
+        /* Ekran boyutu küçüldükçe, kartların genişliğini %50 olarak ayarlar */
+      }
+    }
+
+    @media (max-width: 576px) {
+      .card {
+        flex: 0 0 100%;
+        /* Ekran boyutu daha da küçüldükçe, kartların genişliğini %100 olarak ayarlar (tek sıra) */
+      }
+    }
   </style>
 
 
@@ -136,7 +147,7 @@ footer {
 
 <div class="content">
 
-    <div class="section" style="height: 50%;">
+    <div class="section" style="height:52%;">
       <div>
         <h1 style="display: flex;align-items: center;justify-content: center;">Site Adı</h1>
       </div>
@@ -163,39 +174,104 @@ footer {
 
 
     </div>
-    
 
 
-    <% if (result) { %>
-      <div style="border: 1px solid #dedede;border-radius: 10px;margin: 0.5%;">
-        <h2 style="padding: 1%;">Projelerim</h2>
-            <div class="section2" style="padding: 1%; height: 100%;">
-              
-              <% for (let i = 0; i < result.length; i++) { %>
-                <div class="card" style="width: 12rem;">
-                  <img src="/image/<%= result[i].resimArkaPlan %>" class="card-img-top" style="max-width: 100px; max-height: 150px;" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title"><%= result[i].projeAd %></h5>
-                    <p class="card-text"><%= result[i].projeAciklama %><%= result[i].resimArkaPlan  %></p>
-                  </div>
-                </div>
-              <% } %>
 
-              
-              
-            </div>
-            
-            
+
+    <div style="border: 1px solid #dedede;border-radius: 10px;margin: 0.5%;">
+      <h2 style="padding: 1%;">Projelerim</h2>
+      <div class="section2" style="padding: 1%; height: 50%;">
+
+        <div class="card" style="width: 12rem;height: 100px;">
+          <img src="..." class="card-img-top" style="max-width: 100px; max-height: 150px;" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+
+          </div>
+        </div>
+        <div class="card" style="width: 12rem;">
+          <img src="../public/image/resim.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+
+          </div>
+        </div>
+        <div class="card" style="width: 12rem;">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+
+          </div>
+        </div>
+        <div class="card" style="width: 12rem;">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+
+          </div>
+        </div>
+        <div class="card" style="width: 12rem;">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+
+          </div>
+        </div>
+        <div class="card" style="width: 12rem;">
+          <img src="../public/image/resim.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+
+          </div>
+        </div>
+        <div class="card" style="width: 12rem;">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+
+          </div>
+        </div>
+        <div class="card" style="width: 12rem;">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+
+          </div>
+        </div>
+
+      </div>
+      <div style="display: flex;text-align: center;justify-content: center;margin-bottom: 1%;">
+        <button type="button" class="btn active" data-bs-toggle="button" aria-pressed="true">Tümünü Gör</button>
+      </div>
+     
+
         
-          </div>
-          <div style="display: flex;text-align: center;justify-content: center;margin-bottom: 1%;">
-            <button type="button" class="btn active" data-bs-toggle="button" aria-pressed="true">Tümünü Gör</button>
-          </div>
-    <% }else { %>
 
-    <% } %>
+
+
+    </div>
+  </div>
+
   
-</div>
+  </div>
+
+
 
 
 <!-- Remove the container if you want to extend the Footer to full width. -->
