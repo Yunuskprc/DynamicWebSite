@@ -34,7 +34,7 @@
 
     .content {
       padding: 0px;
-      height: 200%;
+      height: 1900px;
       /* Aşağı kaydırmak için içeriğin yüksekliğini ayarlayın */
       padding-bottom: 60px; /* Footer'ın içeriği örtmemesi için içerik altına padding ekleyin */
 }
@@ -44,11 +44,21 @@ footer {
       background-color: #333;
       color: #fff;
       text-align: center;
-      padding: 20px 0;
-
-      margin-bottom: 0px;
+      padding-bottom: 0px;
+      padding-top: 0px;
+      height: 100px;
       
       width: 100%;
+    }
+
+    footer a{
+      color: white;
+      text-decoration: none;
+      margin: 5%;
+    }
+
+    footer a:hover{
+      text-decoration: underline;
     }
 
     .section {
@@ -57,7 +67,7 @@ footer {
       color: #fff;
       border-bottom: 1px solid #ddd;
       /* Bölümler arasına sınır ekler */
-      background-image: url("../public/image/resim.jpg");
+      background-image: url("/image/resim.jpg");
       /* Resmin yolunu url() içinde belirtin */
       background-size: cover;
       /* Resmin boyutunu kaplama şeklinde ayarlayın */
@@ -124,21 +134,21 @@ footer {
 
 <body>
 
-  <div class="content">
+<div class="content">
 
-    <div class="section" style="height: 100%;">
+    <div class="section" style="height: 50%;">
       <div>
         <h1 style="display: flex;align-items: center;justify-content: center;">Site Adı</h1>
       </div>
 
 
       <div class="link-container">
-        <a href="" style="align-items: center;">Projelerimiz</a>
-        <a href="" style="align-items: center;">Bitkilerimiz</a>
-        <a href="" style="align-items: center;">Kentsel Tasarımlarımız</a>
-        <a href="" style="align-items: center;">Web Günlüğü</a>
-        <a href="" style="align-items: center;">Portföy</a>
-        <a href="" style="align-items: center;">İletişim</a>
+        <a href="/Projelerimiz" style="align-items: center;">Projelerimiz</a>
+        <a href="/Bitkilerimiz" style="align-items: center;">Bitkilerimiz</a>
+        <a href="/KentselTasarimlar" style="align-items: center;">Kentsel Tasarımlarımız</a>
+        <a href="/WebGunlugu" style="align-items: center;">Web Günlüğü</a>
+        <a href="/Portfoy" style="align-items: center;">Portföy</a>
+        <a href="/İletisim" style="align-items: center;">İletişim</a>
       </div>
 
       <div style="margin-left: 26.5%;padding-top: 5%;width: 400px;font-size: 150%;">
@@ -156,100 +166,184 @@ footer {
     
 
 
+    <% if (result) { %>
+      <div style="border: 1px solid #dedede;border-radius: 10px;margin: 0.5%;">
+        <h2 style="padding: 1%;">Projelerim</h2>
+            <div class="section2" style="padding: 1%; height: 100%;">
+              
+              <% for (let i = 0; i < result.length; i++) { %>
+                <div class="card" style="width: 12rem;">
+                  <img src="/image/<%= result[i].resimArkaPlan %>" class="card-img-top" style="max-width: 100px; max-height: 150px;" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title"><%= result[i].projeAd %></h5>
+                    <p class="card-text"><%= result[i].projeAciklama %><%= result[i].resimArkaPlan  %></p>
+                  </div>
+                </div>
+              <% } %>
 
-<div style="border: 1px solid #dedede;border-radius: 10px;margin: 0.5%;">
-<h2 style="padding: 1%;">Projelerim</h2>
-    <div class="section2" style="padding: 1%; height: 50%;">
-      
-      <div class="card" style="width: 12rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-          
-        </div>
-      </div>
-      <div class="card" style="width: 12rem;">
-        <img src="../public/image/resim.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-          
-        </div>
-      </div>
-      <div class="card" style="width: 12rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-          
-        </div>
-      </div>
-      <div class="card" style="width: 12rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-          
-        </div>
-      </div>
-      <div class="card" style="width: 12rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-          
-        </div>
-      </div>
-      <div class="card" style="width: 12rem;">
-        <img src="../public/image/resim.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-          
-        </div>
-      </div>
-      <div class="card" style="width: 12rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-          
-        </div>
-      </div>
-      <div class="card" style="width: 12rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-          
-        </div>
-      </div>
-      
-    </div>
-    <div style="display: flex;text-align: center;justify-content: center;margin-bottom: 1%;">
-      <button type="button" class="btn active" data-bs-toggle="button" aria-pressed="true">Tümünü Gör</button>
-    </div>
-    
+              
+              
+            </div>
+            
+            
+        
+          </div>
+          <div style="display: flex;text-align: center;justify-content: center;margin-bottom: 1%;">
+            <button type="button" class="btn active" data-bs-toggle="button" aria-pressed="true">Tümünü Gör</button>
+          </div>
+    <% }else { %>
 
-  </div>
+    <% } %>
+  
 </div>
 
 
+<!-- Remove the container if you want to extend the Footer to full width. -->
+<div class="container my-5">
+  <!-- Footer -->
+  <footer
+          class="text-center text-lg-start text-white"
+          style="background-color: #45526e"
+          >
+    <!-- Grid container -->
+    <div class="container p-4 pb-0">
+      <!-- Section: Links -->
+      <section class="">
+        <!--Grid row-->
+        <div class="row">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">
+              Company name
+            </h6>
+            <p>
+              Here you can use rows and columns to organize your footer
+              content. Lorem ipsum dolor sit amet, consectetur adipisicing
+              elit.
+            </p>
+          </div>
+          <!-- Grid column -->
 
-  <footer>
-    <p>Footer içeriği buraya gelecek.</p>
+          <hr class="w-100 clearfix d-md-none" />
+
+          <!-- Grid column -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">Products</h6>
+            <p>
+              <a class="text-white">MDBootstrap</a>
+            </p>
+            <p>
+              <a class="text-white">MDWordPress</a>
+            </p>
+            <p>
+              <a class="text-white">BrandFlow</a>
+            </p>
+            <p>
+              <a class="text-white">Bootstrap Angular</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <hr class="w-100 clearfix d-md-none" />
+
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">
+              Useful links
+            </h6>
+            <p>
+              <a class="text-white">Your Account</a>
+            </p>
+            <p>
+              <a class="text-white">Become an Affiliate</a>
+            </p>
+            <p>
+              <a class="text-white">Shipping Rates</a>
+            </p>
+            <p>
+              <a class="text-white">Help</a>
+            </p>
+          </div>
+
+          <!-- Grid column -->
+          <hr class="w-100 clearfix d-md-none" />
+
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+            <p><i class="fas fa-home mr-3"></i> New York, NY 10012, US</p>
+            <p><i class="fas fa-envelope mr-3"></i> info@gmail.com</p>
+            <p><i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
+            <p><i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!--Grid row-->
+      </section>
+      <!-- Section: Links -->
+
+      <hr class="my-3">
+
+      <!-- Section: Copyright -->
+      <section class="p-3 pt-0">
+        <div class="row d-flex align-items-center">
+          <!-- Grid column -->
+          <div class="col-md-7 col-lg-8 text-center text-md-start">
+            <!-- Copyright -->
+            <div class="p-3">
+              © 2020 Copyright:
+              <a class="text-white" href="https://mdbootstrap.com/"
+                 >MDBootstrap.com</a
+                >
+            </div>
+            <!-- Copyright -->
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-5 col-lg-4 ml-lg-0 text-center text-md-end">
+            <!-- Facebook -->
+            <a
+               class="btn btn-outline-light btn-floating m-1"
+               class="text-white"
+               role="button"
+               ><i class="fab fa-facebook-f"></i
+              ></a>
+
+            <!-- Twitter -->
+            <a
+               class="btn btn-outline-light btn-floating m-1"
+               class="text-white"
+               role="button"
+               ><i class="fab fa-twitter"></i
+              ></a>
+
+            <!-- Google -->
+            <a
+               class="btn btn-outline-light btn-floating m-1"
+               class="text-white"
+               role="button"
+               ><i class="fab fa-google"></i
+              ></a>
+
+            <!-- Instagram -->
+            <a
+               class="btn btn-outline-light btn-floating m-1"
+               class="text-white"
+               role="button"
+               ><i class="fab fa-instagram"></i
+              ></a>
+          </div>
+          <!-- Grid column -->
+        </div>
+      </section>
+      <!-- Section: Copyright -->
+    </div>
+    <!-- Grid container -->
   </footer>
-
-
+  <!-- Footer -->
+</div>
+<!-- End of .container -->
 
 
   <main>

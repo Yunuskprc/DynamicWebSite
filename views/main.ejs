@@ -34,7 +34,7 @@
 
     .content {
       padding: 0px;
-      height: 1900px;
+      height: 1800px;
       /* Aşağı kaydırmak için içeriğin yüksekliğini ayarlayın */
       padding-bottom: 60px; /* Footer'ın içeriği örtmemesi için içerik altına padding ekleyin */
 }
@@ -45,8 +45,8 @@ footer {
       color: #fff;
       text-align: center;
       padding-bottom: 0px;
-      padding-top: 0px;
-      height: 100px;
+    
+      height: 180px;
       
       width: 100%;
     }
@@ -136,12 +136,10 @@ footer {
 
 <div class="content">
 
-    <div class="section" style="height: 60%;">
+    <div class="section" style="height: 55%;">
       <div>
         <h1 style="display: flex;align-items: center;justify-content: center;">Site Adı</h1>
       </div>
-
-
       <div class="link-container">
         <a href="/Projelerimiz" style="align-items: center;">Projelerimiz</a>
         <a href="/Bitkilerimiz" style="align-items: center;">Bitkilerimiz</a>
@@ -150,12 +148,10 @@ footer {
         <a href="/Portfoy" style="align-items: center;">Portföy</a>
         <a href="/İletisim" style="align-items: center;">İletişim</a>
       </div>
-
       <div style="margin-left: 26.5%;padding-top: 5%;width: 400px;font-size: 150%;">
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita perferendis illum modi suscipit fuga minus
           facilis a, ad eos soluta totam quis, similique delectus ipsum earum quod saepe, doloribus dicta.</p>
       </div>
-
       <div style="margin-left: 26.5%;padding-top: 1%;width: 600px;font-size: 100%;">
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita perferendis illum modi suscipit fuga minus
           facilis a, ad eos soluta totam quis, similique delectus ipsum earum quod saepe, doloribus dicta.</p>
@@ -167,9 +163,9 @@ footer {
 
 
     <% if (result) { %>
-      <div style="border: 1px solid #dedede;border-radius: 10px;margin: 0.5%;">
+      <div style="border: 1px solid #dedede;border-radius: 10px;margin: 0.5%; margin-top: 10%;">
         <h2 style="padding: 1%;">Projelerim</h2>
-            <div class="section2" style="padding: 1%; height: 100%;">
+            <div class="section2" style="padding: 1%; height: 35%;">
               
               <% for (let i = 0; i < result.length; i++) { %>
                 <div class="card" style="width: 12rem;">
