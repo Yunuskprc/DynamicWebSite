@@ -8,6 +8,7 @@ const path = require('path');
 const fs = require('fs');
 const NumberControl = require('../middleware/NumberControl');
 const { render } = require('ejs');
+const resultControl = require('../middleware/ResultControl')
 
 router.get('/',(req,res)=>{
     db.query('SELECT proje_urun_resim.resimArkaPlan, proje_urun.projeAd, proje_urun.projeAciklama, proje_urun.urunId from proje_urun INNER JOIN proje_urun_resim ON proje_urun.urunId = proje_urun_resim.urunId order by urunId desc limit 8',[],function(error,result,field){
@@ -48,7 +49,7 @@ router.get('/Projelerimiz',(req,res)=>{
             db.query('select *from iletisim',[],function(error2,resultiletisim,field){
                 if(error2) throw error2;
                 if(resultiletisim.length > 0){
-                    db.query('SELECT proje_urun_resim.resimArkaPlan, proje_urun.projeAd, proje_urun.projeAciklama, proje_urun.urunId from proje_urun INNER JOIN proje_urun_resim ON proje_urun.urunId = proje_urun_resim.urunId',[],function(error3,resultProje,field){
+                    db.query('SELECT proje_urun_resim.resimArkaPlan, proje_urun.kategoriId, proje_urun.projeAd, proje_urun.projeAciklama, proje_urun.urunId from proje_urun INNER JOIN proje_urun_resim ON proje_urun.urunId = proje_urun_resim.urunId',[],function(error3,resultProje,field){
                         if(error3) throw error3;
 
                         if(resultProje.length>0){
@@ -60,7 +61,7 @@ router.get('/Projelerimiz',(req,res)=>{
                     })
                     
                 }else{
-                    db.query('SELECT proje_urun_resim.resimArkaPlan, proje_urun.projeAd, proje_urun.projeAciklama, proje_urun.urunId from proje_urun INNER JOIN proje_urun_resim ON proje_urun.urunId = proje_urun_resim.urunId',[],function(error3,resultProje,field){
+                    db.query('SELECT proje_urun_resim.resimArkaPlan, proje_urun.kategoriId, proje_urun.projeAd, proje_urun.projeAciklama, proje_urun.urunId from proje_urun INNER JOIN proje_urun_resim ON proje_urun.urunId = proje_urun_resim.urunId',[],function(error3,resultProje,field){
                         if(error3) throw error3;
 
                         if(resultProje.length>0){
@@ -77,7 +78,7 @@ router.get('/Projelerimiz',(req,res)=>{
             db.query('select *from iletisim',[],function(error2,resultiletisim,field){
                 if(error2) throw error2;
                 if(resultiletisim.length > 0){
-                    db.query('SELECT proje_urun_resim.resimArkaPlan, proje_urun.projeAd, proje_urun.projeAciklama, proje_urun.urunId from proje_urun INNER JOIN proje_urun_resim ON proje_urun.urunId = proje_urun_resim.urunId',[],function(error3,resultProje,field){
+                    db.query('SELECT proje_urun_resim.resimArkaPlan, proje_urun.kategoriId, proje_urun.projeAd, proje_urun.projeAciklama, proje_urun.urunId from proje_urun INNER JOIN proje_urun_resim ON proje_urun.urunId = proje_urun_resim.urunId',[],function(error3,resultProje,field){
                         if(error3) throw error3;
 
                         if(resultProje.length>0){
@@ -90,7 +91,7 @@ router.get('/Projelerimiz',(req,res)=>{
                         }
                     })
                 }else{
-                    db.query('SELECT proje_urun_resim.resimArkaPlan, proje_urun.projeAd, proje_urun.projeAciklama, proje_urun.urunId from proje_urun INNER JOIN proje_urun_resim ON proje_urun.urunId = proje_urun_resim.urunId',[],function(error3,resultProje,field){
+                    db.query('SELECT proje_urun_resim.resimArkaPlan, proje_urun.kategoriId, proje_urun.projeAd, proje_urun.projeAciklama, proje_urun.urunId from proje_urun INNER JOIN proje_urun_resim ON proje_urun.urunId = proje_urun_resim.urunId',[],function(error3,resultProje,field){
                         if(error3) throw error3;
 
                         if(resultProje.length>0){
@@ -126,11 +127,10 @@ router.get('/Projelerimiz/:kategoriAd',(req,res)=>{
                         if(err) throw err;
                 
                         if(resultKategori.length>0){
-                            db.query('SELECT proje_urun_resim.resimArkaPlan, proje_urun.projeAd, proje_urun.projeAciklama, proje_urun.urunId from proje_urun INNER JOIN proje_urun_resim ON proje_urun.urunId = proje_urun_resim.urunId where kategoriId=?',[resultKategori[0].kategoriId],function(error2,resultProje,field){
+                            db.query('SELECT proje_urun_resim.resimArkaPlan,proje_urun.kategoriId, proje_urun.projeAd, proje_urun.projeAciklama, proje_urun.urunId from proje_urun INNER JOIN proje_urun_resim ON proje_urun.urunId = proje_urun_resim.urunId where kategoriId=?',[resultKategori[0].kategoriId],function(error2,resultProje,field){
                                 if(error2) throw error2;
         
                                 if(resultProje.length > 0){
-                                    console.log(result,"\n\n\n",resultProje,"\n\n\n",resultiletisim)
                                     res.render('BlogProje',{result,resultiletisim,resultProje})
                                 }else{
                                     resultProje = [];
@@ -138,7 +138,7 @@ router.get('/Projelerimiz/:kategoriAd',(req,res)=>{
                                 }
                             })
                         }else{
-                            db.query('SELECT proje_urun_resim.resimArkaPlan, proje_urun.projeAd, proje_urun.projeAciklama, proje_urun.urunId from proje_urun INNER JOIN proje_urun_resim ON proje_urun.urunId = proje_urun_resim.urunId where kategoriId=?',[resultKategori[0].kategoriId],function(error2,resultProje,field){
+                            db.query('SELECT proje_urun_resim.resimArkaPlan,proje_urun.kategoriId, proje_urun.projeAd, proje_urun.projeAciklama, proje_urun.urunId from proje_urun INNER JOIN proje_urun_resim ON proje_urun.urunId = proje_urun_resim.urunId where kategoriId=?',[resultKategori[0].kategoriId],function(error2,resultProje,field){
                                 if(error2) throw error2;
 
                                 if(resultProje.length > 0){
@@ -155,7 +155,7 @@ router.get('/Projelerimiz/:kategoriAd',(req,res)=>{
                         if(err) throw err;
                 
                         if(resultKategori.length>0){
-                            db.query('SELECT proje_urun_resim.resimArkaPlan, proje_urun.projeAd, proje_urun.projeAciklama, proje_urun.urunId from proje_urun INNER JOIN proje_urun_resim ON proje_urun.urunId = proje_urun_resim.urunId where kategoriId=?',[resultKategori[0].kategoriId],function(error2,resultProje,field){
+                            db.query('SELECT proje_urun_resim.resimArkaPlan,proje_urun.kategoriId, proje_urun.projeAd, proje_urun.projeAciklama, proje_urun.urunId from proje_urun INNER JOIN proje_urun_resim ON proje_urun.urunId = proje_urun_resim.urunId where kategoriId=?',[resultKategori[0].kategoriId],function(error2,resultProje,field){
                                 if(error2) throw error2;
         
                                 if(resultProje.length > 0){
@@ -168,7 +168,7 @@ router.get('/Projelerimiz/:kategoriAd',(req,res)=>{
                                 }
                             })
                         }else{
-                            db.query('SELECT proje_urun_resim.resimArkaPlan, proje_urun.projeAd, proje_urun.projeAciklama, proje_urun.urunId from proje_urun INNER JOIN proje_urun_resim ON proje_urun.urunId = proje_urun_resim.urunId where kategoriId=?',[resultKategori[0].kategoriId],function(error2,resultProje,field){
+                            db.query('SELECT proje_urun_resim.resimArkaPlan,proje_urun.kategoriId, proje_urun.projeAd, proje_urun.projeAciklama, proje_urun.urunId from proje_urun INNER JOIN proje_urun_resim ON proje_urun.urunId = proje_urun_resim.urunId where kategoriId=?',[resultKategori[0].kategoriId],function(error2,resultProje,field){
                                 if(error2) throw error2;
 
                                 if(resultProje.length > 0){
@@ -193,7 +193,7 @@ router.get('/Projelerimiz/:kategoriAd',(req,res)=>{
                         if(err) throw err;
                 
                         if(resultKategori.length>0){
-                            db.query('SELECT proje_urun_resim.resimArkaPlan, proje_urun.projeAd, proje_urun.projeAciklama, proje_urun.urunId from proje_urun INNER JOIN proje_urun_resim ON proje_urun.urunId = proje_urun_resim.urunId where kategoriId=?',[resultKategori[0].kategoriId],function(error2,resultProje,field){
+                            db.query('SELECT proje_urun_resim.resimArkaPlan,proje_urun.kategoriId, proje_urun.projeAd, proje_urun.projeAciklama, proje_urun.urunId from proje_urun INNER JOIN proje_urun_resim ON proje_urun.urunId = proje_urun_resim.urunId where kategoriId=?',[resultKategori[0].kategoriId],function(error2,resultProje,field){
                                 if(error2) throw error2;
         
                                 if(resultProje.length > 0){
@@ -206,7 +206,7 @@ router.get('/Projelerimiz/:kategoriAd',(req,res)=>{
                                 }
                             })
                         }else{
-                            db.query('SELECT proje_urun_resim.resimArkaPlan, proje_urun.projeAd, proje_urun.projeAciklama, proje_urun.urunId from proje_urun INNER JOIN proje_urun_resim ON proje_urun.urunId = proje_urun_resim.urunId where kategoriId=?',[resultKategori[0].kategoriId],function(error2,resultProje,field){
+                            db.query('SELECT proje_urun_resim.resimArkaPlan,proje_urun.kategoriId, proje_urun.projeAd, proje_urun.projeAciklama, proje_urun.urunId from proje_urun INNER JOIN proje_urun_resim ON proje_urun.urunId = proje_urun_resim.urunId where kategoriId=?',[resultKategori[0].kategoriId],function(error2,resultProje,field){
                                 if(error2) throw error2;
 
                                 if(resultProje.length > 0){
@@ -225,7 +225,7 @@ router.get('/Projelerimiz/:kategoriAd',(req,res)=>{
                         if(err) throw err;
                 
                         if(resultKategori.length>0){
-                            db.query('SELECT proje_urun_resim.resimArkaPlan, proje_urun.projeAd, proje_urun.projeAciklama, proje_urun.urunId from proje_urun INNER JOIN proje_urun_resim ON proje_urun.urunId = proje_urun_resim.urunId where kategoriId=?',[resultKategori[0].kategoriId],function(error2,resultProje,field){
+                            db.query('SELECT proje_urun_resim.resimArkaPlan,proje_urun.kategoriId, proje_urun.projeAd, proje_urun.projeAciklama, proje_urun.urunId from proje_urun INNER JOIN proje_urun_resim ON proje_urun.urunId = proje_urun_resim.urunId where kategoriId=?',[resultKategori[0].kategoriId],function(error2,resultProje,field){
                                 if(error2) throw error2;
         
                                 if(resultProje.length > 0){
@@ -240,7 +240,7 @@ router.get('/Projelerimiz/:kategoriAd',(req,res)=>{
                                 }
                             })
                         }else{
-                            db.query('SELECT proje_urun_resim.resimArkaPlan, proje_urun.projeAd, proje_urun.projeAciklama, proje_urun.urunId from proje_urun INNER JOIN proje_urun_resim ON proje_urun.urunId = proje_urun_resim.urunId where kategoriId=?',[resultKategori[0].kategoriId],function(error2,resultProje,field){
+                            db.query('SELECT proje_urun_resim.resimArkaPlan,proje_urun.kategoriId, proje_urun.projeAd, proje_urun.projeAciklama, proje_urun.urunId from proje_urun INNER JOIN proje_urun_resim ON proje_urun.urunId = proje_urun_resim.urunId where kategoriId=?',[resultKategori[0].kategoriId],function(error2,resultProje,field){
                                 if(error2) throw error2;
 
                                 if(resultProje.length > 0){
@@ -264,34 +264,99 @@ router.get('/Projelerimiz/:kategoriAd',(req,res)=>{
     
 })
 
-router.get('/Projeler/:kategoriAd/:projeAd',(req,res)=>{
+
+router.get('/Projelerimiz/:kategoriAd/:projeAd',(req,res)=>{
     const kategoriAd = req.params.kategoriAd
     const projeAd = req.params.projeAd
     let kategoriId;
     let urunId;
+    db.query('select *from iletisim',[],function(err,resultiletisim,field){
+        if(err) throw err;
 
-    db.query('select kategoriId from proje_kategori where kategoriAd = ?',[kategoriAd],function(error,result,field){
-        if(error) throw error;
+        if(resultiletisim.length > 0){
+            db.query('select *from proje_kategori where kategoriAd=?',[kategoriAd],function(error,resultKategori,field){
+                if(error) throw error;
 
-        if(result.length > 0){
-            kategoriId = result[0].kategoriId;
+                db.query('select *from proje_urun where kategoriId=? and projeAd=?',[resultKategori[0].kategoriId,projeAd],function(error1,resultProjeId,field){
+                    if(error1) throw error1;
 
-            db.query('select urunId from proje_urun where projeAd = ? and kategoriId=?',[projeAd,kategoriId],function(error2,result2,field){
-                if(error2) throw error2;
-        
-                if(result2.length > 0){
-                    urunId = result2[0].urunId;
-                    db.query('select *from proje_urun where kategoriId=? and urunId=?',[kategoriId,urunId],function(error3,result3,field3){
-                        db.query('select *from proje_urun_resim where urunId=?',[urunId],function(error4,result4,field4){
-                            res.render('deneme3',{result3,result4})
-                        })
+                    db.query('select *from proje_urun where urunId=?',[resultProjeId[0].urunId],function(error2,resultProje,field){
+                        if(error2) throw error2;
+                        if(resultProje.length > 0){
+                            db.query('select *from proje_urun_resim where urunId=?',[resultProjeId[0].urunId],function(error3,resultResim,field){
+                                if(error3) throw error3;
+
+                                if(resultResim.length > 0){
+                                    resultResim=resultControl(resultResim[0])
+                                    console.log(resultResim)
+                                    res.render('BlogProjeDetay',{resultProje,resultiletisim,resultResim})
+                                }else{
+                                    resultResim = []
+                                    resultResim=resultControl(resultResim[0])
+                                    res.render('BlogProjeDetay',{resultProje,resultiletisim,resultResim})
+                                }
+                            })
+                        }else{
+                            db.query('select *from proje_urun_resim where urunId=?',[resultProjeId[0].urunId],function(error3,resultResim,field){
+                                if(error3) throw error3;
+
+                                if(resultResim.length > 0){
+                                    resultProje = []
+                                    resultResim=resultControl(resultResim[0])
+                                    res.render('BlogProjeDetay',{resultProje,resultiletisim,resultResim})
+                                }else{
+                                    resultProje = []
+                                    resultResim = []
+                                    resultResim=resultControl(resultResim[0])
+                                    res.render('BlogProjeDetay',{resultProje,resultiletisim,resultResim})
+                                }
+                            })
+                        }
                     })
-                }else{
-                    // hata mesajı göndermek lazım
-                }
+                })
             })
         }else{
-            // hata mesajı göndermek lazım
+            db.query('select *from proje_kategori where kategoriAd=?',[kategoriAd],function(error,resultKategori,field){
+                if(error) throw error;
+
+                db.query('select *from proje_urun where kategoriId=? and projeAd=?',[resultKategori[0].kategoriId,projeAd],function(error1,resultProjeId,field){
+                    if(error1) throw error1;
+
+                    db.query('select *from proje_urun where urunId=?',[resultProjeId[0].urunId],function(error2,resultProje,field){
+                        if(error2) throw error2;
+                        if(resultProje.length > 0){
+                            db.query('select *from proje_urun_resim where urunId=?',[resultProjeId[0].urunId],function(error3,resultResim,field){
+                                if(error3) throw error3;                                
+                                if(resultResim.length > 0){
+                                    resultResim=resultControl(resultResim[0])
+                                    resultiletisim = []
+                                    res.render('BlogProjeDetay',{resultProje,resultiletisim,resultResim})
+                                }else{
+                                    resultResim = []
+                                    resultiletisim = []
+                                    resultResim=resultControl(resultResim[0])
+                                    res.render('BlogProjeDetay',{resultProje,resultiletisim,resultResim})
+                                }
+                            })
+                        }else{
+                            db.query('select *from proje_urun_resim where urunId=?',[resultProjeId[0].urunId],function(error3,resultResim,field){
+                                if(error3) throw error3;
+
+                                if(resultResim.length > 0){
+                                    resultProje = []
+                                    resultResim=resultControl(resultResim[0])
+                                    res.render('BlogProjeDetay',{resultProje,resultiletisim,resultResim})
+                                }else{
+                                    resultProje = []
+                                    resultResim = []
+                                    resultResim=resultControl(resultResim[0])
+                                    res.render('BlogProjeDetay',{resultProje,resultiletisim,resultResim})
+                                }
+                            })
+                        }
+                    })
+                })
+            })
         }
     })
 })

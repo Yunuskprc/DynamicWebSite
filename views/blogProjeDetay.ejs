@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <title>Projelerimiz</title>
+  <title><%= resultProje[0].projeAd %></title>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-rqjGgQx1BPeRvVZL8i7pO8GgoL8E5L4s4+1Ml5hNoUE5QpCqziBcu3TXRlSzqBfJ"
     crossorigin="anonymous"></script>
@@ -57,9 +57,7 @@
       transform: scaleX(1);
     }
 
-    .main-container{
-      min-height: calc(100vh - 450px);
-    }
+
 
     .link-container a+a {
       margin-left: -50%;
@@ -96,7 +94,6 @@
     }
     .kategori a+a {
       margin-left: -50%;
-      /* İki link arasındaki boşluğu ayarla */
     }
 
     #carouselExampleCaptions:hover .carousel-inner .carousel-item img {
@@ -141,6 +138,50 @@
     .nav-link:hover::after {
       transform: scaleX(1);
     }
+
+    .main-container{
+        display: flex;
+        min-height: calc(100vh - 370px);
+        /*background-image: url('/image/<%= resultProje[0].resimArkaPlan %>');
+        background-size: auto;
+        background-position: left center;
+        background-repeat: no-repeat;
+        opacity: 0.5;*/
+    }
+
+    .EskizCizim{
+        background-color: #333;
+        width: 550px;
+        height: 1000px;
+        background-image: url('/image/<%= resultProje[0].resim1 %>');
+        background-size: auto;
+        background-position: left center;
+        background-repeat: no-repeat;
+        opacity: 0.5;
+    }
+
+    .KunyeBilgileri{
+
+    color: black;
+    width: 1330px;
+    height: 1000px;
+    margin-left: 1%;
+    position: relative;
+    }
+    .KunyeBilgileri::before {
+        content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/image/<%= resultProje[0].resim1 %>');
+    background-size: contain;
+    background-position: top left; /* Arka planı en üstte hizala */
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    z-index: -1;
+}
     
 </style>
 </head>
@@ -164,44 +205,50 @@
   </div>
   
   <div class="main-container">
-    <div class="kategori">
-      <a href="/Projelerimiz">Tüm Projeler</a>
-      <% if (result) { %>
-        <% for (let i = 0; i < result.length; i++) { %>
-            <a href="/Projelerimiz/<%= result[i].kategoriAd %>"><%= result[i].kategoriAd %></a>
-        <% } %>
-      <% }else { %>
-
-        <% } %>
+    <div class="EskizCizim">
         
     </div>
 
-    <div style="margin-top: -15px; margin-bottom: 50px;"><hr style="width: 50%; margin-left: 25%;"></div>
-
-    <div style="width: 100%; display: flex; flex-wrap: wrap; justify-content: center; ">
-      <% if (resultProje) { %>
-        <% for (let i = 0; i < resultProje.length; i++) { %>
-          <% let kisaltilmisVeri = resultProje[i].projeAciklama.length > 50 ? resultProje[i].projeAciklama.slice(0, 30) + "..." : resultProje[i].projeAciklama; %>
-          <a onclick="sendLocaiton('<%=resultProje[i].kategoriId%>','<%= resultProje[i].projeAd %>')">
-          <div id="carouselExampleCaptions" class="carousel slide" style="max-width: 600px; max-height: 800px;display: flex;justify-content: center;padding: 2%;">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="/image/<%= resultProje[i].resimArkaPlan %>" class="d-block w-100"  alt="...">
-                <div class="carousel-caption d-none d-md-block" >
-                  <h5><%= resultProje[i].projeAd %></h5>
-                  <p><%= kisaltilmisVeri %></p>
-                </div>
-              </div>        
-            </div>     
-          </div>
-        </a>
-        <% } %>
-      <% }else { %>
-
-        <% } %>
+    <div class="KunyeBilgileri">
+        <div><h1 style="margin-left: 20%;margin-top: 5%;"><%= resultProje[0].projeAd %></h1></div>
+        <h5 style="margin-left: 17%; margin-top:7%;">Proje Yeri: <%= resultProje[0].projeYeri %></h5>
+        <h5 style="margin-left: 17%; margin-top:1.5%;">Proje Tipi: <%= resultProje[0].projeTipi %></h5>
+        <h5 style="margin-left: 17%; margin-top:1.5%;">İşin Sahibi: <%= resultProje[0].isSahibi %></h5>
+        <h5 style="margin-left: 17%; margin-top:1.5%;">İş Veren: <%= resultProje[0].isVeren %></h5>
+        <h5 id="dateBaslangic" style="margin-left: 17%; margin-top:1.5%;"></h5>
+        <h5 style="margin-left: 17%; margin-top:1.5%;">Arsa alanı: -<%=resultProje[0].arsaAlani  %>m²</h5>
+        <h6 style="margin-left: 17%; margin-top:1.5%;"><%= resultProje[0].projeAciklama %>asdas</h6>
     </div>
   </div>
 
+
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="background-color: #6c757d; width: 100%; height: 700px;">
+    <ol class="carousel-indicators">
+      
+      <% for (let i = 0; i < resultResim.length; i++) { %>
+        <% if (i==0) { %>
+            <li data-target="#carouselExampleIndicators" data-slide-to=<%= i %> class="active"></li>
+          <% } else { %>
+            <li data-target="#carouselExampleIndicators" data-slide-to=<%= i %>></li>
+          <% } %>
+      <% } %>
+    </ol>
+    <div class="carousel-inner">
+      
+    <%
+        for (let i = 0; i < resultResim.length; i++) {
+          const resimKey = 'resim' + (i + 1);
+      %>
+          <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
+            <img class="d-block w-100" src="/image/<%= resultResim[resimKey] %>" alt="Slide <%= i + 1 %>">
+          </div>
+      <% } %>
+
+      
+    </div>
+    
+  </div>
+  
 
   <div class="container" style="background-color: #ffffff; margin-bottom: 0px;">
     <footer class="py-3 my-4" style="background-color: #ffffff;">
@@ -238,28 +285,19 @@
   </div>
 
   <script>
-
-function sendLocaiton(degisken,projeAd) {
-  console.log(degisken);
-  fetch('/api/Projelerimiz/KategoriAdi', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ degisken: degisken }), // Değişkeni JSON formatına çevir
-  })
-  .then(response => response.json())
-  .then(data => {
-      console.log('Sunucudan gelen veri:', data);
-      window.location.href = `/Projelerimiz/${data.data}/${projeAd}`
-      // İşlemlerinizi burada yapabilirsiniz
-  })
-  .catch(error => {
-      console.error('Hata:', error);
-  });
-}
-
-
+    function getDate(dateBaslangic,dateBitis){
+        const serverDate = new Date(dateBaslangic);
+        day = serverDate.getDate();
+        month = serverDate.getMonth() + 1;
+        year = serverDate.getFullYear();
+        const serverDate2 = new Date(dateBitis)
+        day2 = serverDate2.getDate();
+        month2 = serverDate2.getMonth() + 1;
+        year2 = serverDate2.getFullYear();
+        
+        document.getElementById("dateBaslangic").innerHTML = "Proje Süresi: " + year + "/" +month +"/" + day +" - " + year2 +"/"+month2 +"/"+day2;
+    }
+    getDate('<%=resultProje[0].baslangicTarih %>','<%=resultProje[0].birisTarih %>')
   </script>
 </body>
 </html>
