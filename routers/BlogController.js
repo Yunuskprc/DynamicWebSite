@@ -268,8 +268,6 @@ router.get('/Projelerimiz/:kategoriAd',(req,res)=>{
 router.get('/Projelerimiz/:kategoriAd/:projeAd',(req,res)=>{
     const kategoriAd = req.params.kategoriAd
     const projeAd = req.params.projeAd
-    let kategoriId;
-    let urunId;
     db.query('select *from iletisim',[],function(err,resultiletisim,field){
         if(err) throw err;
 
@@ -288,7 +286,6 @@ router.get('/Projelerimiz/:kategoriAd/:projeAd',(req,res)=>{
 
                                 if(resultResim.length > 0){
                                     resultResim=resultControl(resultResim[0])
-                                    console.log(resultResim)
                                     res.render('BlogProjeDetay',{resultProje,resultiletisim,resultResim})
                                 }else{
                                     resultResim = []

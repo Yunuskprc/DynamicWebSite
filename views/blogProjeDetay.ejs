@@ -61,7 +61,6 @@
 
     .link-container a+a {
       margin-left: -50%;
-      /* İki link arasındaki boşluğu ayarla */
     }
 
     .kategori{
@@ -85,7 +84,6 @@
       width: 100%;
       height: 1px;
       background-color: #333;
-      /* Alt çizgi rengini istediğiniz renkle değiştirebilirsiniz */
       transform: scaleX(0);
       transition: transform 0.3s ease-in-out;
     }
@@ -115,11 +113,8 @@
       position: relative;
       text-decoration: none;
       color: #6c757d;
-      /* Link rengini istediğiniz renkle değiştirebilirsiniz */
       display: inline-block;
       margin-bottom: 0px;
-      /* Link altındaki boşluğu kaldırmak için */
-
     }
 
     .nav-link::after {
@@ -130,7 +125,6 @@
       width: 100%;
       height: 1.5px;
       background-color: #6c757d;
-      /* Alt çizgi rengini istediğiniz renkle değiştirebilirsiniz */
       transform: scaleX(0);
       transition: transform 0.3s ease-in-out;
     }
@@ -142,11 +136,6 @@
     .main-container{
         display: flex;
         min-height: calc(100vh - 370px);
-        /*background-image: url('/image/<%= resultProje[0].resimArkaPlan %>');
-        background-size: auto;
-        background-position: left center;
-        background-repeat: no-repeat;
-        opacity: 0.5;*/
     }
 
     .EskizCizim{
@@ -177,7 +166,7 @@
     height: 100%;
     background-image: url('/image/<%= resultProje[0].resim1 %>');
     background-size: contain;
-    background-position: top left; /* Arka planı en üstte hizala */
+    background-position: top left;
     background-repeat: no-repeat;
     opacity: 0.5;
     z-index: -1;
@@ -211,43 +200,43 @@
 
     <div class="KunyeBilgileri">
         <div><h1 style="margin-left: 20%;margin-top: 5%;"><%= resultProje[0].projeAd %></h1></div>
-        <h5 style="margin-left: 17%; margin-top:7%;">Proje Yeri: <%= resultProje[0].projeYeri %></h5>
-        <h5 style="margin-left: 17%; margin-top:1.5%;">Proje Tipi: <%= resultProje[0].projeTipi %></h5>
-        <h5 style="margin-left: 17%; margin-top:1.5%;">İşin Sahibi: <%= resultProje[0].isSahibi %></h5>
-        <h5 style="margin-left: 17%; margin-top:1.5%;">İş Veren: <%= resultProje[0].isVeren %></h5>
-        <h5 id="dateBaslangic" style="margin-left: 17%; margin-top:1.5%;"></h5>
-        <h5 style="margin-left: 17%; margin-top:1.5%;">Arsa alanı: -<%=resultProje[0].arsaAlani  %>m²</h5>
-        <h6 style="margin-left: 17%; margin-top:1.5%;"><%= resultProje[0].projeAciklama %>asdas</h6>
+        <h5 style="margin-left: 16%; margin-top:7%;">Proje Yeri: <%= resultProje[0].projeYeri %></h5>
+        <h5 style="margin-left: 16%; margin-top:1.5%;">Proje Tipi: <%= resultProje[0].projeTipi %></h5>
+        <h5 style="margin-left: 16%; margin-top:1.5%;">İşin Sahibi: <%= resultProje[0].isSahibi %></h5>
+        <h5 style="margin-left: 16%; margin-top:1.5%;">İş Veren: <%= resultProje[0].isVeren %></h5>
+        <h5 id="dateBaslangic" style="margin-left: 16%; margin-top:1.5%;"></h5>
+        <h5 style="margin-left: 16%; margin-top:1.5%;">Arsa alanı: -<%=resultProje[0].arsaAlani  %>m²</h5>
+        <h6 style="margin-left: 16%; margin-top:1.5%;"><%= resultProje[0].projeAciklama %>asdas</h6>
     </div>
   </div>
 
 
-  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="background-color: #6c757d; width: 100%; height: 700px;">
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
-      
-      <% for (let i = 0; i < resultResim.length; i++) { %>
-        <% if (i==0) { %>
-            <li data-target="#carouselExampleIndicators" data-slide-to=<%= i %> class="active"></li>
-          <% } else { %>
-            <li data-target="#carouselExampleIndicators" data-slide-to=<%= i %>></li>
-          <% } %>
-      <% } %>
+      <% Object.keys(resultResim).forEach((key, i) => { %>
+        <li data-target="#carouselExampleIndicators" data-slide-to="<%= i %>" class="<%= i === 0 ? 'active' : '' %>"></li>
+      <% }); %>
     </ol>
+  
     <div class="carousel-inner">
-      
-    <%
-        for (let i = 0; i < resultResim.length; i++) {
-          const resimKey = 'resim' + (i + 1);
-      %>
-          <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
-            <img class="d-block w-100" src="/image/<%= resultResim[resimKey] %>" alt="Slide <%= i + 1 %>">
-          </div>
-      <% } %>
-
-      
+      <% Object.keys(resultResim).forEach((key, i) => { %>
+        <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
+          <img class="d-block w-100" src="/image/<%= resultResim[key] %>" alt="Slide <%= i + 1 %>" style="max-width: 500px; max-height: 500px;">
+        </div>
+      <% }); %>
+  
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
     </div>
-    
   </div>
+  
+  
   
 
   <div class="container" style="background-color: #ffffff; margin-bottom: 0px;">
@@ -285,7 +274,7 @@
   </div>
 
   <script>
-    function getDate(dateBaslangic,dateBitis){
+    function getDate(dateBaslangic,dateBitidenemes){
         const serverDate = new Date(dateBaslangic);
         day = serverDate.getDate();
         month = serverDate.getMonth() + 1;
@@ -298,6 +287,7 @@
         document.getElementById("dateBaslangic").innerHTML = "Proje Süresi: " + year + "/" +month +"/" + day +" - " + year2 +"/"+month2 +"/"+day2;
     }
     getDate('<%=resultProje[0].baslangicTarih %>','<%=resultProje[0].birisTarih %>')
+
   </script>
 </body>
 </html>
