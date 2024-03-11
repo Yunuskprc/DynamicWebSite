@@ -287,7 +287,6 @@ router.get('/Projelerimiz/:kategoriAd/:projeAd',(req,res)=>{
                                 if(resultResim.length > 0){
                                     
                                     resultResim=resultControl(resultResim[0])
-                                    console.log(resultResim)
                                     res.render('BlogProjeDetay',{resultProje,resultiletisim,resultResim})
                                 }else{
                                     resultResim = []

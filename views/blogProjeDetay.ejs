@@ -142,40 +142,50 @@
 
     .EskizCizim{
         background-color: #333;
-        width: 550px;
+        width: 700px;
         height: 1000px;
-        background-image: url('/image/<%= resultProje[0].resim1 %>');
         background-size: auto;
         background-position: left center;
         background-repeat: no-repeat;
         opacity: 0.5;
     }
 
-    .KunyeBilgileri{
+    .EskizCizim img{
+      width: 100%;
+    height: auto;
+    object-fit: cover;
+    z-index: -1;
+    display: block; 
+    margin: 0; 
+    }
 
+    .KunyeBilgileri {
     color: black;
-    width: 1330px;
-    height: 1000px;
+    width: 100%;
+    height: auto;
     margin-left: 1%;
     position: relative;
-    }
-    .KunyeBilgileri::before {
-        content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('/image/<%= resultProje[0].resim1 %>');
-    background-size: contain;
-    background-position: top left;
-    background-repeat: no-repeat;
-    opacity: 0.5;
-    z-index: -1;
+    overflow: hidden; 
 }
-* {box-sizing:border-box}
 
-/* Slideshow container */
+.KunyeBilgileri img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.1;
+    display: block; 
+    margin: 0; 
+}
+
+.KunyeBilgileri h5 {
+    opacity: 1;
+    color: #333;
+}
+
+
+
+* {box-sizing:border-box}
 .slideshow-container {
   max-width: 1000px;
   height: 800px;
@@ -183,12 +193,6 @@
   margin: auto;
 }
 
-/* Hide the images by default */
-.mySlides {
-  
-}
-
-/* Next & previous buttons */
 .prev, .next {
   cursor: pointer;
   position: absolute;
@@ -204,18 +208,15 @@
   user-select: none;
 }
 
-/* Position the "next button" to the right */
 .next {
   right: 0;
   border-radius: 3px 0 0 3px;
 }
 
-/* On hover, add a black background color with a little bit see-through */
 .prev:hover, .next:hover {
   background-color: rgba(0,0,0,0.8);
 }
 
-/* Caption text */
 .text {
   color: #333;
   font-size: 15px;
@@ -226,7 +227,6 @@
   text-align: center;
 }
 
-/* Number text (1/3 etc) */
 .numbertext {
   color: #f2f2f2;
   font-size: 12px;
@@ -235,7 +235,6 @@
   top: 0;
 }
 
-/* The dots/bullets/indicators */
 .dot {
   cursor: pointer;
   height: 15px;
@@ -251,7 +250,6 @@
   background-color: blue;
 }
 
-/* Fading animation */
 .fade {
   animation-name: fade;
   animation-duration: 1.5s;
@@ -285,27 +283,26 @@
   
   <div class="main-container">
     <div class="EskizCizim">
-        <!--
-          buraya img eklenince sv patlıyor array değilde json olarak göndermek lazım galiba
-        -->
+        <img src="/image/<%= resultResim.resim1 %>" alt="">
     </div>
 
     <div class="KunyeBilgileri">
-        <div><h1 style="margin-left: 20%;margin-top: 5%;"><%= resultProje[0].projeAd %></h1></div>
-        <h5 style="margin-left: 16%; margin-top:7%;">Proje Yeri: <%= resultProje[0].projeYeri %></h5>
-        <h5 style="margin-left: 16%; margin-top:1.5%;">Proje Tipi: <%= resultProje[0].projeTipi %></h5>
-        <h5 style="margin-left: 16%; margin-top:1.5%;">İşin Sahibi: <%= resultProje[0].isSahibi %></h5>
-        <h5 style="margin-left: 16%; margin-top:1.5%;">İş Veren: <%= resultProje[0].isVeren %></h5>
-        <h5 id="dateBaslangic" style="margin-left: 16%; margin-top:1.5%;"></h5>
-        <h5 style="margin-left: 16%; margin-top:1.5%;">Arsa alanı: -<%=resultProje[0].arsaAlani  %>m²</h5>
-        <h6 style="margin-left: 16%; margin-top:1.5%;"><%= resultProje[0].projeAciklama %>asdas</h6>
+        <img src="/image/<%= resultResim.resimArkaPlan %>" alt="">
+        <div style="margin-top: -55%; margin-left: -7%;">
+          <h1 style="margin-left: 20%;margin-top: 5%;"><%= resultProje[0].projeAd %></h1>
+          <h5 style="margin-left: 16%; margin-top:7%;">Proje Yeri: <%= resultProje[0].projeYeri %></h5>
+          <h5 style="margin-left: 16%; margin-top:1.5%;">Proje Tipi: <%= resultProje[0].projeTipi %></h5>
+          <h5 style="margin-left: 16%; margin-top:1.5%;">İşin Sahibi: <%= resultProje[0].isSahibi %></h5>
+          <h5 style="margin-left: 16%; margin-top:1.5%;">İş Veren: <%= resultProje[0].isVeren %></h5>
+          <h5 id="dateBaslangic" style="margin-left: 16%; margin-top:1.5%;">asda</h5>
+          <h5 style="margin-left: 16%; margin-top:1.5%;">Arsa alanı: <%=resultProje[0].arsaAlani  %>m²</h5>
+          <h6 style="margin-left: 16%; margin-top:1.5%;"><%= resultProje[0].projeAciklama %>asdas</h6>
+        </div>
     </div>
   </div>
 
 
   <div class="slideshow-container">
-
-    <!-- Full-width images with number and caption text -->
     <%
     const keys = Object.keys(resultResim);
     for (let i = 2; i < keys.length; i++) {
@@ -317,13 +314,10 @@
   <%
     }
   %>
-    <!-- Next and previous buttons -->
     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
     <a class="next" onclick="plusSlides(1)">&#10095;</a>
   </div>
   <br>
-  
-  <!-- The dots/circles -->
   <div style="text-align:center">
     <% for( let index = 2; index < resultResim.length; index++ ) { %>
       
@@ -338,7 +332,7 @@
   <div class="container" style="background-color: #ffffff; margin-bottom: 0px;">
     <footer class="py-3 my-4" style="background-color: #ffffff;">
       <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-        <li class="nav-item" style="width: 200px;"><a href="#" class="nav-link px-2 text-muted">Ana Sayfa</a></li>
+        <li class="nav-item" style="width: 200px;"><a href="/" class="nav-link px-2 text-muted">Ana Sayfa</a></li>
         <li class="nav-item" style="width: 200px;"><a href="/Projelerimiz" class="nav-link px-2 text-muted">Projelerim</a></li>
         <li class="nav-item" style="width: 200px;"><a href="/Bitkilerimiz" class="nav-link px-2 text-muted">Bitkilerimiz</a></li>
         <li class="nav-item" style="width: 200px;"><a href="/KentselTasarimlar" class="nav-link px-2 text-muted">Kentsel
@@ -371,7 +365,24 @@
 
   <script>
 
-let slideIndex = 1;
+  
+  function getDate(dateBaslangic,dateBitis){
+        const serverDate = new Date(dateBaslangic);
+        day = serverDate.getDate();
+        month = serverDate.getMonth() + 1;
+        year = serverDate.getFullYear();
+        const serverDate2 = new Date(dateBitis)
+        day2 = serverDate2.getDate();
+        month2 = serverDate2.getMonth() + 1;
+        year2 = serverDate2.getFullYear();
+        console.log(year)
+        document.getElementById("dateBaslangic").innerHTML = "Proje Süresi: " + year + "/" +month +"/" + day +" - " + year2 +"/"+month2 +"/"+day2;
+    }
+  
+    getDate('<%=resultProje[0].baslangicTarih %>','<%=resultProje[0].birisTarih %>')
+    
+
+    let slideIndex = 1;
   showSlides(slideIndex);
 
   // Next/previous controls
@@ -399,19 +410,7 @@ let slideIndex = 1;
     slides[slideIndex - 1].style.display = "block";
     dots[slideIndex - 1].className += " active";
   }
-    function getDate(dateBaslangic,dateBitidenemes){
-        const serverDate = new Date(dateBaslangic);
-        day = serverDate.getDate();
-        month = serverDate.getMonth() + 1;
-        year = serverDate.getFullYear();
-        const serverDate2 = new Date(dateBitis)
-        day2 = serverDate2.getDate();
-        month2 = serverDate2.getMonth() + 1;
-        year2 = serverDate2.getFullYear();
-        
-        document.getElementById("dateBaslangic").innerHTML = "Proje Süresi: " + year + "/" +month +"/" + day +" - " + year2 +"/"+month2 +"/"+day2;
-    }
-    getDate('<%=resultProje[0].baslangicTarih %>','<%=resultProje[0].birisTarih %>')
+  
 
   </script>
 </body>

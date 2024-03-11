@@ -217,6 +217,7 @@
         <div class="section2" style="padding: 1%; height: 100%;">
 
           <% for (let i=0; i < result.length; i++) { %>
+            <% let kisaltilmisVeri = result[i].projeAciklama.length > 50 ? result[i].projeAciklama.slice(0, 30) + "..." : result[i].projeAciklama; %>
             <div class="card" style="width: 12rem;">
               <img src="/image/<%= result[i].resimArkaPlan %>" class="card-img-top"
                 style="max-width: 400px; max-height: 250px;" alt="...">
@@ -225,7 +226,7 @@
                   <%= result[i].projeAd %>
                 </h5>
                 <p class="card-text">
-                  <%= result[i].projeAciklama %>
+                  <%= kisaltilmisVeri %>
                 </p>
               </div>
             </div>
@@ -257,7 +258,7 @@
   <div class="container" style="background-color: #ffffff;">
     <footer class="py-3 my-4" style="background-color: #ffffff;">
       <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-        <li class="nav-item" style="width: 200px;"><a href="#" class="nav-link px-2 text-muted">Ana Sayfa</a></li>
+        <li class="nav-item" style="width: 200px;"><a href="/" class="nav-link px-2 text-muted">Ana Sayfa</a></li>
         <li class="nav-item" style="width: 200px;"><a href="/Projelerimiz" class="nav-link px-2 text-muted">Projelerim</a></li>
         <li class="nav-item" style="width: 200px;"><a href="/Bitkilerimiz" class="nav-link px-2 text-muted">Bitkilerimiz</a></li>
         <li class="nav-item" style="width: 200px;"><a href="/KentselTasarimlar" class="nav-link px-2 text-muted">Kentsel
