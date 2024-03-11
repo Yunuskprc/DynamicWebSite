@@ -361,82 +361,254 @@ router.get('/Projelerimiz/:kategoriAd/:projeAd',(req,res)=>{
 
 
 
-router.get('/BitkiYonetim',(req,res)=>{
-    db.query('select *from bitki_kategori',[],function(error,result,field){
-        if(error) throw error;
+router.get('/Bitkilerimiz',(req,res)=>{
+    db.query('select *from iletisim',[],function(err,resultiletisim,field){
+        if(err) throw err;
 
-        if(result.length > 0){
-            res.render('deneme',{result})
-        }else{
-            result = [];
-            res.render('ilgiliBlogSayfaAdı',{result})
-        }
-    })
-})
+        if(resultiletisim.length > 0){
+            db.query('select *from bitki_kategori',[],function(error,result,field){
+                if(error) throw error;
+        
+                if(result.length > 0){
+                    db.query('select *from bitki_urun',[],function(error1,resultProje,field){
+                        if(error1) throw error1;
 
-router.get('/BitkiYonetim/:kategoriAd',(req,res)=>{
-    const kategoriAd = req.params.kategoriAd;
-
-    db.query('Select kategoriId from bitki_kategori where kategoriAd=?',[kategoriAd],function(error,result,field){
-        if(error) throw error;
-
-        if(result.length > 0){
-            let kategoriId = result[0].kategoriId;
-            db.query('select *from bitki_urun where kategoriId=?',[kategoriId],function(error2,result2,field){
-                if(error2) throw error2;
-
-                if(result2.length > 0){
-                    res.render('deneme2',{result2,kategoriAd})
-                }else{
-                    result2 = [];
-                    res.render('deneme2',{result2,kategoriAd})
-                }
-            })
-        }else{
-            result = [];
-            res.render('İlgiliBlogSayfaAdı',{result,kategoriAd})
-        }
-    })
-})
-
-
-router.get('BitkiYonetim/:kategoriAd/:bitkiAd',(req,res) => {
-    const kategoriAd = req.params.kategoriAd;
-    const bitkiAd = req.params.bitkiAd;
-    let kategoriId;
-    let urunId;
-
-    db.query('select kategoriId from bitki_kategori where kategoriAd=?',[kategoriAd],function(error,result,field){
-        if(error) throw error;
-
-        if(result.length > 0){
-            kategoriId = result[0].kategoriId;
-            db.query('selecet urunId from bitki_urun where kategoriId=? and bitkiAd=?',[kategoriId,bitkiAd],function(error2,result2,field){
-                if(error2) throw error2;
-
-                if(result2.length > 0){
-                    urunId = result2[0].urunId;
-                    db.query('select *from bitki_urun where urunId=?',[urunId],function(error3,result3,field3){
-                        if(error3) throw error3;
-
-                        if(result3.length > 0){
-                            res.render('ilgiliBlogSayfaAdı',{result3,kategoriAd,bitkiAd})
+                        if(resultProje.length > 0){
+                            console.log(resultProje)
+                            res.render('BlogBitki',{resultiletisim,result,resultProje})
                         }else{
-                            result3=[];
-                            res.render('ilgiliBlogSayfaAd',{result3,kategoriAd,bitkiAd})
+                            resultProje = []
+                            res.render('BlogBitki',{resultiletisim,result,resultProje})
                         }
                     })
                 }else{
-                    result2 = [];
-                    res.render('ilgiliBlogSayfaAd',{result2,kategoriAd,bitkiAd})
+                    db.query('select *from bitki_urun',[],function(error1,resultProje,field){
+                        if(error1) throw error1;
+
+                        if(resultProje.length > 0){
+                            res.render('BlogBitki',{resultiletisim,result,resultProje})
+                        }else{
+                            resultProje = []
+                            result = []
+                            res.render('BlogBitki',{resultiletisim,result,resultProje})
+                        }
+                    })
                 }
             })
         }else{
-            result = [];
-            res.render('ilgiliBlogSayfaAd',{result,kategoriAd,bitkiAd})
+            db.query('select *from bitki_kategori',[],function(error,result,field){
+                if(error) throw error;
+        
+                if(result.length > 0){
+                    db.query('select *from bitki_urun',[],function(error1,resultProje,field){
+                        if(error1) throw error1;
+
+                        if(resultProje.length > 0){
+                            resultiletisim = []
+                            res.render('BlogBitki',{resultiletisim,result,resultProje})
+                        }else{
+                            resultProje = []
+                            resultiletisim = []
+                            res.render('BlogBitki',{resultiletisim,result,resultProje})
+                        }
+                    })
+                }else{
+                    db.query('select *from bitki_urun',[],function(error1,resultProje,field){
+                        if(error1) throw error1;
+
+                        if(resultProje.length > 0){
+                            resultiletisim = []
+                            res.render('BlogBitki',{resultiletisim,result,resultProje})
+                        }else{
+                            resultProje = []
+                            result = []
+                            resultiletisim = []
+                            res.render('BlogBitki',{resultiletisim,result,resultProje})
+                        }
+                    })
+                }
+            })
         }
     })
+    
 })
+
+
+router.get('/Bitkilerimiz/:kategoriAd',(req,res)=>{
+    const kategoriAd = req.params.kategoriAd;
+    console.log(kategoriAd)
+    db.query('select *from iletisim',[],function(err,resultiletisim,field){
+        if(err) throw err;
+
+        if(resultiletisim.length > 0){
+            db.query('select *from bitki_kategori',[],function(error,result,field){
+                
+                if(error) throw error;
+
+                if(result.length > 0){
+                    db.query('select *from bitki_kategori where kategoriAd=?',[kategoriAd],function(error2,resultKategori,field){
+                        if(error2) throw error2;
+
+                        if(resultKategori.length > 0){
+                            db.query('select *from bitki_urun where kategoriId=?',[resultKategori[0].kategoriId],function(error3,resultProje,field){
+                                if(error3) throw error3;
+
+                                if(resultProje.length  > 0){
+                                    res.render('BlogBitki',{resultiletisim,result,resultProje})
+                                }else{
+                                    resultProje = []
+                                    res.render('BlogBitki',{resultiletisim,result,resultProje})
+                                }
+
+                            })
+                        }else{
+                            db.query('select *from bitki_urun where kategoriId=?',[resultKategori[0].kategoriId],function(error3,resultProje,field){
+                                if(error3) throw error3;
+
+                                if(resultProje.length  > 0){
+                                    resultKategori = []
+                                    res.render('BlogBitki',{resultiletisim,result,resultProje})
+                                }else{
+                                    resultProje = []
+                                    resultKategori = []
+                                    res.render('BlogBitki',{resultiletisim,result,resultProje})
+                                }
+
+                            })
+                        }
+
+                    })
+                }else{
+                    db.query('select *from bitki_kategori where kategoriAd=?',[kategoriAd],function(error2,resultKategori,field){
+                        if(error2) throw error2;
+
+                        if(resultKategori.length > 0){
+                            db.query('select *from bitki_urun where kategoriId=?',[resultKategori[0].kategoriId],function(error3,resultProje,field){
+                                if(error3) throw error3;
+
+                                if(resultProje.length  > 0){
+                                    result = []
+                                    res.render('BlogBitki',{resultiletisim,result,resultProje})
+                                }else{
+                                    resultProje = []
+                                    result = []
+                                    res.render('BlogBitki',{resultiletisim,result,resultProje})
+                                }
+
+                            })
+                        }else{
+                            db.query('select *from bitki_urun where kategoriId=?',[resultKategori[0].kategoriId],function(error3,resultProje,field){
+                                if(error3) throw error3;
+
+                                if(resultProje.length  > 0){
+                                    resultKategori = []
+                                    result = []
+                                    res.render('BlogBitki',{resultiletisim,result,resultProje})
+                                }else{
+                                    resultProje = []
+                                    resultKategori = []
+                                    result = []
+                                    res.render('BlogBitki',{resultiletisim,result,resultProje})
+                                }
+
+                            })
+                        }
+
+                    })
+                }
+
+            })
+        }else{
+            db.query('select *from bitki_kategori',[],function(error,result,field){
+                
+                if(error) throw error;
+
+                if(result.length > 0){
+                    db.query('select *from bitki_kategori where kategoriAd=?',[kategoriAd],function(error2,resultKategori,field){
+                        if(error2) throw error2;
+
+                        if(resultKategori.length > 0){
+                            db.query('select *from bitki_urun where kategoriId=?',[resultKategori[0].kategoriId],function(error3,resultProje,field){
+                                if(error3) throw error3;
+
+                                if(resultProje.length  > 0){
+                                    resultiletisim = []
+                                    res.render('BlogBitki',{resultiletisim,result,resultProje})
+                                }else{
+                                    resultProje = []
+                                    resultiletisim = []
+                                    res.render('BlogBitki',{resultiletisim,result,resultProje})
+                                }
+
+                            })
+                        }else{
+                            db.query('select *from bitki_urun where kategoriId=?',[resultKategori[0].kategoriId],function(error3,resultProje,field){
+                                if(error3) throw error3;
+
+                                if(resultProje.length  > 0){
+                                    resultKategori = []
+                                    resultiletisim = []
+                                    res.render('BlogBitki',{resultiletisim,result,resultProje})
+                                }else{
+                                    resultProje = []
+                                    resultKategori = []
+                                    resultiletisim = []
+                                    res.render('BlogBitki',{resultiletisim,result,resultProje})
+                                }
+
+                            })
+                        }
+
+                    })
+                }else{
+                    db.query('select *from bitki_kategori where kategoriAd=?',[kategoriAd],function(error2,resultKategori,field){
+                        if(error2) throw error2;
+
+                        if(resultKategori.length > 0){
+                            db.query('select *from bitki_urun where kategoriId=?',[resultKategori[0].kategoriId],function(error3,resultProje,field){
+                                if(error3) throw error3;
+
+                                if(resultProje.length  > 0){
+                                    result = []
+                                    resultiletisim = []
+                                    res.render('BlogBitki',{resultiletisim,result,resultProje})
+                                }else{
+                                    resultProje = []
+                                    result = []
+                                    resultiletisim = []
+                                    res.render('BlogBitki',{resultiletisim,result,resultProje})
+                                }
+
+                            })
+                        }else{
+                            db.query('select *from bitki_urun where kategoriId=?',[resultKategori[0].kategoriId],function(error3,resultProje,field){
+                                if(error3) throw error3;
+
+                                if(resultProje.length  > 0){
+                                    resultKategori = []
+                                    result = []
+                                    resultiletisim = []
+                                    res.render('BlogBitki',{resultiletisim,result,resultProje})
+                                }else{
+                                    resultProje = []
+                                    resultKategori = []
+                                    result = []
+                                    resultiletisim = []
+                                    res.render('BlogBitki',{resultiletisim,result,resultProje})
+                                }
+
+                            })
+                        }
+
+                    })
+                }
+
+            })
+        }
+
+    })
+})
+
 
 
 router.get('/KenteselTasarim',(req,res)=>{
