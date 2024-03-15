@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.84.0">
+  <link href="path/to/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <title>Kentsel Tasarımlarımız</title>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-rqjGgQx1BPeRvVZL8i7pO8GgoL8E5L4s4+1Ml5hNoUE5QpCqziBcu3TXRlSzqBfJ"
+    crossorigin="anonymous"></script>
+
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
+  
+
+
+
+  <!-- Bootstrap core CSS -->
+  <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+
+    .navBar{
+      height: 200px;
+    }
+
+    .link-container {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 3.5%;
+    }
+
+    .link-container a {
+      position: relative;
+      text-decoration: none;
+      color: #333;
+      /* Altı çizgi efekti için 5 saniyelik geçiş süresi */
+    }
+
+    .link-container a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 100%;
+      height: 1px;
+      background-color: #333;
+      /* Alt çizgi rengini istediğiniz renkle değiştirebilirsiniz */
+      transform: scaleX(0);
+      transition: transform 0.3s ease-in-out;
+    }
+    .link-container a:hover::after {
+      transform: scaleX(1);
+    }
+
+    .main-container{
+      min-height: calc(100vh - 450px);
+    }
+
+    .link-container a+a {
+      margin-left: -50%;
+      /* İki link arasındaki boşluğu ayarla */
+    }
+
+    .kategori{
+      margin-top: 70px;
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .kategori a{
+      position: relative;
+      text-decoration: none;
+      color: #333;
+      margin: 0 100px;
+    }
+    .kategori a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 100%;
+      height: 1px;
+      background-color: #333;
+      /* Alt çizgi rengini istediğiniz renkle değiştirebilirsiniz */
+      transform: scaleX(0);
+      transition: transform 0.3s ease-in-out;
+    }
+    .kategori a:hover::after {
+      transform: scaleX(1);
+    }
+    .kategori a+a {
+      margin-left: -50%;
+      /* İki link arasındaki boşluğu ayarla */
+    }
+
+
+    
+    .nav-link {
+      position: relative;
+      text-decoration: none;
+      color: #6c757d;
+      /* Link rengini istediğiniz renkle değiştirebilirsiniz */
+      display: inline-block;
+      margin-bottom: 0px;
+      /* Link altındaki boşluğu kaldırmak için */
+
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 3px;
+      width: 100%;
+      height: 1.5px;
+      background-color: #6c757d;
+      /* Alt çizgi rengini istediğiniz renkle değiştirebilirsiniz */
+      transform: scaleX(0);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .nav-link:hover::after {
+      transform: scaleX(1);
+    }
+
+    #carouselExampleCaptions:hover .carousel-inner .carousel-item img {
+    filter: blur(2px); 
+    transition: filter 0.3s ease;
+    }
+    #carouselExampleCaptions .carousel-inner .carousel-item .carousel-caption h5,
+    #carouselExampleCaptions .carousel-inner .carousel-item .carousel-caption p {
+        display: none; 
+        transition: filter 1s ease;
+    }
+
+    #carouselExampleCaptions:hover .carousel-inner .carousel-item .carousel-caption h5,
+    #carouselExampleCaptions:hover .carousel-inner .carousel-item .carousel-caption p {
+        display: block;      }
+
+
+  .modal-window {
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.25);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+  &:target {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  & > div {
+    width: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2em;
+    background: #333;
+  }
+  header {
+    font-weight: bold;
+  }
+  h1 {
+    font-size: 150%;
+    margin: 0 0 15px;
+  }
+}
+
+.modal-close {
+  color: #aaa;
+  line-height: 50px;
+  font-size: 80%;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 70px;
+  text-decoration: none;
+  &:hover {
+    color: white;
+  }
+}
+
+
+
+
+
+.modal-window {
+  & > div {
+    border-radius: 1rem;
+  }
+}
+
+.modal-window div:not(:last-of-type) {
+  margin-bottom: 15px;
+}
+
+
+small {
+  color: lightgray;
+}
+
+.btn {
+  background-color: white;
+  padding: 1em 1.5em;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  i {
+    padding-right: 0.3em;
+  }
+}
+
+    
+</style>
+</head>
+<body>
+
+  <div class="navBar">
+    <div style="padding-top: 30px;">
+      <a href="/" style="position: relative;text-decoration: none;color: #333;"><h1 style="display: flex;align-items: center;justify-content: center;">ECOLOUD</h1></a>
+    </div>
+    <div class="link-container">
+      <a href="/Projelerimiz" style="align-items: center;">Projelerimiz</a>
+      <a href="/Bitkilerimiz" style="align-items: center;">Bitkilerimiz</a>
+      <a href="/KentselTasarimlar" style="align-items: center;">Kentsel Tasarımlarımız</a>
+      <a href="/WebGunlugu" style="align-items: center;">Web Günlüğü</a>
+      <a href="/Portfoy" style="align-items: center;">Portföy</a>
+      <a href="/İletisim" style="align-items: center;">İletişim</a>
+    </div>
+    <div>
+      <hr style="width: 60%; margin-left: 20%;">
+    </div>
+  </div>
+  
+  <div class="main-container">
+    <div class="kategori">
+      <a href="/KentselTasarimlar">Tüm Tasarımlar</a>
+      <% if (result) { %>
+        <% for (let i = 0; i < result.length; i++) { %>
+            <a href="/KentselTasarimlar/<%= result[i].kategoriAd %>"><%= result[i].kategoriAd %></a>
+        <% } %>
+      <% }else { %>
+
+        <% } %>
+        
+    </div>
+
+    <div style="margin-top: -15px; margin-bottom: 50px;"><hr style="width: 50%; margin-left: 25%;"></div>
+
+    <div style="width: 100%; display: flex; flex-wrap: wrap; justify-content: center; ">
+        <% if (resultProje) { %>
+          <% for (let i = 0; i < resultProje.length; i++) { %>
+            <% let kisaltilmisVeri = resultProje[i].urunAciklama.length > 50 ? resultProje[i].urunAciklama.slice(0, 30) + "..." : resultProje[i].urunAciklama; %>
+            <div id="carouselExampleCaptions" class="carousel slide " style="max-width: 600px; max-height: 800px;display: flex;justify-content: center;padding: 2%;">
+              <a href="#open-modal" onclick="VeriCek('<%= resultProje[i].urunId %>','<%= resultProje[i].kategoriId %>')" class="btn">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="/image/<%= resultProje[i].urunResimYol %>" class="d-block w-100">
+                  <div class="carousel-caption d-none d-md-block" >
+                    <h5><%= resultProje[i].urunAd %></h5>
+                    <p><%= kisaltilmisVeri %></p>
+                  </div>
+                </div>        
+              </div> 
+              </a>    
+            </div>
+          
+          <% } %>
+        <% }else { %>
+  
+          <% } %>
+
+
+            <div id="open-modal" class="modal-window">
+              <div>
+                <a href="#" title="Close" class="modal-close">Kapat</a>
+                <h1 id="ktAd"></h1>
+                <div id="ktAciklama"></div>
+                <img src="" alt="" id="ktResim">
+                <br>
+              </div>
+            </div>
+          </div>
+      </div>
+  </div>
+
+
+  <div class="container" style="background-color: #ffffff; margin-bottom: 0px;">
+    <footer class="py-3 my-4" style="background-color: #ffffff;">
+      <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        <li class="nav-item" style="width: 200px;"><a href="/" class="nav-link px-2 text-muted">Ana Sayfa</a></li>
+        <li class="nav-item" style="width: 200px;"><a href="/Projelerimiz" class="nav-link px-2 text-muted">Projelerim</a></li>
+        <li class="nav-item" style="width: 200px;"><a href="/Bitkilerimiz" class="nav-link px-2 text-muted">Bitkilerimiz</a></li>
+        <li class="nav-item" style="width: 200px;"><a href="/KentselTasarimlar" class="nav-link px-2 text-muted">Kentsel
+            Tasarımlarımız</a></li>
+        <li class="nav-item" style="width: 200px;"><a href="/WebGunlugu" class="nav-link px-2 text-muted">Web Günlüğü</a></li>
+        <li class="nav-item" style="width: 200px;"><a href="/Portfoy" class="nav-link px-2 text-muted">Portföy</a></li>
+      </ul>
+      <p class="text-center text-muted">&copy; 2022 Company, Inc</p>
+      <div
+        style="width: 30%;height: 60%;display: flex;flex-wrap: wrap;margin-left:70% ;margin-top: -3.75%;align-items: center;justify-content:  space-around;">
+        <a href="<%= resultiletisim[0].instagram %>" target="_blank">
+          <h3><i class="bi bi-instagram" style="color:rgba(88,92,94,255);"></i></h3>
+        </a>
+        <a href="<%= resultiletisim[0].facebook %>" target="_blank">
+          <h3><i class="bi bi-facebook" style="color:rgba(88,92,94,255);"></i></h3>
+        </a>
+        <a href="<%= resultiletisim[0].twitter %>" target="_blank">
+          <h3><i class="bi bi-twitter-x" style="color:rgba(88,92,94,255);"></i></h3>
+        </a>
+        <a href="<%= resultiletisim[0].mail %>" target="_blank">
+          <h3><i class="bi bi-envelope-at" style="color:rgba(88,92,94,255);"></i></h3>
+        </a>
+        <a href="<%= resultiletisim[0].linkedin %>" target="_blank">
+          <h3><i class="bi bi-linkedin" style="color:rgba(88,92,94,255);"></i></h3>
+        </a>
+      </div>
+
+    </footer>
+  </div>
+
+  <script>
+
+function VeriCek(urunId,kategoriId) {
+  
+  fetch('/api/KentselTasarimlar', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ urunId: urunId, kategoriId,kategoriId  }), 
+  })
+  .then(response => response.json())
+  .then(data => {
+      document.getElementById('ktAd').innerHTML = data.data.urunAd;
+      document.getElementById('ktAciklama').innerHTML = data.data.urunAciklama;
+      document.getElementById('ktResim').src ='/image/'+ data.data.urunResimYol
+  })
+  .catch(error => {
+      console.error('Hata:', error);
+  });
+}
+
+
+  </script>
+</body>
+</html>

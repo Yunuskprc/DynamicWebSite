@@ -35,13 +35,27 @@ router.post('/Bitkilerimiz',(req,res)=>{
         if(error) throw error;
 
         if(result.length > 0){
-            console.log('\n\n\nBunu arıyorum',result[0])
             res.json({ data: result[0] });
         }else{
             res.json({succes:false, message:'Veri Bulunamadı'})
         }
     })
 
+})
+
+router.post('/KentselTasarimlar',(req,res)=>{
+    let urunId = req.body.urunId;
+    let kategoriId = req.body.kategoriId;
+
+    db.query('select *from kentseltasarim_urun where urunId=? and kategoriId=?',[urunId,kategoriId],function(error,result,field){
+        if(error) throw error;
+
+        if(result.length > 0){
+            res.json({ data: result[0] });
+        }else{
+            res.json({succes:false, message:'Veri Bulunamadı'})
+        }
+    })  
 })
 
 module.exports = router;
