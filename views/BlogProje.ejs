@@ -210,7 +210,6 @@
     </div>
 
     <div style="margin-top: -15px; margin-bottom: 50px;"><hr style="width: 50%; margin-left: 25%;"></div>
-  <!---
     <div style="width: 100%; display: flex; flex-wrap: wrap; justify-content: center; ">
       <% if (resultProje) { %>
         <% for (let i = 0; i < resultProje.length; i++) { %>
@@ -232,38 +231,11 @@
       <% }else { %>
 
         <% } %>
-    </div> -->
+    </div> 
 
 
 
 
-    <div style="margin-top: -15px; margin-bottom: 50px;">
-      <hr style="width: 50%; margin-left: 25%;">
-    </div>
-    <div class="p-3 m-0 border-0 bd-example m-0 border-0 bd-example-cssgrid">
-      <% if (resultProje) { %>
-        <% for (let i = 0; i < resultProje.length; i++) { %>
-          <% let kisaltilmisVeri = resultProje[i].projeAciklama.length > 50 ? resultProje[i].projeAciklama.slice(0, 30) + "..." : resultProje[i].projeAciklama; %>
-          <a onclick="sendLocaiton('<%=resultProje[i].kategoriId%>','<%= resultProje[i].projeAd %>')"></a>
-      <div class="grid text-center">
-        <div class="g-col-6 g-col-md-4" style="background-image: url('/image/<%= resultProje[i].resimArkaPlan %>');"><h5><%= resultProje[i].projeAd %></h5>
-          <p><%= kisaltilmisVeri %></p></div>
-        <div class="g-col-6 g-col-md-4" ></div>
-        <div class="g-col-6 g-col-md-4" ></div>
-      </div>
-      <div class="grid text-center" style="margin-top: 15%;">
-        <div class="g-col-6"> </div>
-        <div class="g-col-6"></div>
-      </div>
-
-
-    </a>
-    <% } %>
-  <% }else { %>
-
-    <% } %>
-      
-    </div>
     
   </div>
 
