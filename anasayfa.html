@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.84.0">
+  <link href="path/to/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <title>Ana Sayfa</title>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-rqjGgQx1BPeRvVZL8i7pO8GgoL8E5L4s4+1Ml5hNoUE5QpCqziBcu3TXRlSzqBfJ"
+    crossorigin="anonymous"></script>
+
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
+
+
+
+  <!-- Bootstrap core CSS -->
+  <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+
+    }
+
+    .content {
+      padding: 0px;
+      height: 2000px;
+      /* Aşağı kaydırmak için içeriğin yüksekliğini ayarlayın */
+      padding-bottom: 60px;
+      /* Footer'ın içeriği örtmemesi için içerik altına padding ekleyin */
+    }
+
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+
+      height: 200px;
+
+      margin-bottom: 0px;
+
+      width: 100%;
+    }
+
+    footer a{
+      color: white;
+      text-decoration: none;
+      margin: 5%;
+    }
+
+    footer a:hover{
+      text-decoration: underline;
+    }
+
+    .section {
+      padding: 20px;
+      background-color: #f0f0f0;
+
+      color: #fff;
+      border-bottom: 1px solid #ddd;
+      /* Bölümler arasına sınır ekler */
+      background-image: url("/image/resim.jpg");
+      /* Resmin yolunu url() içinde belirtin */
+      background-size: cover;
+      /* Resmin boyutunu kaplama şeklinde ayarlayın */
+      background-position: center;
+      /* Resmi ortalamak için */
+      background-repeat: no-repeat;
+      /* Resmin tekrar etmemesini sağlayın */
+    }
+
+    .link-container {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 2%;
+    }
+
+    .link-container a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      color: #ffffff;
+      transition: text-decoration 5s ease;
+      /* Altı çizgi efekti için 5 saniyelik geçiş süresi */
+    }
+
+    .link-container a:hover {
+      text-decoration: underline;
+      /* Link üzerine gelindiğinde altı çizgiyi etkinleştir */
+      transition: text-decoration 0.3s ease;
+      /* Hızlı bir şekilde altı çizgiyi göster */
+    }
+
+    /* Sadece linkler arasındaki boşluğu azalt */
+    .link-container a+a {
+      margin-left: -50%;
+      /* İki link arasındaki boşluğu ayarla */
+    }
+
+    .section2 {
+      display: flex;
+      justify-content: space-between;
+      /* Kartları boşluğa yayarak aralarında eşit mesafe bırakır */
+      flex-wrap: wrap;
+      /* Eğer kartlar sığmazsa, bir sonraki satıra geçmelerini sağlar */
+    }
+
+    .card {
+      flex: 0 0 calc(20% - -50px);
+      /* Kartların genişliğini ayarlar ve aralarında 20 piksel boşluk bırakır */
+      margin-bottom: 20px;
+      /* Kartlar arasında alt boşluk bırakır */
+    }
+
+    @media (max-width: 992px) {
+      .card {
+        flex: 0 0 calc(50% - 20px);
+        /* Ekran boyutu küçüldükçe, kartların genişliğini %50 olarak ayarlar */
+      }
+    }
+
+    @media (max-width: 576px) {
+      .card {
+        flex: 0 0 100%;
+        /* Ekran boyutu daha da küçüldükçe, kartların genişliğini %100 olarak ayarlar (tek sıra) */
+      }
+    }
+  </style>
+
+
+
+</head>
+
+<body>
+
+<div class="content">
+
+    <div class="section" style="height:52%;">
+      <div>
+        <h1 style="display: flex;align-items: center;justify-content: center;">Site Adı</h1>
+      </div>
+
+
+      <div class="link-container">
+        <a href="/Projelerimiz" style="align-items: center;">Projelerimiz</a>
+        <a href="/Bitkilerimiz" style="align-items: center;">Bitkilerimiz</a>
+        <a href="/KentselTasarimlar" style="align-items: center;">Kentsel Tasarımlarımız</a>
+        <a href="/WebGunlugu" style="align-items: center;">Web Günlüğü</a>
+        <a href="/Portfoy" style="align-items: center;">Portföy</a>
+        <a href="/İletisim" style="align-items: center;">İletişim</a>
+      </div>
+
+      <div style="margin-left: 26.5%;padding-top: 5%;width: 400px;font-size: 150%;">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita perferendis illum modi suscipit fuga minus
+          facilis a, ad eos soluta totam quis, similique delectus ipsum earum quod saepe, doloribus dicta.</p>
+      </div>
+
+      <div style="margin-left: 26.5%;padding-top: 1%;width: 600px;font-size: 100%;">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita perferendis illum modi suscipit fuga minus
+          facilis a, ad eos soluta totam quis, similique delectus ipsum earum quod saepe, doloribus dicta.</p>
+      </div>
+
+
+    </div>
+
+<!-- Vertically centered modal -->
+<!-- Tetikleyici buton -->
+<button type="button" data-toggle="modal" data-target="#exampleModal">
+  Modalı Aç
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Başlık</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Modal içeriği buraya gelecek
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+        <button type="button" class="btn btn-primary">Kaydet</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    <div style="border: 1px solid #dedede;border-radius: 10px;margin: 0.5%;">
+      <h2 style="padding: 1%;">Projelerim</h2>
+      <div class="section2" style="padding: 1%; height: 50%;">
+
+        <div class="card" style="width: 12rem;height: 100px;">
+          <img src="..." class="card-img-top" style="max-width: 100px; max-height: 150px;" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+
+          </div>
+        </div>
+        <div class="card" style="width: 12rem;">
+          <img src="../public/image/resim.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+
+          </div>
+        </div>
+        <div class="card" style="width: 12rem;">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+
+          </div>
+        </div>
+        <div class="card" style="width: 12rem;">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+
+          </div>
+        </div>
+        <div class="card" style="width: 12rem;">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+
+          </div>
+        </div>
+        <div class="card" style="width: 12rem;">
+          <img src="../public/image/resim.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+
+          </div>
+        </div>
+        <div class="card" style="width: 12rem;">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+
+          </div>
+        </div>
+        <div class="card" style="width: 12rem;">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+
+          </div>
+        </div>
+
+      </div>
+      <div style="display: flex;text-align: center;justify-content: center;margin-bottom: 1%;">
+        <button type="button" class="btn active" data-bs-toggle="button" aria-pressed="true">Tümünü Gör</button>
+      </div>
+     
+
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <img src="./public/image/image-1710151740133-867032472.jpg" class="img-fluid" alt="Fotoğraf 1">
+          </div>
+          <div class="col-md-4">
+            <img src="./public/image/image-1710151852914-310697722.jpg" class="img-fluid" alt="Fotoğraf 2">
+          </div>
+          <div class="col-md-4">
+            <img src="./public/image/image-1710183872543-373376028.jpg" class="img-fluid" alt="Fotoğraf 3">
+          </div>
+        </div>
+      </div>
+      
+
+        
+
+
+
+    </div>
+  </div>
+
+  
+  </div>
+
+
+
+
+<!-- Remove the container if you want to extend the Footer to full width. -->
+<div class="container my-5">
+  <!-- Footer -->
+  <footer
+          class="text-center text-lg-start text-white"
+          style="background-color: #45526e"
+          >
+    <!-- Grid container -->
+    <div class="container p-4 pb-0">
+      <!-- Section: Links -->
+      <section class="">
+        <!--Grid row-->
+        <div class="row">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">
+              Company name
+            </h6>
+            <p>
+              Here you can use rows and columns to organize your footer
+              content. Lorem ipsum dolor sit amet, consectetur adipisicing
+              elit.
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <hr class="w-100 clearfix d-md-none" />
+
+          <!-- Grid column -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">Products</h6>
+            <p>
+              <a class="text-white">MDBootstrap</a>
+            </p>
+            <p>
+              <a class="text-white">MDWordPress</a>
+            </p>
+            <p>
+              <a class="text-white">BrandFlow</a>
+            </p>
+            <p>
+              <a class="text-white">Bootstrap Angular</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <hr class="w-100 clearfix d-md-none" />
+
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">
+              Useful links
+            </h6>
+            <p>
+              <a class="text-white">Your Account</a>
+            </p>
+            <p>
+              <a class="text-white">Become an Affiliate</a>
+            </p>
+            <p>
+              <a class="text-white">Shipping Rates</a>
+            </p>
+            <p>
+              <a class="text-white">Help</a>
+            </p>
+          </div>
+
+          <!-- Grid column -->
+          <hr class="w-100 clearfix d-md-none" />
+
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+            <p><i class="fas fa-home mr-3"></i> New York, NY 10012, US</p>
+            <p><i class="fas fa-envelope mr-3"></i> info@gmail.com</p>
+            <p><i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
+            <p><i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!--Grid row-->
+      </section>
+      <!-- Section: Links -->
+
+      <hr class="my-3">
+
+      <!-- Section: Copyright -->
+      <section class="p-3 pt-0">
+        <div class="row d-flex align-items-center">
+          <!-- Grid column -->
+          <div class="col-md-7 col-lg-8 text-center text-md-start">
+            <!-- Copyright -->
+            <div class="p-3">
+              © 2020 Copyright:
+              <a class="text-white" href="https://mdbootstrap.com/"
+                 >MDBootstrap.com</a
+                >
+            </div>
+            <!-- Copyright -->
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-5 col-lg-4 ml-lg-0 text-center text-md-end">
+            <!-- Facebook -->
+            <a
+               class="btn btn-outline-light btn-floating m-1"
+               class="text-white"
+               role="button"
+               ><i class="fab fa-facebook-f"></i
+              ></a>
+
+            <!-- Twitter -->
+            <a
+               class="btn btn-outline-light btn-floating m-1"
+               class="text-white"
+               role="button"
+               ><i class="fab fa-twitter"></i
+              ></a>
+
+            <!-- Google -->
+            <a
+               class="btn btn-outline-light btn-floating m-1"
+               class="text-white"
+               role="button"
+               ><i class="fab fa-google"></i
+              ></a>
+
+            <!-- Instagram -->
+            <a
+               class="btn btn-outline-light btn-floating m-1"
+               class="text-white"
+               role="button"
+               ><i class="fab fa-instagram"></i
+              ></a>
+          </div>
+          <!-- Grid column -->
+        </div>
+      </section>
+      <!-- Section: Copyright -->
+    </div>
+    <!-- Grid container -->
+  </footer>
+  <!-- Footer -->
+</div>
+<!-- End of .container -->
+
+
+  <main>
+
+
+
+
+
+  </main>
+  <script src="../node_modules/bootstrap/dist/css/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-rqjGgQx1BPeRvVZL8i7pO8GgoL8E5L4s4+1Ml5hNoUE5QpCqziBcu3TXRlSzqBfJ"
+    crossorigin="anonymous"></script>
+  <script src="../public/js/sidebars.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script>
+
+
+  </script>
+</body>
+
+</html>
